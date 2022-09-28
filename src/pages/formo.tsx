@@ -1,6 +1,7 @@
 import { test } from "../types"
 import React from "react"
-import { Button, Input, Grid, Card, Text, Checkbox} from "@nextui-org/react";
+import { Button, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
+import Header from "./test_pages/Header_test";
 
 import { useNavigate } from "react-router-dom";
 
@@ -25,35 +26,36 @@ function Formulario() {
 
     return (
         <Grid.Container gap={2} justify="center">
+            <Header/>
             <Grid xs={12}>
                 <MockItem text="Test!"/>
             </Grid>
             <Grid xs={2}/>
             <Grid xs={10}>
-                <Input size="lg" placeholder="Nombre(s)"/>
+                <Input width="75%" placeholder="Nombre(s)"/>
             </Grid>
             <Grid xs={2}/>
             <Grid xs={10}>
-                <Input size="lg" placeholder="Apellido(s)"/>
+                <Input width="75%" placeholder="Apellido(s)"/>
             </Grid>
             <Grid xs={2}/>
             <Grid xs={10}>
-                <Input size="lg" placeholder="Correo"/>
+                <Input width="75%" placeholder="Correo"/>
             </Grid>
             <Grid xs={2}/>
             <Grid xs={10}>
-                <Input size="lg" placeholder="Contraseña"/>
+                <Input width="75%" placeholder="Contraseña"/>
             </Grid>
             <Grid xs={2}/>
             <Grid xs={10}>
-                <Input size="lg" placeholder="RUT"/>
+                <Input width="75%" placeholder="RUT"/>
             </Grid>
             <Grid xs={4}/>
             <Grid xs={8}>
                 <Checkbox.Group
                     label="Roles"
                     orientation="horizontal"
-                    color="secondary"
+                    color="primary"
                     >
                     <Checkbox value="buenos-aires">Gerente</Checkbox>
                     <Checkbox value="sydney">Administrador</Checkbox>
