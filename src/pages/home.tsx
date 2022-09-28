@@ -21,6 +21,8 @@ function Home(){
         <Button onClick={() => {navigate("/page1")}} >Botón 1</Button>
         <Spacer y={0.5} />
         <Button onClick={() => {navigate("/page2")}} >Botón 2</Button>
+        <Spacer y={0.5} />
+        <Button onClick={() => {navigate("/formo")}} >Botón 3</Button>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import Page1 from "./pages/page1";
 import Page2 from "./pages/page2";
 import Page3 from "./pages/page3";
+import Formulario from "./pages/formo"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/page1" element={<Page1/>}/>
         <Route path="/page2" element={<Page2/>}/>
         <Route path="/page3" element={<Page3/>} />
+        <Route path="/formo" element={<Formulario/>} />
         </Routes>
     </Router>
   );
