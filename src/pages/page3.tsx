@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Card, Text } from "@nextui-org/react";
 
-function Page3(){
+function Admin(){
     interface prueba {
         text:string
     }
@@ -20,11 +20,10 @@ function Page3(){
       return (
             <Card>
                 <div>
-                    Página 3 
-                    Intento de cambio de página forzado
+                  Administrador
                 </div>
              </Card>
       );
 }
 
-export default Page3;
+export default Admin;

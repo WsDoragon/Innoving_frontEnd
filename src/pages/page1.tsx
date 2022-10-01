@@ -1,15 +1,19 @@
 import React from "react";
-import { Button, Spacer } from "@nextui-org/react";
+import { Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
+import Header from "./test_pages/Header_test";
 
-function Page1(){
+function Gerente(){
     const navigate = useNavigate();
     return(
-        <div>
-            Página 1
-            <Button onClick={() => {navigate("/")}} >Home</Button>
-        </div>
+        <Grid.Container gap={2} justify="center">
+            <Header/>
+            <div>
+                Gerente
+                <Button onClick={() => {navigate("/")}} >Home</Button>
+            </div>
+        </Grid.Container>
     );
 }
 
-export default Page1;
+export default Gerente;
