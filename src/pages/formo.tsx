@@ -1,6 +1,6 @@
 import { test } from "../types"
 import React from "react"
-import { Button, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
+import { Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
 import Header from "./test_pages/Header_test";
 
 import { useNavigate } from "react-router-dom";
@@ -65,7 +65,9 @@ function Formulario() {
             </Grid>
 
             <Grid xs={3} md={3}>
-                <Button onClick={() => {maradona("/")}} >De vuelta al futuro</Button>
+                <Button>Editar</Button>
+                <Spacer x={0.5} />
+                <Button onClick={() => {maradona("/")}} color="error" >Salir</Button>   
             </Grid>    
         </Grid.Container>
     );
