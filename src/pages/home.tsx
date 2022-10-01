@@ -18,11 +18,13 @@ function Home(){
         />
 
         <Spacer y={0.5} />
-        <Button onClick={() => {navigate("/page1")}} >Botón 1</Button>
+        <Button onClick={() => {navigate("/gerente")}} >Gerente</Button>
         <Spacer y={0.5} />
-        <Button onClick={() => {navigate("/page2")}} >Botón 2</Button>
+        <Button onClick={() => {navigate("/analista")}} >Analista</Button>
         <Spacer y={0.5} />
-        <Button onClick={() => {navigate("/formo")}} >Botón 3</Button>
+        <Button onClick={() => {navigate("/administrador")}} >Administrador</Button>
+        <Spacer y={0.5} />
+        <Button onClick={() => {navigate("/formo")}} >formo</Button>
       </div>
     );
   }
