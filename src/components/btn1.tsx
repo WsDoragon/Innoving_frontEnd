@@ -1,11 +1,11 @@
 import React from 'react'
 import { Button, Grid } from "@nextui-org/react";
 
-const Btn1 = ({text}:{text:string}) => {
+const Btn1 = ({text}:{text:string}, {bntHandler}:any) => {
   return (
     <Grid>
-        <Button shadow color="success" bordered rounded auto>
-          {text}
+        <Button onClick={bntHandler} shadow color="success" bordered rounded auto>
+          {text}, 
         </Button>
       </Grid>
   )

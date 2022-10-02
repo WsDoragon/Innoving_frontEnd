@@ -8,12 +8,8 @@ const submenu = () => {
     <div>
     <Text size="$3xl" h3>SubMenu</Text>
         <Grid.Container gap={1}>
-                
-                <Btn1 text='Gerente'></Btn1>
-                <Btn1 text='Analista'></Btn1>
-                <Btn1 text='Vision'></Btn1>
-                <Btn1 text='Home'></Btn1>
-                <Btn1 text='Quienes somos ?'></Btn1>   
+                <Btn1 text='Indicadores'></Btn1>
+                <Btn1 text='Solicitudes'></Btn1>  
         </Grid.Container>
 
     </div>
