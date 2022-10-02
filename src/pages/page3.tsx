@@ -9,7 +9,7 @@ const Results = () => (
   </div>
 )
 
-function Admin(){
+function Page3(){
   const [showResults, setShowResults] = React.useState(false)
   const onClick = () => {
     if (showResults) {
@@ -25,4 +25,4 @@ function Admin(){
   );
 }
 
-export default Admin;
+export default Page3;
