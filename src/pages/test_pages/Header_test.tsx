@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const {isDark} = useTheme();
   const navigate = useNavigate();
   return (
-      <Navbar variant="sticky">
+      <Navbar variant="sticky" css={{backgroundColor: "rgba(122,0,122, 1)",}}>
         <Navbar.Brand>
           <Image
             width={120}
