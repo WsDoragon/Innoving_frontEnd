@@ -9,13 +9,14 @@ import Page3 from "./pages/page3";
 import Formulario from "./pages/formo"
 import Submenu from './pages/submenu';
 import Submenu2 from './pages/submenu2';
+import Header from './pages/test_pages/Header_test';
 
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home/>} />
+        <Route path='/' element={<Header/>} />
         <Route path="/home" element={<Home/>}/>
         <Route path="/gerente" element={<Gerente/>}/>
         <Route path="/analista" element={<Analista/>}/>

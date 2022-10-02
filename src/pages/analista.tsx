@@ -10,14 +10,16 @@ function Analista(){
     
     const [showResults, setShowResults] = React.useState(false)
     const [showResults2, setShowResults2] = React.useState(false)
+    const [showResults3, setShowResults3] = React.useState(false)
     
     const onClick = () => {
         if (showResults) {
         setShowResults(false)
         }
         else{
-            setShowResults(true)
+            setShowResults3(false)
             setShowResults2(false)
+            setShowResults(true)
         } 
     }
 
@@ -26,22 +28,34 @@ function Analista(){
         setShowResults2(false)
         }
         else{
+            setShowResults3(false)
             setShowResults2(true)
+            setShowResults(false)
+        } 
+    }
+    const onClick3 = () => {
+        if (showResults3) {
+        setShowResults3(false)
+        }
+        else{
+            setShowResults3(true)
+            setShowResults2(false)
             setShowResults(false)
         } 
     }
 
     return(
         <Grid.Container gap={2} justify="center">
-            <Header/>
 
             <Grid xs={12}>
                 <Button onClick={onClick} auto flat as={Link} href="#"> Indicadores </Button>
-                <Button onClick={onClick2} auto flat as={Link} href="#">Solicitudes</Button>
+                <Button onClick={onClick2} auto flat as={Link} href="#">Evidencias</Button>
+                <Button onClick={onClick3} auto flat as={Link} href="#">Provedores</Button>
             </Grid>
 
             {  showResults ? <Componente1 /> : null }
-            {  showResults2 ? <Formulario /> : null }
+            {  showResults2 ? <Componente1 /> : null }
+            {  showResults3 ? <Componente1 /> : null }
 
         </Grid.Container>
     );
