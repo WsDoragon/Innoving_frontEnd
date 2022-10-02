@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Button, Spacer } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { Image } from "@nextui-org/react";

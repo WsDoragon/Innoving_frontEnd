@@ -28,7 +28,7 @@ const Header: React.FC = () => {
         </Navbar.Brand>
         <Navbar.Content variant="underline" hideIn="xs">
           <Navbar.Link href="#">Gerente</Navbar.Link>
-          <Navbar.Link isActive href="#">Administrador</Navbar.Link>
+          <Navbar.Link href="#">Administrador</Navbar.Link>
           <Navbar.Link href="#">Analista</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content>
