@@ -14,8 +14,6 @@ function Formulario() {
 
     return (
         <Grid.Container gap={2} justify="center">
-            <Header/>
-
             <Grid xs={12}>
                 <Card css={{ h: "$20", $$cardColor: '$colors$primary' }}>
                     <Card.Body>

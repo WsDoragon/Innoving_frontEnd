@@ -3,42 +3,46 @@ import { Grid, Navbar, Button, Link, Text, Card } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import Header from "./test_pages/Header_test";
 import { text } from "stream/consumers";
-
-const Results = () => (
-    <div id="results" className="search-results">
-      <h1>
-        Hola
-      </h1>
-    </div>
-  )
+import Componente1 from "./test_pages/componente";
+import Formulario from "./formo";
 
 function Analista(){
     const navigate = useNavigate();
+    
     const [showResults, setShowResults] = React.useState(false)
+    const [showResults2, setShowResults2] = React.useState(false)
+    
     const onClick = () => {
         if (showResults) {
         setShowResults(false)
         }
-        else setShowResults(true)
+        else{
+            setShowResults(true)
+            setShowResults2(false)
+        } 
     }
+
+    const onClick2 = () => {
+        if (showResults2) {
+        setShowResults2(false)
+        }
+        else{
+            setShowResults2(true)
+            setShowResults(false)
+        } 
+    }
+
     return(
         <Grid.Container gap={2} justify="center">
             <Header/>
 
             <Grid xs={12}>
-                <Navbar variant="sticky">
-                    <Navbar.Content variant="highlight" hideIn="xs">
-                        <Navbar.Item>
-                            <Button onClick={onClick} auto flat as={Link} href="#"> Indicadores </Button>
-                        </Navbar.Item>
-                        <Navbar.Item>
-                            <Button auto flat as={Link} href="#">Solicitudes</Button>
-                        </Navbar.Item>
-                    </Navbar.Content>
-                </Navbar>
+                <Button onClick={onClick} auto flat as={Link} href="#"> Indicadores </Button>
+                <Button onClick={onClick2} auto flat as={Link} href="#">Solicitudes</Button>
             </Grid>
 
-            {  showResults ? <Results /> : null }
+            {  showResults ? <Componente1 /> : null }
+            {  showResults2 ? <Formulario /> : null }
 
         </Grid.Container>
     );
