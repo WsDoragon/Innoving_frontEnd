@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   
   return (
-      <Navbar variant="sticky" css={{$$navbarBackgroundColor: '#000000', $$navbarTextColor: '#ffffff'}} disableBlur>
+      <Navbar variant="static" css={{$$navbarBackgroundColor: '#000000', $$navbarTextColor: '#ffffff'}} disableBlur maxWidth="fluid">
         <Navbar.Brand>
           <Image
             width={120}
