@@ -39,7 +39,7 @@ export default function Login () {
     <Image
                 width={800}
                 height={180}
-                src="https://github.com/WsDoragon/Gestion_usuario_2.0/blob/main/P%C3%A1gina-Gesti%C3%B3n/src/assets/logoA.png?raw=true"
+                src="https://raw.githubusercontent.com/WsDoragon/Gestion_Usuarios/main/P%C3%A1gina-Gesti%C3%B3n/src/assets/logoA.png"
                 objectFit="cover"
             />
     
