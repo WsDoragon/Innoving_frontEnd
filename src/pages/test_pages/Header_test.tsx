@@ -1,4 +1,4 @@
-import { createTheme,Navbar, Button, Link, Spacer } from "@nextui-org/react";
+import { Text ,Navbar, Button, Link, Spacer } from "@nextui-org/react";
 import { Image, useTheme } from "@nextui-org/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   
   return (
-      <Navbar variant="sticky" css={{backgroundColor: "black"}}>
+      <Navbar variant="sticky" css={{$$navbarBackgroundColor: '#000000', $$navbarTextColor: '#ffffff'}} disableBlur>
         <Navbar.Brand>
           <Image
             width={120}
@@ -34,8 +34,8 @@ const Header: React.FC = () => {
           <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link>
         </Navbar.Content>
         <Navbar.Content>
-          <Button onClick={() => {navigate("/")}} auto flat as={Link} href="#">
-            Cerrar sesión
+          <Button onClick={() => {navigate("/")}} auto flat as={Link} href="#" css ={{background:"#FFA859"}}>
+            <Text color='#000000'>Cerrar sesión</Text>
           </Button>
         </Navbar.Content>
       </Navbar>

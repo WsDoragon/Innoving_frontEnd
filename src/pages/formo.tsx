@@ -40,38 +40,22 @@ function Formulario() {
 
     return (
         <Grid.Container gap={2} justify="center">
-            <Grid xs={12}>
-                <Card css={{ h: "$20", $$cardColor: '$colors$primary' }}>
-                </Card>
-            </Grid>
 
-            <Grid xs={2}/>
-            <Grid xs={10}>
-                <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
-            </Grid>
+            <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
+            <Spacer y={3} />
+            <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
+            <Spacer y={3} />
 
-            <Grid xs={2}/>
-            <Grid xs={10}>
-                <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
-            </Grid>
+            <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
+            <Spacer y={3} />
+            <Input width="75%" placeholder="Contraseña" type="text" name="pass" onChange={handleChange} value={state.pass}/>
+            <Spacer y={3} />
 
-            <Grid xs={2}/>
-            <Grid xs={10}>
-                <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
-            </Grid>
+            <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
+            <Spacer y={3} />
 
-            <Grid xs={2}/>
-            <Grid xs={10}>
-                <Input width="75%" placeholder="Contraseña" type="text" name="pass" onChange={handleChange} value={state.pass}/>
-            </Grid>
-
-            <Grid xs={2}/>
-            <Grid xs={10}>
-                <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
-            </Grid>
-
-            <Grid xs={4}/>
-            <Grid xs={8}>
+                <Grid.Container justify="center">
+                
                 <Checkbox.Group
                     label="Roles"
                     orientation="horizontal"
@@ -81,13 +65,12 @@ function Formulario() {
                     <Checkbox value="sydney">Administrador</Checkbox>
                     <Checkbox value="london">Analista</Checkbox>
                 </Checkbox.Group>
-            </Grid>
-
-            <Grid xs={3} md={3}>
+                <Spacer y={6}/>
+                </Grid.Container>
                 <Button onClick={handleClick}>Editar</Button>
-                <Spacer x={0.5} />
-                <Button onClick={() => {maradona("/")}} color="error" >Salir</Button>   
-            </Grid>    
+                    <Spacer x={0.5} />
+                    <Button onClick={() => {maradona("/")}} color="error" >Salir</Button> 
+ 
         </Grid.Container>
     );
   }
