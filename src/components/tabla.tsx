@@ -132,9 +132,9 @@ export default function TablaUser() {
     switch (columnKey) {
       case "name":
         return (
-          <User squared src={user?.avatar} name={cellValue} css={{ p: 0 }}>
-            {user?.email}
-          </User>
+          <Text b size={14} css={{ tt: "capitalize" }}>
+            {cellValue}
+          </Text>
         );
       case "role":
         return (
@@ -177,7 +177,7 @@ export default function TablaUser() {
                 color="error"
                 onClick={() => console.log("Delete user", user?.id)}
               >
-                <IconButton>
+                <IconButton onClick={() => getUsers()}>
                   <DeleteIcon size={20} fill="#FF0080" />
                 </IconButton>
               </Tooltip>

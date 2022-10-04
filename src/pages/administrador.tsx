@@ -6,6 +6,7 @@ import Header from "./test_pages/Header_test";
 import Componente1 from "./test_pages/componente";
 import Formulario from "./formo";
 import TablaUser from "../components/tabla";
+import TestTabla from "../components/testTabla";
 
 function Administrador(){
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ function Administrador(){
                 <Button onClick={onClick} auto flat as={Link} href="#"> Usuarios </Button>
             </Grid>
 
-            {  showResults ? <TablaUser /> : null }
+            {  showResults ? <TestTabla /> : null }
 
         </Grid.Container>
     );

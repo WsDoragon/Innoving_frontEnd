@@ -39,7 +39,7 @@ function Formulario() {
     };      
 
     return (
-        <Grid.Container gap={2} justify="center">
+        <Grid.Container justify="center">
 
             <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
