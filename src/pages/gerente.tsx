@@ -32,7 +32,7 @@ function Gerente(){
     }
 
     return(
-        <Grid.Container  justify="center">
+        <Grid.Container  gap={2} justify="center">
             <Header/>
 
             <Grid xs={12}>
