@@ -38,7 +38,7 @@ function Gerente(){
             <Grid xs={12}>
                 <Button onClick={onClick} auto flat as={Link} href="#"> Indicadores </Button>
                 <Spacer y={0.5} />
-                <Button onClick={onClick2} auto flat as={Link} href="#">Solicitudes</Button>
+                <Button onClick={onClick2} auto flat as={Link} href="#">Solicitudes de indicadores</Button>
             </Grid>
 
             {  showResults ? <Componente1 /> : null }
