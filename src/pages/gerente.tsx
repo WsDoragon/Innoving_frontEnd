@@ -13,7 +13,7 @@ function Gerente(){
     
     const onClick = () => {
         if (showResults) {
-        setShowResults(false)
+        setShowResults(true)
         }
         else{
             setShowResults(true)
@@ -23,7 +23,7 @@ function Gerente(){
 
     const onClick2 = () => {
         if (showResults2) {
-        setShowResults2(false)
+        setShowResults2(true)
         }
         else{
             setShowResults2(true)
@@ -42,7 +42,7 @@ function Gerente(){
             </Grid>
 
             {  showResults ? <Componente1 /> : null }
-            {  showResults2 ? <Formulario /> : null }
+            {  showResults2 ? <Componente1 /> : null }
 
         </Grid.Container>
     );

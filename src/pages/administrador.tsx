@@ -11,7 +11,7 @@ function Administrador(){
     
     const onClick = () => {
         if (showResults) {
-        setShowResults(false)
+        setShowResults(true)
         }
         else{
             setShowResults(true)

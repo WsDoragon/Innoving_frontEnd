@@ -2,6 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { FormElement ,Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
+import Header from "../components/Header";
 
 interface a{
     text: string
@@ -37,7 +38,7 @@ function Formulario() {
 
     return (
         <Grid.Container justify="center">
-
+            <Header/>
             <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
             <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
@@ -66,7 +67,7 @@ function Formulario() {
                 </Grid.Container>
                 <Button onClick={handleClick}>Editar</Button>
                     <Spacer x={0.5} />
-                    <Button onClick={() => {maradona("/")}} color="error" >Salir</Button> 
+                    <Button onClick={() => {maradona("/administrador")}} color="error" >Salir</Button> 
  
         </Grid.Container>
     );

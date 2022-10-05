@@ -13,7 +13,7 @@ function Analista(){
     
     const onClick = () => {
         if (showResults) {
-        setShowResults(false)
+        setShowResults(true)
         }
         else{
             setShowResults3(false)
@@ -24,7 +24,7 @@ function Analista(){
 
     const onClick2 = () => {
         if (showResults2) {
-        setShowResults2(false)
+        setShowResults2(true)
         }
         else{
             setShowResults3(false)
@@ -34,7 +34,7 @@ function Analista(){
     }
     const onClick3 = () => {
         if (showResults3) {
-        setShowResults3(false)
+        setShowResults3(true)
         }
         else{
             setShowResults3(true)

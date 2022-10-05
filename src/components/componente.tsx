@@ -1,7 +1,7 @@
 const Componente1 = () => (
     <div id="results" className="search-results">
       <h1>
-        Indicadores
+        Colocar funcionalidad aquí
       </h1>
     </div>
   )

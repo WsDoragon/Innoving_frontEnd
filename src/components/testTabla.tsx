@@ -7,7 +7,7 @@ import { IconButton } from "../styledIcons/IconButton";
 import { EyeIcon } from "../styledIcons/EyeIcon";
 import { EditIcon } from "../styledIcons/EditIcon";
 import { DeleteIcon } from "../styledIcons/DeleteIcon";
-
+import Formulario from "../components/formo";
 import { useNavigate } from "react-router-dom";
 
 
@@ -63,7 +63,7 @@ export default function TestTabla() {
 
     return(
       <div>
-        <Button onClick={() => {navigate("/crearUser")}} as={Link} href="#" >Crear nuevo usuario</Button>
+        <Button onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
           <Table
           aria-label="Example table with dynamic content"
           css={{

@@ -8,6 +8,7 @@ import Administrador from "./pages/administrador";
 import Page3 from "./pages/page3";
 import Header from './components/Header';
 import Login from './pages/loginD';
+import Formulario from './components/formo';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/analista" element={<Analista/>}/>
         <Route path="/administrador" element={<Administrador/>} />
         <Route path="/page3" element={<Page3/>} />
+        <Route path="/formulario" element={<Formulario/>} />
         <Route path="/loginD" element={<Login/>} />
 
         </Routes>
