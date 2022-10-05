@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { Grid, Button, Link} from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import Header from "./test_pages/Header_test";
-
-import Componente1 from "./test_pages/componente";
-import Formulario from "./formo";
-import TablaUser from "../components/tabla";
 import TestTabla from "../components/testTabla";
 
 function Administrador(){

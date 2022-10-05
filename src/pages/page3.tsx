@@ -1,5 +1,4 @@
 import React from "react";
-import { Grid, Card, Text, Button,Link } from "@nextui-org/react";
 
 const Results = () => (
   <div id="results" className="search-results">

@@ -1,15 +1,17 @@
 import { Text ,Navbar, Button, Link, Spacer } from "@nextui-org/react";
-import { Image, useTheme } from "@nextui-org/react";
+import { Image} from "@nextui-org/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Administrador from "../administrador";
-import Analista from "../analista";
-import Gerente from "../gerente";
-
-
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  let gerenteb = false;
+  let administradorb = true;
+  let analistab = true;
+  
+  if ( !(gerenteb && administradorb && analistab )) {
+    let generico = true;
+  }
   
   return (
       <Navbar variant="static" css={{$$navbarBackgroundColor: '#000000', $$navbarTextColor: '#ffffff'}} disableBlur maxWidth="fluid">
@@ -29,9 +31,11 @@ const Header: React.FC = () => {
           />
         </Navbar.Brand>
         <Navbar.Content variant="underline" hideIn="xs">
-          <Navbar.Link  onClick={() => navigate("/gerente")} href="#">Gerente</Navbar.Link>
-          <Navbar.Link onClick={() => navigate("/administrador")} href="#">Administrador</Navbar.Link>
-          <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link>
+
+        { gerenteb ? <Navbar.Link  onClick={() => navigate("/gerente")} href="#">Gerente</Navbar.Link> : null}
+        { administradorb ? <Navbar.Link onClick={() => navigate("/administrador")} href="#">Administrador</Navbar.Link> : null }
+        { analistab ? <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }    
+           
         </Navbar.Content>
         <Navbar.Content>
           <Button onClick={() => {navigate("/")}} auto flat as={Link} href="#" css ={{background:"#FFA859"}}>
