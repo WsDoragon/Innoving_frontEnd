@@ -6,7 +6,7 @@ import Gerente from "./pages/gerente";
 import Analista from "./pages/analista";
 import Administrador from "./pages/administrador";
 import Page3 from "./pages/page3";
-import Header from './pages/test_pages/Header_test';
+import Header from './components/Header';
 import Login from './pages/loginD';
 
 

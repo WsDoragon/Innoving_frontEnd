@@ -1,8 +1,7 @@
 import {Image, Button, Spacer, Grid } from "@nextui-org/react";
 import React, { Component } from "react";
-import Func from "../components/a";
-import Invi from "../components/b";
-
+import Func from "../components/loginFunc";
+import Invi from "../components/loginInv";
 
 export default function Login () {
   
@@ -29,12 +28,9 @@ export default function Login () {
       } 
   }
 
-
-
   return(
   <div className="wrapper">
     <Spacer y={3} />
-
 
     <Image
                 width={800}

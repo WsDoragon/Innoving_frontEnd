@@ -1,10 +1,7 @@
-import { test } from "../types"
 import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { FormElement ,Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
-import Header from "./test_pages/Header_test";
-
 
 interface a{
     text: string
