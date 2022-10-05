@@ -1,6 +1,5 @@
 import { Rol } from './../../entities/rol';
 import { DataTypes, Model } from "sequelize";
-import { User } from "../../entities/user";
 import persistence from "../config/persistence";
 
 class RolModel extends Model<Rol> {
