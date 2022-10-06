@@ -9,7 +9,7 @@ import { EditIcon } from "../styledIcons/EditIcon";
 import { DeleteIcon } from "../styledIcons/DeleteIcon";
 import Formulario from "../components/formo";
 import { useNavigate } from "react-router-dom";
-
+import { useState, useEffect } from 'react'
 
 
 type UserType = {
@@ -26,7 +26,20 @@ type GetUsersResponse = {
 
 const data = algo()
 
+
 export default function TestTabla() {
+  //PROBANDO
+  const [users23, setUsers] = useState<UserType[]>([]);
+  useEffect(() => {
+    getUsers();
+  });
+
+  const getUsers = async () => {
+    const todo = await axios.get("http://localhost:3001/users/all");
+    {/*console.log("soy el nuevo: ", todo.data)*/}
+    setUsers(todo.data);
+  }
+
   const navigate = useNavigate();
 
     const columns = [
