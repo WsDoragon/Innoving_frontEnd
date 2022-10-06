@@ -32,6 +32,7 @@ class UserRepository {
     }
 
     public async searchUsers(text: string): Promise<Array<User>> {
+        console.log(text)
         let users: Array<any> = await persistence.query('SELECT * FROM user WHERE firstName LIKE "%' + text + '%" OR lastName LIKE "%' + text + '%" GROUP BY id', {
             model: UserModel,
             mapToModel: true // pass true here if you have any mapped fields
