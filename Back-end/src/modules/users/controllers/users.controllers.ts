@@ -4,9 +4,15 @@ import UserRepository from './../../../persistence/repositories/user.repository'
 
 class UserController {
 
-
     public searchUsers(request: Request, response: Response) {
-        console.log('search');
+        
+        Object.keys(request.query).forEach(function (key) {
+            var val = request.query[key];
+            console.log('search '+ val);
+            // use val
+        });
+
+        console.log('search '+ Object.keys(request.query));
         UserRepository.searchUsers(<string> request.query.text).then(user => {
             response.status(200).json({status: true, data: user});
         }, error => {
@@ -15,8 +21,9 @@ class UserController {
     }
 
     public getUser(request: Request, response: Response) {
-
-        UserRepository.findUser(+request.params.id).then(user => {
+        console.log('getuser by id? '+ request.query.id);
+        
+        UserRepository.findUser(request.query.id).then(user => {
             response.status(200).json({status: true, data: user});
         }, error => {
             response.status(404).json({status: false});
@@ -24,6 +31,7 @@ class UserController {
     }
 
     public getUsers(request: Request, response: Response) {
+        console.log('search '+ request.query.params);
 
         UserRepository.findUsers().then(users => {
             response.status(200).json({status: true, data: users});
