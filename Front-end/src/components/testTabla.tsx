@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
 
+
 type UserType = {
     rut: string
     nombre: string
@@ -24,21 +25,13 @@ type GetUsersResponse = {
     data: UserType[];
   };
 
-//const data = algo()
 
 
-export default function TestTabla() {
+
+export default function TestTabla(data:GetUsersResponse) {
   //PROBANDO
-  const [users23, setUsers] = useState<UserType[]>([]);
-  useEffect(() => {
-    getUsers();
-  });
 
-  const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/all");
-    {/*console.log("soy el nuevo: ", todo.data)*/}
-    setUsers(todo.data);
-  }
+  
 
   const navigate = useNavigate();
 
@@ -94,7 +87,7 @@ export default function TestTabla() {
                   {column.label}</Table.Column>
           )}
         </Table.Header>
-        <Table.Body items={users}>
+        <Table.Body items={data.data}>
           {(item) => (
             <Table.Row key={item.rut}>
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>

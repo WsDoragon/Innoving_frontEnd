@@ -3,8 +3,30 @@ import { Grid, Button, Link} from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import TestTabla from "../components/testTabla";
+import axios from "axios"
+import {useState, useEffect} from "react"
+
+type UserType = {
+    rut: string
+    nombre: string
+    apellido: string
+    correo:string
+    pass: string
+};
 
 function Administrador(){
+    const [users23, setUsers23] = useState<UserType[]>([]);
+
+    const getUsers = async () => {
+      const todo = await axios.get("http://localhost:3001/users/all");
+      console.log("hola: ",todo.data);
+      setUsers23(todo.data);
+    }
+    useEffect(() => {
+      getUsers();
+    }, []);
+  
+
     const navigate = useNavigate();
     
     const [showResults, setShowResults] = React.useState(false)
@@ -19,13 +41,13 @@ function Administrador(){
     }
 
     return(
-        <Grid.Container gap={2} justify="center">
+        <Grid.Container gap={2} justify="center">   
         <Header/>
             <Grid xs={12}>
-                <Button onClick={onClick} auto flat as={Link} href="#"> Usuarios </Button>
+                <Button onPress={onClick} auto flat as={Link} href="#"> Usuarios </Button>
             </Grid>
 
-            {  showResults ? <TestTabla /> : null }
+            {  showResults ? <TestTabla data = {users23} /> : null }
 
         </Grid.Container>
     );
