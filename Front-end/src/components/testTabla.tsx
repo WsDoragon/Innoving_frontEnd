@@ -24,7 +24,7 @@ type GetUsersResponse = {
     data: UserType[];
   };
 
-const data = algo()
+//const data = algo()
 
 
 export default function TestTabla() {
