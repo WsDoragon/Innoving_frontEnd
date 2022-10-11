@@ -33,7 +33,7 @@ export default function Login () {
     <Spacer y={3} />
 
 
-<Image
+        <Image
             width={800}
             height={180}
             src="https://raw.githubusercontent.com/WsDoragon/Gestion_Usuarios/main/P%C3%A1gina-Gesti%C3%B3n/src/assets/logoA.png"
@@ -41,10 +41,10 @@ export default function Login () {
         />
 
 
-<Spacer y={3} />
+    <Spacer y={3} />
 
-<Grid xs={12}>       
-    <Button
+    <Grid xs={12}>       
+        <Button
         
         css={{color:"#ffffff", fontWeight:"bold", background:"#ff5101", fontSize:"$xl", width:"150px", height:"50px"}}
         onClick={onClick}
@@ -60,6 +60,9 @@ export default function Login () {
         >Invitados
     </Button>
 </Grid>
+
+
+
 
 {  showResults ? <Func/> : null }
 {  showResults2 ? <Invi /> : null }

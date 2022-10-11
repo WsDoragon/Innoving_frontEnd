@@ -66,6 +66,10 @@ export default function TestTabla(data:GetUsersResponse) {
       {rut: "10563123-6", nombre: "Pepito", apellido: "Jimenez", correo: "PJimenez@uach.cl", pass: "123456" }
     ]
     
+    const users1: UserType[] = [
+      {rut: "19941933-1", nombre: "Daniel", apellido: "Valdivia", correo: "jorge@uach.cl", pass: "123456" }, 
+    ]
+
 
     return(
       <div>
