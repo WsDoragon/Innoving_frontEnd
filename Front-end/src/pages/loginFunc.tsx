@@ -1,4 +1,4 @@
-import {Button, Spacer, Input, Textarea, Text, FormElement } from "@nextui-org/react";
+import {Button, Spacer, Input, Textarea, Text, FormElement, Grid, Image} from "@nextui-org/react";
 import axios from "axios";
 import React, { Component, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -40,9 +40,6 @@ export default function Func (){
         console.log(sessionStorage.rol)
       }
       
-
-
-
     })
 
   }; 
@@ -50,7 +47,29 @@ export default function Func (){
 
 
   return(  
-  <>
+      <div className="wrapper">
+      <Spacer y={3} />
+
+
+          <Image
+              width={800}
+              height={180}
+              src="https://raw.githubusercontent.com/WsDoragon/Gestion_Usuarios/main/P%C3%A1gina-Gesti%C3%B3n/src/assets/logoA.png"
+              objectFit="cover"
+          />
+
+
+      <Spacer y={3} />
+
+      <Grid xs={12}>       
+          <Button
+          
+          css={{color:"#ffffff", fontWeight:"bold", background:"#ff5101", fontSize:"$xl", width:"150px", height:"50px"}}
+          >Funcionarios
+      </Button>
+
+
+  </Grid>
         <Spacer y={2.5} />
 
         <Input
@@ -84,8 +103,7 @@ export default function Func (){
         
         <Spacer x={3}/>
         
-
-  </>
+        </div>
   )}
 
 

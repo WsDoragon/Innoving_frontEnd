@@ -8,7 +8,8 @@ import Administrador from "./pages/administrador";
 import Proveedor from "./pages/proveedor";
 import Page3 from "./pages/page3";
 import Header from './components/Header';
-import Login from './pages/loginD';
+import Login from './pages/loginInv';
+import LoginFunc from './pages/loginFunc';
 import Formulario from './components/formo';
 
 
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Login/>} />
+        <Route path='/admin' element={<LoginFunc/>} />
         <Route path="/header" element={<Header/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/gerente" element={<Gerente/>}/>
@@ -27,7 +29,6 @@ function App() {
         <Route path="/page3" element={<Page3/>} />
         <Route path="/formulario" element={<Formulario/>} />
         <Route path="/editarUser/:id" element={<Formulario/>} />
-        <Route path="/loginD" element={<Login/>} />
 
         </Routes>
     </Router>

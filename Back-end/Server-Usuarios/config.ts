@@ -2,7 +2,7 @@ export const config = {
     db: {
         user: "root",
         host: "localhost",
-        password: "1234",
+        password: "daniel",
         database:"nodedb"
     }
   };
