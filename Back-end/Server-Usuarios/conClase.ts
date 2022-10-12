@@ -46,6 +46,7 @@ class usuarioMov {
     }
 
     async deleteUser(id:string){
+        //set status to disable
         const result = await db.query(`delete from usuario where rut =${id}`);
         await db.query(`delete from rol_usuario where id_rut = ${id}`);
         return result.affectedRows;
