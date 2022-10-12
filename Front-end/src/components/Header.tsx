@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  let gerenteb = true;
-  let administradorb = true;
-  let analistab = true;
-  
+  let gerenteb = sessionStorage.rol.includes("Gerente");
+  let administradorb = sessionStorage.rol.includes("Administrador");
+  let analistab = sessionStorage.rol.includes("Analista");
+
   if ( !(gerenteb && administradorb && analistab )) {
     let generico = true;
   }
@@ -33,8 +33,8 @@ const Header: React.FC = () => {
         <Navbar.Content variant="underline" hideIn="xs">
 
         { gerenteb ? <Navbar.Link  onClick={() => navigate("/gerente")} href="#">Gerente</Navbar.Link> : null}
-        { administradorb ? <Navbar.Link onClick={() => navigate("/administrador")} href="#">Administrador</Navbar.Link> : null }
-        { analistab ? <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }    
+        { sessionStorage.rol.includes("Administrador") ? <Navbar.Link onClick={() => navigate("/administrador")} href="#">Administrador</Navbar.Link> : null }
+        { sessionStorage.rol.includes("Analista") ? <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }    
            
         </Navbar.Content>
         <Navbar.Content>
