@@ -10,6 +10,7 @@ import Page3 from "./pages/page3";
 import Header from './components/Header';
 import Login from './pages/loginD';
 import Formulario from './components/formo';
+import FormularioEdit from './components/formo2';
 
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/proveedor" element={<Proveedor/>} />
         <Route path="/page3" element={<Page3/>} />
         <Route path="/formulario" element={<Formulario/>} />
+        <Route path="/formularioEdit" element={<FormularioEdit/>} />
         <Route path="/editarUser/:id" element={<Formulario/>} />
         <Route path="/loginD" element={<Login/>} />
 

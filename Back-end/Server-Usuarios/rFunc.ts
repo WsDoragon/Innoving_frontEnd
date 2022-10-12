@@ -39,7 +39,10 @@ enrutador.post('/nuevoLink', async(req,res)=>{
     res.json(await sLinks.saveLink(req.body.id, req.body.date));
 });
 
-
+enrutador.post('/:id', async (req, res) => {
+    res.json(await sUsuarios.editUser2(req.params.id, req.body));
+    console.log("sali");
+});
 
 enrutador.put('/:id', async (req, res) => {
     res.json(await sUsuarios.editUser(req.params.id, req.body));
@@ -54,6 +57,7 @@ enrutador.get('/all', async (req,res) => {
 });
 
 enrutador.get('/u/:id', async(req,res) => {
+    console.log(req.params.id);
     res.json(await sUsuarios.getUser(req.params.id));
 });
 
