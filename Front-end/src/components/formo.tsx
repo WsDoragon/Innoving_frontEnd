@@ -34,7 +34,8 @@ function Formulario() {
       //e.preventDefault();
   
       console.log('handleClick 👉️', state);
-    };      
+    }; 
+         
 
     return (
         <Grid.Container justify="center">
