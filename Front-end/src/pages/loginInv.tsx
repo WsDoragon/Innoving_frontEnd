@@ -1,4 +1,4 @@
-import {Button, Spacer, Input, Image, Grid, Dropdown, Row } from "@nextui-org/react";
+import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Text } from "@nextui-org/react";
 import React, { Component } from "react";
 import { Selection } from '@react-types/shared/src/selection';
 
@@ -11,8 +11,7 @@ function Invi () {
   );
   return(
     <div className="wrapper">
-    <Spacer y={3} />
-
+    <Spacer y={2} />
 
         <Image
             width={800}
@@ -21,23 +20,20 @@ function Invi () {
             objectFit="cover"
         />
 
+        <Text h1 size={25}
+            color="warning"
+            weight="bold"
+          >
+            Evidencias
+          </Text> 
 
-    <Spacer y={3} />
-
-    <Grid xs={12}>       
-    <Button
-        
-        css={{color:"#ffffff", fontWeight:"bold", background:"#0197a9", fontSize:"$xl", width:"150px", height:"50px"}}
-        >Invitados
-    </Button>
-</Grid>
-        <Spacer y={2.5} />
+        <Spacer y={2} />
 
         <Input
           size="xl"
           width="200px"
           css={{$$inputPlaceholderColor:"#747574"}}
-          labelPlaceholder="RUT"
+          labelPlaceholder="RUT (ej: 12.345.678-0)"
            />
 
       <Spacer y={1} />
@@ -48,7 +44,7 @@ function Invi () {
       <Input
             size="xl"
             width="60px"
-            placeholder="Día" 
+            labelPlaceholder="Día" 
             css={{}}
             
             />
@@ -90,7 +86,7 @@ function Invi () {
       <Input
             size="xl"
             width="65px"
-            placeholder="Año" />
+            labelPlaceholder="Año" />
     </Row>
 
       <Spacer y={1.5} />
