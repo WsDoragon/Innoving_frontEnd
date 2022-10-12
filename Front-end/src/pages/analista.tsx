@@ -47,11 +47,11 @@ function Analista(){
         <Grid.Container gap={2} justify="center">
             <Header/>
             <Grid xs={12}>
-                <Button onClick={onClick} auto flat as={Link} href="#"> Indicadores </Button>
-                <Spacer y={0.5} />
-                <Button onClick={onClick2} auto flat as={Link} href="#">Evidencias</Button>
-                <Spacer y={0.5} />
-                <Button onClick={onClick3} auto flat as={Link} href="#">Provedores</Button>
+                    <Button onClick={onClick} auto flat as={Link}  href="#"> Indicadores </Button>
+                    <Spacer y={0.5} />
+                    <Button onClick={onClick2} auto flat as={Link} href="#">Evidencias</Button>
+                    <Spacer y={0.5} />
+                    <Button onClick={onClick3} auto flat as={Link} href="#">Provedores</Button>
             </Grid>
 
             {  showResults ? <Componente1 /> : null }

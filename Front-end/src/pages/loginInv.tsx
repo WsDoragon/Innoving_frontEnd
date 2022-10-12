@@ -1,5 +1,5 @@
 import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Text } from "@nextui-org/react";
-import React, { Component } from "react";
+import React from "react";
 import { Selection } from '@react-types/shared/src/selection';
 
 function Invi () {
@@ -9,8 +9,10 @@ function Invi () {
     () => selected,
     [selected]
   );
+
   return(
     <div className="wrapper">
+
         <Spacer y={2} />
 
         <Image
@@ -19,7 +21,9 @@ function Invi () {
             src="https://raw.githubusercontent.com/WsDoragon/Gestion_Usuarios/main/P%C3%A1gina-Gesti%C3%B3n/src/assets/logoA.png"
             objectFit="cover"
         />
+
         <Spacer y={0.5} />
+
         <Text h1 size={30}
             css={{color:"#0197a9"}}
             weight="bold"
@@ -41,6 +45,7 @@ function Invi () {
       <Row justify="center">
 
       <Spacer x={0.197} />
+
       <Input
             size="xl"
             width="60px"
@@ -52,11 +57,13 @@ function Invi () {
       <Spacer x={1} />
 
       <Dropdown>
+
         <Dropdown.Button
           size={"lg"}
           css={{height:"52px", backgroundColor:"#f0f2f5", width:"200px", tt: "capitalize", fontSize:"$lg", color:"#747574" }}>
           {selectedValue}
         </Dropdown.Button>
+
         <Dropdown.Menu
           aria-label="Single selection actions"
           color="primary"
@@ -79,6 +86,7 @@ function Invi () {
           <Dropdown.Item key="noviembre">Noviembre</Dropdown.Item>
           <Dropdown.Item key="diciembre">Diciembre</Dropdown.Item>
         </Dropdown.Menu>
+      
       </Dropdown>
 
       <Spacer x={1} />
@@ -90,14 +98,16 @@ function Invi () {
     </Row>
 
       <Spacer y={1.5} />
+
         <Button
         auto
         size="lg"
         css={{color:"#ffffff", fontWeight:"bold", background:"#0197a9", fontSize:"$lg"}}
-        >Iniciar Sesión</Button>
+        >
+          Iniciar Sesión
+        </Button>
 
         <Spacer y={2} />
-
 
         </div>
   )}
