@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   let gerenteb = sessionStorage.rol.includes("Gerente");
   let administradorb = sessionStorage.rol.includes("Administrador");
   let analistab = sessionStorage.rol.includes("Analista");
+  let proveedorb = sessionStorage.rol.includes("Proveedor");
 
   if ( !(gerenteb && administradorb && analistab )) {
     let generico = true;
@@ -33,8 +34,9 @@ const Header: React.FC = () => {
         <Navbar.Content variant="underline" hideIn="xs">
 
         { gerenteb ? <Navbar.Link  onClick={() => navigate("/gerente")} href="#">Gerente</Navbar.Link> : null}
-        { sessionStorage.rol.includes("Administrador") ? <Navbar.Link onClick={() => navigate("/administrador")} href="#">Administrador</Navbar.Link> : null }
-        { sessionStorage.rol.includes("Analista") ? <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }    
+        { administradorb? <Navbar.Link onClick={() => navigate("/administrador")} href="#">Administrador</Navbar.Link> : null }
+        { analistab ? <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }  
+        { proveedorb ? <Navbar.Link onClick={() => navigate("/proveedor")} href="#">Proveedor</Navbar.Link> : null }      
            
         </Navbar.Content>
         <Navbar.Content>
