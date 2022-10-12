@@ -19,6 +19,7 @@ type UserType = {
     apellido: string
     correo:string
     pass: string
+    roles: string
 };
 
 type GetUsersResponse = {
@@ -49,9 +50,14 @@ export default function TestTabla(data:GetUsersResponse) {
           label: "Correo",
         },
         {
+          key:"roles",
+          label: "Roles"
+        },
+        {
             key: "actions",
             label: "Actions"
         }
+        
         
       ];
     const columns2 = [
@@ -61,14 +67,7 @@ export default function TestTabla(data:GetUsersResponse) {
         { name: "ACTIONS", uid: "rut" },
     ]
 
-    const users: UserType[] = [
-      {rut: "20318537-5", nombre: "Jorge", apellido: "Gonzalez", correo: "jorge@uach.cl", pass: "123456" }, 
-      {rut: "10563123-6", nombre: "Pepito", apellido: "Jimenez", correo: "PJimenez@uach.cl", pass: "123456" }
-    ]
     
-    const users1: UserType[] = [
-      {rut: "19941933-1", nombre: "Daniel", apellido: "Valdivia", correo: "jorge@uach.cl", pass: "123456" }, 
-    ]
 
 
     return(
@@ -97,7 +96,7 @@ export default function TestTabla(data:GetUsersResponse) {
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
-              
+              <Table.Cell><Text b size={14}>{item[`roles`]}</Text></Table.Cell>
               <Table.Cell> 
                   <Row justify="center" align="center">
                   

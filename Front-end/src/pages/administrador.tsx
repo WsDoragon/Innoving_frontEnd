@@ -11,7 +11,8 @@ type UserType = {
     nombre: string
     apellido: string
     correo:string
-    pass: string
+    pass: string    
+    roles: string
 };
 
 function Administrador(){
