@@ -48,29 +48,22 @@ export default function Func (){
 
   return(  
       <div className="wrapper">
-      <Spacer y={3} />
-
-
+      <Spacer y={2} />
           <Image
               width={800}
               height={180}
               src="https://raw.githubusercontent.com/WsDoragon/Gestion_Usuarios/main/P%C3%A1gina-Gesti%C3%B3n/src/assets/logoA.png"
               objectFit="cover"
           />
+        <Spacer y={0.5} />
+        <Text h1 size={30}
+            css={{color:"#ff5101"}}
+            weight="bold"
+          >
+            Funcionarios
+          </Text> 
 
-
-      <Spacer y={3} />
-
-      <Grid xs={12}>       
-          <Button
-          
-          css={{color:"#ffffff", fontWeight:"bold", background:"#ff5101", fontSize:"$xl", width:"150px", height:"50px"}}
-          >Funcionarios
-      </Button>
-
-
-  </Grid>
-        <Spacer y={2.5} />
+        <Spacer y={2} />
 
         <Input
           size="xl"

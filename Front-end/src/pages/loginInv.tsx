@@ -11,7 +11,7 @@ function Invi () {
   );
   return(
     <div className="wrapper">
-    <Spacer y={2} />
+        <Spacer y={2} />
 
         <Image
             width={800}
@@ -19,9 +19,9 @@ function Invi () {
             src="https://raw.githubusercontent.com/WsDoragon/Gestion_Usuarios/main/P%C3%A1gina-Gesti%C3%B3n/src/assets/logoA.png"
             objectFit="cover"
         />
-
-        <Text h1 size={25}
-            color="warning"
+        <Spacer y={0.5} />
+        <Text h1 size={30}
+            css={{color:"#0197a9"}}
             weight="bold"
           >
             Evidencias
@@ -33,7 +33,7 @@ function Invi () {
           size="xl"
           width="200px"
           css={{$$inputPlaceholderColor:"#747574"}}
-          labelPlaceholder="RUT (ej: 12.345.678-0)"
+          labelPlaceholder="RUT"
            />
 
       <Spacer y={1} />
