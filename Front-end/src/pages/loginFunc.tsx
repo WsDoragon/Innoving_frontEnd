@@ -45,7 +45,7 @@ export default function Func (){
   return(  
       <div className="wrapper">
 
-      <Spacer y={2} />
+      <Spacer y={2}/>
 
           <Image
               width={800}
@@ -54,13 +54,13 @@ export default function Func (){
               objectFit="cover"
           />
 
-        <Spacer y={0.5} />
+        <Spacer y={0.5}/>
 
-        <Text h1 size={30}
+        <Text 
+            h1 size={30}
             css={{color:"#fea858"}}
             weight="bold"
-          >
-            Funcionarios
+          >Funcionarios
           </Text> 
 
         <Spacer y={2} />
@@ -72,7 +72,8 @@ export default function Func (){
           labelPlaceholder="RUT"
           name="username"
           onChange={handleChange} 
-          value={state.username} />
+          value={state.username}
+          />
 
       <Spacer y={1} />
 
@@ -84,7 +85,8 @@ export default function Func (){
             placeholder="Contraseña"
             name="password"
             onChange={handleChange} 
-            value={state.password}/>
+            value={state.password}
+            />
 
       <Spacer y={1.5} />
 

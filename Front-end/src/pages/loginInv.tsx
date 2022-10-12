@@ -1,14 +1,46 @@
-import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Text } from "@nextui-org/react";
-import React from "react";
+import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Text, FormElement } from "@nextui-org/react";
+import React, { Component, useState } from "react";
 import { Selection } from '@react-types/shared/src/selection';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { getValue } from "@testing-library/user-event/dist/utils";
+
+
 
 function Invi () {
-  const [selected, setSelected] = React.useState<Selection>(new Set("Mes"));
+  const [selected, setSelected] = React.useState<any>(new Set("Mes"));
+
+  const [state, setState] = useState({
+    username: "",
+    password: "xd",
+    dia:"",
+    mes: "",
+    anio: ""
+  });
 
   const selectedValue = React.useMemo(
-    () => selected,
+    () => {
+      selected.forEach((value: any) => state.mes = value);
+      return selected;
+    },
     [selected]
   );
+  const navigate = useNavigate();
+
+  function handleChange(e: React.ChangeEvent<FormElement>) {
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value,
+    });
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
+    //e.preventDefault();
+    state.dia= state.dia + "hola"
+    console.log('handleClick 👉️', state);
+  
+  }; 
 
   return(
     <div className="wrapper">
@@ -24,12 +56,12 @@ function Invi () {
 
         <Spacer y={0.5} />
 
-        <Text h1 size={30}
+        <Text
+            h1 size={30}
             css={{color:"#0197a9"}}
             weight="bold"
-          >
-            Evidencias
-          </Text> 
+            >Evidencias
+        </Text> 
 
         <Spacer y={2} />
 
@@ -38,23 +70,27 @@ function Invi () {
           width="200px"
           css={{$$inputPlaceholderColor:"#747574"}}
           labelPlaceholder="RUT"
-           />
+          name="username"
+          onChange={handleChange} 
+          value={state.username}
+          />
 
-      <Spacer y={1} />
+      <Spacer y={1}/>
 
       <Row justify="center">
 
-      <Spacer x={0.197} />
+      <Spacer x={0.197}/>
 
       <Input
             size="xl"
             width="60px"
-            labelPlaceholder="Día" 
-            css={{}}
-            
+            labelPlaceholder="Día"             
+            name="dia"
+            onChange={handleChange} 
+            value={state.dia}
             />
 
-      <Spacer x={1} />
+      <Spacer x={1}/>
 
       <Dropdown>
 
@@ -94,17 +130,21 @@ function Invi () {
       <Input
             size="xl"
             width="65px"
-            labelPlaceholder="Año" />
+            labelPlaceholder="Año"
+            name="anio"
+            onChange={handleChange} 
+            value={state.anio}
+            />
     </Row>
 
       <Spacer y={1.5} />
 
         <Button
-        auto
-        size="lg"
-        css={{color:"#ffffff", fontWeight:"bold", background:"#0197a9", fontSize:"$lg"}}
-        >
-          Iniciar Sesión
+          auto
+          size="lg"
+          onClick={handleClick}
+          css={{color:"#ffffff", fontWeight:"bold", background:"#0197a9", fontSize:"$lg"}}
+          >Iniciar Sesión
         </Button>
 
         <Spacer y={2} />
