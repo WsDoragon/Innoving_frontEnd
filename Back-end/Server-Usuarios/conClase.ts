@@ -46,7 +46,6 @@ class usuarioMov {
     }
 
     async deleteUser(id:string){
-        //set status to disable
         const result = await db.query(`delete from usuario where rut =${id}`);
         await db.query(`delete from rol_usuario where id_rut = ${id}`);
         return result.affectedRows;
@@ -54,7 +53,7 @@ class usuarioMov {
 
     async changeRolUser(creds:any){
         const result = await db.query(`delete from rol_usuario WHERE id_rut = "${creds.rut}"`)
-        console.log(creds.roles + "duele");
+        console.log(creds.roles + "duele")
         for(let i of creds.roles){
             const result2 = await db.query(`INSERT INTO rol_usuario(id_rut, id_rol) Values ("${creds.rut}",${i})`)
         }
@@ -82,6 +81,12 @@ class usuarioMov {
 
     async getUser(id:string){
         const result = await db.query(`SELECT * FROM usuario WHERE rut = ${id}`);
+        console.log(result);
+        return result;
+    }
+
+    async getUserWithRoles(id:string){
+        const result = await db.query(`SELECT * FROM usuario JOIN rol_usuario ON rut=id_rut WHERE rut = ${id}`);
         console.log(result);
         return result;
     }

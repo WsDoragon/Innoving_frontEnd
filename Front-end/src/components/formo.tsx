@@ -4,22 +4,26 @@ import { useNavigate } from "react-router-dom";
 import { FormElement ,Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
 import Header from "../components/Header";
 
-interface a{
-    text: string
-}
+type UserType = {
+  rut: string
+  nombre: string
+  apellido: string
+  correo:string
+  pass: string
+  roles: number[]
+};
 
 function Formulario() {
     const maradona = useNavigate();
-
-    const [state, setState] = useState({
+    const rol_tags = ["gerente", "administrador", "analista"];
+    const [selected, setSelected] = useState<string[]>([]);
+    const [state, setState] = useState<UserType>({
         nombre: "",
         apellido: "",
         pass: "",
         correo: "",
         rut: "",
-        gerente: false,
-        admin: false,
-        analista: false,
+        roles: []
       });
 
     function handleChange(e: React.ChangeEvent<FormElement>) {
@@ -28,6 +32,21 @@ function Formulario() {
           ...state,
           [e.target.name]: value,
         });
+      }
+
+      const handleCheckbox = (e: string[]) => {
+        console.log(e);
+        let newRolTags : number[] = [];
+        for (let i of e){
+          newRolTags.push(1+rol_tags.indexOf(i));
+        }
+        setState((state) => {
+          return({
+            ...state,
+            roles: newRolTags
+          });
+        });
+        setSelected(e);
       }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
@@ -39,7 +58,6 @@ function Formulario() {
 
     return (
         <Grid.Container justify="center">
-            <Header/>
             <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
             <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
@@ -59,10 +77,12 @@ function Formulario() {
                     label="Roles"
                     orientation="horizontal"
                     color="primary"
+                    value={selected}
+                    onChange={handleCheckbox}
                     >
-                    <Checkbox value="buenos-aires">Gerente</Checkbox>
-                    <Checkbox value="sydney">Administrador</Checkbox>
-                    <Checkbox value="london">Analista</Checkbox>
+                    <Checkbox value="gerente">Gerente</Checkbox>
+                    <Checkbox value="administrador">Administrador</Checkbox>
+                    <Checkbox value="analista">Analista</Checkbox>
                 </Checkbox.Group>
                 <Spacer y={6}/>
                 </Grid.Container>

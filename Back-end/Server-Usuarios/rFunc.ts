@@ -61,6 +61,11 @@ enrutador.get('/u/:id', async(req,res) => {
     res.json(await sUsuarios.getUser(req.params.id));
 });
 
+enrutador.get('/u_r/:id', async(req,res) => {
+    console.log(req.params.id);
+    res.json(await sUsuarios.getUserWithRoles(req.params.id));
+});
+
 enrutador.get('/getuserrol/:id', async(req,res) => {
     res.json(await sUsuarios.getUserRoles(req.params.id))
 });

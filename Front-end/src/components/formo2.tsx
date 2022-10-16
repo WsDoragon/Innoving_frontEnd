@@ -17,7 +17,8 @@ type UserType = {
 
 function FormularioEdit() {
     const maradona = useNavigate();
-
+    const rol_tags = ["gerente", "administrador", "analista"];
+    const [selected, setSelected] = useState<string[]>([]);
     const [state, setState] = useState<UserType>({
         nombre: "",
         apellido: "",
@@ -27,10 +28,24 @@ function FormularioEdit() {
         roles:[]
       });
       const fetchProducts = ()=>{
-        axios.get(`http://localhost:3001/users/u/'test-1'`)
+        axios.get(`http://localhost:3001/users/u_r/'15558i2-k'`)
        .then(response => {
-         const products = response.data
-         setState(products[0])
+         const products = response.data;
+         let rolTagsOnDisplay : string[] = [];
+         const test : UserType = { rut : products[0].rut,
+              correo : products[0].correo,
+              pass : products[0].pass,
+              nombre : products[0].nombre,
+              apellido : products[0].apellido,
+              roles : [] 
+         }
+         for (let i of products){
+          test.roles.push(i.id_rol);
+          rolTagsOnDisplay.push(rol_tags[i.id_rol-1]);
+         }
+         console.log(rolTagsOnDisplay);
+         setState(test);
+         setSelected(rolTagsOnDisplay);
        })  
       }
 
@@ -48,15 +63,30 @@ function FormularioEdit() {
           [e.target.name]: value,
         });
       }
+    
+    const handleCheckbox = (e: string[]) => {
+      console.log(e);
+      let newRolTags : number[] = [];
+      for (let i of e){
+        newRolTags.push(1+rol_tags.indexOf(i));
+      }
+      setState((state) => {
+        return({
+          ...state,
+          roles: newRolTags
+        });
+      });
+      setSelected(e);
+    }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       //e.preventDefault();
+
       axios.post('http://localhost:3001/users/'+oldID, state)
         .then(response => console.log(response.data.id));
       console.log('handleClick 👉️', state);
     }; 
          
-
     return (
         <Grid.Container justify="center">
             <Input width="75%" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
@@ -78,10 +108,12 @@ function FormularioEdit() {
                     label="Roles"
                     orientation="horizontal"
                     color="primary"
+                    value={selected}
+                    onChange={handleCheckbox}
                     >
-                    <Checkbox value="buenos-aires">Gerente</Checkbox>
-                    <Checkbox value="sydney">Administrador</Checkbox>
-                    <Checkbox value="london">Analista</Checkbox>
+                    <Checkbox value="gerente">Gerente</Checkbox>
+                    <Checkbox value="administrador">Administrador</Checkbox>
+                    <Checkbox value="analista">Analista</Checkbox>
                 </Checkbox.Group>
                 <Spacer y={6}/>
                 </Grid.Container>
