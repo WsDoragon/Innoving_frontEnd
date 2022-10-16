@@ -1,6 +1,6 @@
 import axios from 'axios';
 //@ts-ignore
-import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal } from "@nextui-org/react";
 import algo from './Axiostabla';
 import { StyledBadge } from "../styledIcons/StyledBadge";
 import { IconButton } from "../styledIcons/IconButton";
@@ -31,7 +31,7 @@ type GetUsersResponse = {
 
 export default function TestTabla(data:GetUsersResponse) {
   //PROBANDO
-
+  const { setVisible, bindings } = useModal();
   
 
   const navigate = useNavigate();
@@ -72,6 +72,7 @@ export default function TestTabla(data:GetUsersResponse) {
 
     return(
       <div>
+        
         <Button onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
           <Table
           aria-label="Example table with dynamic content"
@@ -115,9 +116,10 @@ export default function TestTabla(data:GetUsersResponse) {
                       color="error"
                       onClick={() => console.log("Desactivar usuario", item.rut)}
                   >
-                      <Button color={"error"}>
+                      <Button onClick={() => setVisible(true)} color={"error"}>
                           Desactivar
                       </Button>
+                      
                   </Tooltip>
                   </Col>
               </Row></Table.Cell>
@@ -128,5 +130,32 @@ export default function TestTabla(data:GetUsersResponse) {
           )}
         </Table.Body>
           </Table>
+
+          <Modal
+            scroll
+            width="600px"
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
+            {...bindings}
+          >
+          <Modal.Header>
+            <Text id="modal-title" size={18}>
+              Aviso
+            </Text>
+          </Modal.Header>
+          <Modal.Body>
+            <Text id="modal-description">
+              ¿Está seguro de que quiere desactivar al usuario X?
+            </Text>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button auto onClick={() => {setVisible(true)}}>
+              Si
+            </Button>
+            <Button auto flat color="error" onClick={() => setVisible(false)}>
+              No
+            </Button>                
+          </Modal.Footer>
+        </Modal>
         </div>
 )}
