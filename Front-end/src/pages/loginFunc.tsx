@@ -55,7 +55,7 @@ export default function Func (){
             h1 size={30}
             css={{color:"#fea858"}}
             weight="bold"
-          >Académicos/VIDCA
+          >INNOVING
           </Text> 
 
         <Spacer y={2} />

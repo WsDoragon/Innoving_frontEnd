@@ -60,7 +60,7 @@ function Invi () {
             h1 size={30}
             css={{color:"#0197a9"}}
             weight="bold"
-            >Evidencias
+            >Académico/VIDCA
         </Text> 
 
         <Spacer y={2} />
