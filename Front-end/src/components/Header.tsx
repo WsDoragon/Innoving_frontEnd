@@ -11,10 +11,6 @@ const Header: React.FC = () => {
   let analistab = sessionStorage.rol.includes("Analista");
   let proveedorb = sessionStorage.rol.includes("Proveedor");
 
-  if ( !(gerenteb && administradorb && analistab )) {
-    let generico = true;
-  }
-  
   return (
       <Navbar variant="static" css={{$$navbarBackgroundColor: '#000000', $$navbarTextColor: '#ffffff'}} disableBlur maxWidth="fluid">
         <Navbar.Brand>
@@ -34,10 +30,10 @@ const Header: React.FC = () => {
         </Navbar.Brand>
         <Navbar.Content variant="underline" hideIn="xs">
 
-        { gerenteb ? <Navbar.Link  onClick={() => navigate("/gerente")} href="#">Gerente</Navbar.Link> : null}
-        { administradorb? <Navbar.Link onClick={() => navigate("/administrador")} href="#">Administrador</Navbar.Link> : null }
-        { analistab ? <Navbar.Link onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }  
-        { proveedorb ? <Navbar.Link onClick={() => navigate("/proveedor")} href="#">Proveedor</Navbar.Link> : null }      
+        { gerenteb ? <Navbar.Link onClick={() => navigate("/gerente")} href="#">Gerente</Navbar.Link> : null}
+        { administradorb? <Navbar.Link  onClick={() => {navigate("/administrador")} } href="#">Administrador</Navbar.Link> : null }
+        { analistab ? <Navbar.Link  onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }  
+        { proveedorb ? <Navbar.Link  onClick={() => navigate("/proveedor")} href="#">Proveedor</Navbar.Link> : null }      
            
         </Navbar.Content>
         <Navbar.Content>

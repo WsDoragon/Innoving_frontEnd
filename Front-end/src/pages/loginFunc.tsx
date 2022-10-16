@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Func (){
     const navigate = useNavigate();
-
     const [state, setState] = useState({
       username: "",
       password: "",
@@ -23,7 +22,6 @@ export default function Func (){
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       //e.preventDefault();
-    
     console.log('handleClick 👉️', state);
 
     axios.post("http://localhost:3001/users/login", state)
@@ -33,13 +31,10 @@ export default function Func (){
         console.log(data.data)}
       else{
         navigate("/header")
-
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
         console.log(sessionStorage.rol)
       }
-      
     })
-
   }; 
 
   return(  
@@ -60,7 +55,7 @@ export default function Func (){
             h1 size={30}
             css={{color:"#fea858"}}
             weight="bold"
-          >Funcionarios
+          >Académicos/VIDCA
           </Text> 
 
         <Spacer y={2} />
