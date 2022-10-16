@@ -11,8 +11,6 @@ import Formulario from "../components/formo";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
-
-
 type UserType = {
     rut: string
     nombre: string
@@ -26,17 +24,11 @@ type GetUsersResponse = {
     data: UserType[];
   };
 
-
-
-
 export default function TestTabla(data:GetUsersResponse) {
   //PROBANDO
   const { setVisible, bindings } = useModal();
-  
-
   const navigate = useNavigate();
-
-    const columns = [
+  const columns = [
         {
             key: "rut",
             label: "RUT",
@@ -56,19 +48,14 @@ export default function TestTabla(data:GetUsersResponse) {
         {
             key: "actions",
             label: "Actions"
-        }
-        
-        
-      ];
+        } 
+    ];
     const columns2 = [
         { name: "NAME", uid: "nombre" },
         { name: "ROLE", uid: "correo" },
         { name: "STATUS", uid: "pass" },
         { name: "ACTIONS", uid: "rut" },
     ]
-
-    
-
 
     return(
       <div>
@@ -122,10 +109,7 @@ export default function TestTabla(data:GetUsersResponse) {
                       
                   </Tooltip>
                   </Col>
-              </Row></Table.Cell>
-                  
-                  
-                  
+              </Row></Table.Cell>      
             </Table.Row>
           )}
         </Table.Body>
