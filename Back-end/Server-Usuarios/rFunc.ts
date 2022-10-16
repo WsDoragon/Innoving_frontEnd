@@ -39,11 +39,6 @@ enrutador.post('/nuevoLink', async(req,res)=>{
     res.json(await sLinks.saveLink(req.body.id, req.body.date));
 });
 
-enrutador.post('/:id', async (req, res) => {
-    res.json(await sUsuarios.editUser2(req.params.id, req.body));
-    console.log("sali");
-});
-
 enrutador.put('/:id', async (req, res) => {
     res.json(await sUsuarios.editUser(req.params.id, req.body));
 });

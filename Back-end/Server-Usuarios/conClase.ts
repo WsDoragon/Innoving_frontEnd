@@ -12,9 +12,10 @@ app.use(cors());
 class usuarioMov {
     
     async create(formulario:any){
+        console.log(formulario);
         try{
             const result = await db.query(
-                `INSERT INTO usuario (rut,nombre,apellido,correo,contraseña) VALUES ("${formulario.rut}","${formulario.Nombre}","${formulario.Apellido}","${formulario.correo}","${formulario.contraseña}")`
+                `INSERT INTO usuario (rut,nombre,apellido,correo,contraseña) VALUES ("${formulario.rut}","${formulario.nombre}","${formulario.apellido}","${formulario.correo}","${formulario.contraseña}")`
             )
             this.changeRolUser(formulario)
             console.log(result.affectedRows);
@@ -61,7 +62,6 @@ class usuarioMov {
 
     }
 
-
     async editUser(id:string,form:any){
         console.log(form, id);
         const result = await db.query(`update usuario set rut="${form.rut}", nombre="${form.Nombre}", apellido="${form.Apellido}", correo="${form.correo}", contraseña="${form.contraseña}" WHERE rut = "${id}"`)
@@ -70,23 +70,14 @@ class usuarioMov {
         return result.affectedRows;
     }
 
-    async editUser2(id:string,form:any){
-        console.log(form, id);
-        const result = await db.query(`update usuario set rut="${form.rut}" , nombre="${form.nombre}" , apellido="${form.apellido}" , correo="${form.correo}" , pass="${form.pass}" WHERE rut = "${id}"`)
-        await db.query(`delete from rol_usuario WHERE id_rut = "${id}"`)
-        this.changeRolUser(form)
-        console.log("out");
-        return result.affectedRows;
-    }
-
     async getUser(id:string){
-        const result = await db.query(`SELECT * FROM usuario WHERE rut = ${id}`);
+        const result = await db.query(`SELECT * FROM usuario WHERE rut = "${id}"`);
         console.log(result);
         return result;
     }
 
     async getUserWithRoles(id:string){
-        const result = await db.query(`SELECT * FROM usuario JOIN rol_usuario ON rut=id_rut WHERE rut = ${id}`);
+        const result = await db.query(`SELECT * FROM usuario JOIN rol_usuario ON rut=id_rut WHERE rut = "${id}"`);
         console.log(result);
         return result;
     }

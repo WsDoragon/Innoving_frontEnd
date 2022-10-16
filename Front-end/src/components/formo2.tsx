@@ -11,30 +11,30 @@ type UserType = {
   nombre: string
   apellido: string
   correo:string
-  pass: string
+  contraseña: string
   roles: number[]
 };
 
-function FormularioEdit() {
-    const maradona = useNavigate();
+export default function FormularioEdit() {
+    const volver = useNavigate();
     const rol_tags = ["gerente", "administrador", "analista"];
     const [selected, setSelected] = useState<string[]>([]);
     const [state, setState] = useState<UserType>({
         nombre: "",
         apellido: "",
-        pass: "",
+        contraseña: "",
         correo: "",
         rut: "",
         roles:[]
       });
-      const fetchProducts = ()=>{
-        axios.get(`http://localhost:3001/users/u_r/'15558i2-k'`)
+      const passDataToEdit = ()=>{
+        axios.get(`http://localhost:3001/users/u_r/'a'`)
        .then(response => {
          const products = response.data;
          let rolTagsOnDisplay : string[] = [];
          const test : UserType = { rut : products[0].rut,
               correo : products[0].correo,
-              pass : products[0].pass,
+              contraseña : products[0].contraseña,
               nombre : products[0].nombre,
               apellido : products[0].apellido,
               roles : [] 
@@ -50,7 +50,7 @@ function FormularioEdit() {
       }
 
       useEffect(() => {
-        fetchProducts();
+        passDataToEdit();
       }, []);
 
     let oldID = state.rut;
@@ -82,7 +82,7 @@ function FormularioEdit() {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       //e.preventDefault();
 
-      axios.post('http://localhost:3001/users/'+oldID, state)
+      axios.put('http://localhost:3001/users/'+oldID, state)
         .then(response => console.log(response.data.id));
       console.log('handleClick 👉️', state);
     }; 
@@ -96,7 +96,7 @@ function FormularioEdit() {
 
             <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
             <Spacer y={3} />
-            <Input width="75%" placeholder="Contraseña" type="text" name="pass" onChange={handleChange} value={state.pass}/>
+            <Input width="75%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
             <Spacer y={3} />
 
             <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
@@ -119,10 +119,8 @@ function FormularioEdit() {
                 </Grid.Container>
                 <Button onClick={handleClick}>Editar</Button>
                     <Spacer x={0.5} />
-                    <Button onClick={() => {maradona("/administrador")}} color="error" >Salir</Button> 
+                    <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
  
         </Grid.Container>
     );
   }
-
-export default FormularioEdit

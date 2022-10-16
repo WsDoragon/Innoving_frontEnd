@@ -3,24 +3,25 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { FormElement ,Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
 import Header from "../components/Header";
+import axios from "axios";
 
 type UserType = {
   rut: string
   nombre: string
   apellido: string
   correo:string
-  pass: string
+  contraseña: string
   roles: number[]
 };
 
 function Formulario() {
-    const maradona = useNavigate();
+    const volver = useNavigate();
     const rol_tags = ["gerente", "administrador", "analista"];
     const [selected, setSelected] = useState<string[]>([]);
     const [state, setState] = useState<UserType>({
         nombre: "",
         apellido: "",
-        pass: "",
+        contraseña: "",
         correo: "",
         rut: "",
         roles: []
@@ -51,7 +52,7 @@ function Formulario() {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       //e.preventDefault();
-  
+      axios.post('http://localhost:3001/users/create', state);
       console.log('handleClick 👉️', state);
     }; 
          
@@ -65,7 +66,7 @@ function Formulario() {
 
             <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
             <Spacer y={3} />
-            <Input width="75%" placeholder="Contraseña" type="text" name="pass" onChange={handleChange} value={state.pass}/>
+            <Input width="75%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
             <Spacer y={3} />
 
             <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
@@ -88,7 +89,8 @@ function Formulario() {
                 </Grid.Container>
                 <Button onClick={handleClick}>Editar</Button>
                     <Spacer x={0.5} />
-                    <Button onClick={() => {maradona("/administrador")}} color="error" >Salir</Button> 
+                    <Button onClick={() => {volver
+                ("/administrador")}} color="error" >Salir</Button> 
  
         </Grid.Container>
     );
