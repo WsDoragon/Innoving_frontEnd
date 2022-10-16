@@ -35,7 +35,7 @@ CREATE TABLE `rol` (
 
 LOCK TABLES `rol` WRITE;
 /*!40000 ALTER TABLE `rol` DISABLE KEYS */;
-INSERT INTO `rol` VALUES (1,'Gerente'),(2,'Administrador'),(3,'Analista');
+INSERT INTO `rol` VALUES (1,'Gerente'),(2,'Administrador'),(3,'Analista'),(4,'Proveedor');
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
