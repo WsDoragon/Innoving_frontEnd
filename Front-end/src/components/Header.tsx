@@ -60,7 +60,7 @@ const Header: React.FC = () => {
               </Text>
           </Modal.Body>
           <Modal.Footer>
-            <Button auto onClick={() => {setVisible(true); navigate("/")}}>
+            <Button auto onClick={() => {setVisible(true); sessionStorage.removeItem('rol'); navigate("/")}}>
               Si
             </Button>
             <Button auto flat color="error" onClick={() => setVisible(false)}>
