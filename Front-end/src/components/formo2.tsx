@@ -85,9 +85,12 @@ export default function FormularioEdit() {
       axios.put('http://localhost:3001/users/'+oldID, state)
         .then(response => console.log(response.data.id));
       console.log('handleClick 👉️', state);
+      volver(-1)
     }; 
          
     return (
+      <div>
+        <Header></Header>
         <Grid.Container justify="center">
             <Input width="75%" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
@@ -122,5 +125,6 @@ export default function FormularioEdit() {
                     <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
  
         </Grid.Container>
+        </div>
     );
   }

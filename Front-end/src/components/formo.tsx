@@ -54,10 +54,13 @@ function Formulario() {
       //e.preventDefault();
       axios.post('http://localhost:3001/users/create', state);
       console.log('handleClick 👉️', state);
+      volver(-1)
     }; 
          
 
     return (
+      <div>
+      <Header/>
         <Grid.Container justify="center">
             <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
@@ -87,12 +90,13 @@ function Formulario() {
                 </Checkbox.Group>
                 <Spacer y={6}/>
                 </Grid.Container>
-                <Button onClick={handleClick}>Editar</Button>
+                <Button onClick={handleClick}>Guardar</Button>
                     <Spacer x={0.5} />
                     <Button onClick={() => {volver
                 ("/administrador")}} color="error" >Salir</Button> 
  
         </Grid.Container>
+        </div>
     );
   }
 

@@ -100,7 +100,7 @@ export default function TestTabla(data:GetUsersResponse) {
                   <Col css={{ d: "flex" }}>
                   <Tooltip
                       content="Desactivar usuario"
-                      color="error"
+                      
                       onClick={() => console.log("Desactivar usuario", item.rut)}
                   >
                       <Button onClick={() => setVisible(true)} color={"error"}>
