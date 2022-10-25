@@ -40,6 +40,7 @@ enrutador.post('/nuevoLink', async(req,res)=>{
 });
 
 enrutador.put('/:id', async (req, res) => {
+    console.log("entra: "+Object.keys(req.body));
     res.json(await sUsuarios.editUser(req.params.id, req.body));
 });
 

@@ -84,7 +84,7 @@ export default function FormularioEdit() {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       //e.preventDefault();
 
-      axios.put('http://localhost:3001/users/'+oldID, state)
+      axios.put(`http://localhost:3001/users/'${oldID}'`, state)
         .then(response => console.log(response.data.id));
       console.log('handleClick 👉️', state);
       volver(-1)
