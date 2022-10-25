@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { FormElement ,Button, Spacer, Input, Grid, Checkbox } from "@nextui-org/react";
 import Header from "../components/Header";
 import axios from "axios";
@@ -17,6 +17,7 @@ type UserType = {
 
 export default function FormularioEdit() {
     const volver = useNavigate();
+    const getRut = useLocation();
     const rol_tags = ["gerente", "administrador", "analista"];
     const [selected, setSelected] = useState<string[]>([]);
     const [state, setState] = useState<UserType>({
@@ -28,9 +29,10 @@ export default function FormularioEdit() {
         roles:[]
       });
       const passDataToEdit = ()=>{
-        axios.get(`http://localhost:3001/users/u_r/'a'`)
+        axios.get(`http://localhost:3001/users/u_r/'${getRut.state.rut}'`)
        .then(response => {
          const products = response.data;
+         console.log(products[0]);
          let rolTagsOnDisplay : string[] = [];
          const test : UserType = { rut : products[0].rut,
               correo : products[0].correo,

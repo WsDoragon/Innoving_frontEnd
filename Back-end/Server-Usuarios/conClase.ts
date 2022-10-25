@@ -77,8 +77,8 @@ class usuarioMov {
     }
 
     async getUserWithRoles(id:string){
-        const result = await db.query(`SELECT * FROM usuario JOIN rol_usuario ON rut=id_rut WHERE rut = "${id}"`);
-        console.log(result);
+        const result = await db.query(`SELECT * FROM usuario JOIN rol_usuario ON rut=id_rut WHERE rut = ${id}`);
+        console.log("IN: "+result);
         return result;
     }
 

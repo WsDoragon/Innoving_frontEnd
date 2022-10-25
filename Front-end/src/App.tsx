@@ -32,7 +32,7 @@ function App() {
         <Route path="/page3" element={<Page3/>} />
         <Route path="/formulario" element={<Formulario/>} />
         <Route path="/formularioEdit" element={<FormularioEdit/>} />
-        <Route path="/editarUser/:id" element={<Formulario/>} />
+        <Route path="/editarUser/:id" element={<FormularioEdit/>} />
 
         </Routes>
     </Router>
