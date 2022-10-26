@@ -54,17 +54,15 @@ class usuarioMov {
 
     async changeRolUser(creds:any){
         const result = await db.query(`delete from rol_usuario WHERE id_rut = "${creds.rut}"`)
-        console.log(creds.roles + "duele")
+        console.log(creds.roles)
         for(let i of creds.roles){
             const result2 = await db.query(`INSERT INTO rol_usuario(id_rut, id_rol) Values ("${creds.rut}",${i})`)
         }
-        console.log("off");
-
     }
 
     async editUser(id:string,form:any){
         console.log(form, id);
-        const result = await db.query(`update usuario set rut="${form.rut}", nombre="${form.Nombre}", apellido="${form.Apellido}", correo="${form.correo}", contraseña="${form.contraseña}" WHERE rut = "${id}"`)
+        const result = await db.query(`update usuario set rut="${form.rut}", nombre='${form.nombre}', apellido='${form.apellido}', correo="${form.correo}", contraseña="${form.contraseña}" WHERE rut = ${id}`)
         await db.query(`delete from rol_usuario WHERE id_rut = "${id}"`)
         this.changeRolUser(form)
         return result.affectedRows;
@@ -78,7 +76,6 @@ class usuarioMov {
 
     async getUserWithRoles(id:string){
         const result = await db.query(`SELECT * FROM usuario JOIN rol_usuario ON rut=id_rut WHERE rut = ${id}`);
-        console.log("IN: "+result);
         return result;
     }
 
