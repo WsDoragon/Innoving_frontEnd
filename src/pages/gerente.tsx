@@ -3,7 +3,7 @@ import { Grid, Button, Link, Spacer} from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Componente1 from "../components/componente";
-import Formulario from "../components/formo";
+import Formulario from "../components/formuCreateInnoving";
 
 function Gerente(){
     const navigate = useNavigate();

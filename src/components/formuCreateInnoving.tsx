@@ -1,8 +1,8 @@
 import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { FormElement ,Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
-import Header from "../components/Header";
+import { Modal, useModal,FormElement ,Button, Spacer, Input, Grid, Text, Checkbox } from "@nextui-org/react";
+import Header from "./Header";
 import axios from "axios";
 
 type UserType = {
@@ -16,6 +16,7 @@ type UserType = {
 
 function Formulario() {
     const volver = useNavigate();
+    const { setVisible, bindings } = useModal();
     const rol_tags = ["gerente", "administrador", "analista"];
     const [selected, setSelected] = useState<string[]>([]);
     const [state, setState] = useState<UserType>({
@@ -56,45 +57,72 @@ function Formulario() {
       console.log('handleClick 👉️', state);
       volver(-1)
     }; 
-         
-
+     
     return (
       <div>
       <Header/>
         <Grid.Container justify="center">
             <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
+
             <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
             <Spacer y={3} />
 
             <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
             <Spacer y={3} />
+
             <Input width="75%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
             <Spacer y={3} />
 
             <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
             <Spacer y={3} />
 
-                <Grid.Container justify="center">
-                
-                <Checkbox.Group
-                    label="Roles"
-                    orientation="horizontal"
-                    color="primary"
-                    value={selected}
-                    onChange={handleCheckbox}
-                    >
-                    <Checkbox value="gerente">Gerente</Checkbox>
-                    <Checkbox value="administrador">Administrador</Checkbox>
-                    <Checkbox value="analista">Analista</Checkbox>
-                </Checkbox.Group>
-                <Spacer y={6}/>
-                </Grid.Container>
-                <Button onClick={handleClick}>Guardar</Button>
-                    <Spacer x={0.5} />
-                    <Button onClick={() => {volver
-                ("/administrador")}} color="error" >Salir</Button> 
- 
+        <Grid.Container justify="center">
+            <Checkbox.Group
+                label="Roles"
+                orientation="horizontal"
+                color="primary"
+                value={selected}
+                onChange={handleCheckbox}
+                >
+                <Checkbox value="gerente">Gerente</Checkbox>
+                <Checkbox value="administrador">Administrador</Checkbox>
+                <Checkbox value="analista">Analista</Checkbox>
+            </Checkbox.Group>
+            <Spacer y={6}/>
+
+            </Grid.Container>
+            <Button onClick={() => {setVisible(true); handleClick}}>Guardar</Button>
+            <Modal
+              scroll
+              width="600px"
+              aria-labelledby="modal-title"
+              aria-describedby="modal-description"
+              {...bindings}
+            >
+              <Modal.Header>
+                <Text id="modal-title" size={18}>
+                  Aviso
+                </Text>
+              </Modal.Header>
+              <Modal.Body>
+                <Text id="modal-description">
+                  ¿Seguro que quiere guardar este usuario?
+                  </Text>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button auto onClick={() => {setVisible(true); volver("/administrador")}}>
+                  Si
+                </Button>
+                <Button auto flat color="error" onClick={() => setVisible(false)}>
+                  No
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+            <Spacer x={0.5} />
+
+            <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
         </Grid.Container>
         </div>
     );

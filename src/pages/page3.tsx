@@ -35,8 +35,6 @@ function Page3(){
           <Button auto flat color="error" onClick={() => setVisible(false)}>
             No
           </Button>
-         
-          
         </Modal.Footer>
       </Modal>
 
