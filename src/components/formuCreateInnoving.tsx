@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { FormElement ,Button, Spacer, Input, Grid, Card, Text, Checkbox } from "@nextui-org/react";
-import Header from "../components/Header";
+import Header from "./Header";
 import axios from "axios";
 
 type UserType = {
@@ -92,8 +92,7 @@ function Formulario() {
                 </Grid.Container>
                 <Button onClick={handleClick}>Guardar</Button>
                     <Spacer x={0.5} />
-                    <Button onClick={() => {volver
-                ("/administrador")}} color="error" >Salir</Button> 
+                    <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
  
         </Grid.Container>
         </div>

@@ -10,8 +10,8 @@ import Header from './components/Header';
 import Login from './pages/loginInv';
 import LoginFunc from './pages/loginFunc';
 
-import Formulario from './components/formo';
-import FormularioEdit from './components/formo2';
+import Formulario from './components/formuCreateInnoving';
+import FormularioEdit from './components/formuEditInnoving';
 import Page3 from "./pages/page3";
 
 

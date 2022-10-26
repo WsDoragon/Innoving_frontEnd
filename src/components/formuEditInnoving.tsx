@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useState } from "react"
 import { useNavigate,useLocation } from "react-router-dom";
 import { FormElement ,Button, Spacer, Input, Grid, Checkbox } from "@nextui-org/react";
-import Header from "../components/Header";
+import Header from "./Header";
 import axios from "axios";
 import test from "./apitest";
 
@@ -122,7 +122,7 @@ export default function FormularioEdit() {
                 </Checkbox.Group>
                 <Spacer y={6}/>
                 </Grid.Container>
-                <Button onClick={handleClick}>Editar</Button>
+                <Button onClick={handleClick}>Guardar</Button>
                     <Spacer x={0.5} />
                     <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
  

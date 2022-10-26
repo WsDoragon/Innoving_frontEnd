@@ -7,7 +7,7 @@ import { IconButton } from "../styledIcons/IconButton";
 import { EyeIcon } from "../styledIcons/EyeIcon";
 import { EditIcon } from "../styledIcons/EditIcon";
 import { DeleteIcon } from "../styledIcons/DeleteIcon";
-import Formulario from "../components/formo";
+import Formulario from "./formuCreateInnoving";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
