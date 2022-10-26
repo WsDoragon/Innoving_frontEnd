@@ -2,7 +2,7 @@ export const config = {
     db: {
         user: "root",
         host: "localhost",
-        password: "_",
+        password: "2507",
         database:"nodedb",
         waitForConnections:true,
         connectionLimit: 30,
