@@ -1,5 +1,4 @@
-import React from "react";
-import { Modal, useModal, Button, Text, Navbar } from "@nextui-org/react";
+import { Modal, useModal, Button, Text} from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -35,8 +34,6 @@ function Page3(){
           <Button auto flat color="error" onClick={() => setVisible(false)}>
             No
           </Button>
-         
-          
         </Modal.Footer>
       </Modal>
 
