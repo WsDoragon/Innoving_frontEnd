@@ -20,18 +20,10 @@ function Invi () {
 
 
   const [prueba, daniel] = useState({
-    username: "199419331",
+    username: "19941933-1",
     password: "25agosto1998",
   });
 
-
-  /*
-  const [state1, setState1] = useState({
-    username: "",
-    password: "",
-  });
-  Tengo que crear otro state para mandarlo a la base de datos?
-  */
 
   const selectedValue = React.useMemo(
     () => {
@@ -54,10 +46,11 @@ function Invi () {
     //e.preventDefault();
     
     console.log(state.username)
-
-    state.username = state.username.replaceAll(".","")
-    state.username = state.username.replaceAll("-","")
-    console.log(state.username)
+    let us:string = "" 
+    us = state.username.replaceAll(".","")
+    //state.username = state.username.replaceAll(".","")
+    //state.username = state.username.replaceAll("-","")
+    state.username = us
 
     if(state.dia[0] == "0"){
       state.dia = state.dia.replace("0","")
@@ -65,30 +58,29 @@ function Invi () {
     
     state.password = state.dia + state.mes + state.anio
     
-    //state1.username = state.username
-    //state1.password = state.password
-
     console.log('handleClick 👉️', state);
     
     if(state.username == prueba.username && state.password ==prueba.password){
       console.log("FELICIDADES")
+      navigate("/page3")
     }
     else{
       console.log("CAGASTE")
     }
-
+    
+    /*
     axios.post("http://localhost:3001/users/login", state)
     .then( data =>{
       console.log(data.data)
       if (data.data.message){
         console.log(data.data)}
       else{
-        navigate("/header")
+        navigate("/page3")
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
         console.log(sessionStorage.rol)
       }
     })
-
+*/
   }; 
 
   return(

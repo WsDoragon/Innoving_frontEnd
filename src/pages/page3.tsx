@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, useModal, Button, Text, Navbar } from "@nextui-org/react";
+import { Modal, useModal, Button, Text, Navbar, Image } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -39,6 +39,14 @@ function Page3(){
           
         </Modal.Footer>
       </Modal>
+
+      <Image
+            width={800}
+            height={500}
+            src="https://i.pinimg.com/736x/5a/bf/02/5abf02f344aacc19e3d401bfb41c233f--taking-selfies-self-portraits.jpg"
+            objectFit="cover"
+        />
+
 
     </div>
   );
