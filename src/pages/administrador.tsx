@@ -20,8 +20,8 @@ function Administrador(){
 
     const getUsers = async () => {
       const todo = await axios.get("http://localhost:3001/users/all");
-      console.log("hola: ",todo.data);
-      setUsers23(todo.data);
+      console.log("hola: ",todo.data.data);
+      setUsers23(todo.data.data);
     }
     useEffect(() => {
       getUsers();
