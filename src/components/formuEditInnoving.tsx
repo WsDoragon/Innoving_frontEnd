@@ -143,7 +143,7 @@ export default function FormularioEdit() {
               </Checkbox.Group>
               <Spacer y={6}/>
               </Grid.Container>
-              <Button onClick={handleClick}>Guardar</Button>
+              <Button onClick={() => setVisible(true)} >Guardar</Button>
               <Modal
                 scroll
                 width="600px"
@@ -158,11 +158,11 @@ export default function FormularioEdit() {
                 </Modal.Header>
                 <Modal.Body>
                   <Text id="modal-description">
-                    ¿Seguro que quiere guardar este usuario?
+                    ¿Seguro que quiere guardar los cambios de este usuario?
                     </Text>
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button auto onClick={() => {setVisible(true); volver("/administrador")}}>
+                <Button auto onClick={handleClick}>
                     Si
                   </Button>
                   <Button auto flat color="error" onClick={() => setVisible(false)}>
@@ -172,7 +172,7 @@ export default function FormularioEdit() {
               </Modal>
               <Spacer x={0.5} />
 
-              <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
+              <Button onClick={() => {volver(-1)}} color="error" >Salir</Button> 
 
       </Grid.Container>
       </div>

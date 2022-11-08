@@ -52,7 +52,6 @@ function Formulario() {
       }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
-      //e.preventDefault();
       axios.post('http://localhost:3001/users/create', state).then(
         response => {
           console.log("Usuario creado "+response.data);
@@ -99,7 +98,7 @@ function Formulario() {
             <Spacer y={6}/>
 
             </Grid.Container>
-            <Button onClick={handleClick}>Guardar</Button>
+            <Button onClick={() => setVisible(true)} >Guardar</Button>
             <Modal
               scroll
               width="600px"
@@ -118,7 +117,7 @@ function Formulario() {
                   </Text>
               </Modal.Body>
               <Modal.Footer>
-                <Button auto onClick={() => {setVisible(true); volver("/administrador")}}>
+                <Button auto onClick={handleClick}>
                   Si
                 </Button>
                 <Button auto flat color="error" onClick={() => setVisible(false)}>
@@ -129,7 +128,7 @@ function Formulario() {
 
             <Spacer x={0.5} />
 
-            <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
+            <Button onClick={() => {volver(-1)}} color="error" >Salir</Button> 
         </Grid.Container>
         </div>
     );
