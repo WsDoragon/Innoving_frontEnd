@@ -59,28 +59,27 @@ function Invi () {
     state.password = state.dia + state.mes + state.anio
     
     console.log('handleClick 👉️', state);
-    
-    if(state.username == prueba.username && state.password ==prueba.password){
+    /*
+    if(state.username == prueba.username && state.password == prueba.password){
       console.log("FELICIDADES")
-      navigate("/page3")
+      navigate("/home")
     }
     else{
       console.log("CAGASTE")
-    }
-    
-    /*
+    }*/
+  
     axios.post("http://localhost:3001/users/login", state)
     .then( data =>{
       console.log(data.data)
       if (data.data.message){
         console.log(data.data)}
       else{
-        navigate("/page3")
+        navigate("/proveedor#")
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
         console.log(sessionStorage.rol)
       }
     })
-*/
+
   }; 
 
   return(
