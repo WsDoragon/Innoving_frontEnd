@@ -27,28 +27,48 @@ export default function FormularioEdit() {
       rut: "",
       roles:[]
     });
-  const passDataToEdit = ()=>{
-    axios.get(`http://localhost:3001/users/u_r/'${getRut.state.rut}'`)
-    .then(response => {
-      const products = response.data;
-      console.log(products[0]);
-      let rolTagsOnDisplay : string[] = [];
-      const test : UserType = { rut : products[0].rut,
-          correo : products[0].correo,
-          contraseña : products[0].contraseña,
-          nombre : products[0].nombre,
-          apellido : products[0].apellido,
-          roles : [] 
-      }
-    for (let i of products){
-    test.roles.push(i.id_rol);
-    rolTagsOnDisplay.push(rol_tags[i.id_rol-1]);
+    const passDataToEdit = ()=>{
+      axios.get(`http://localhost:3001/r_u/`,{params: {rut: getRut.state.rut}})
+      .then(response => {
+         const roles_u = response.data.data;
+         let rolTagsOnDisplay : string[] = [];
+         let rol_state : number[] = [];
+         for (let i of roles_u){
+          rol_state.push(i.id_rol);
+          rolTagsOnDisplay.push(rol_tags[i.id_rol-1]);
+         }
+         setSelected(rolTagsOnDisplay);
+         setState((state) => {
+          return({
+            ...state,
+            roles: rol_state
+          });
+        });
+      })
+      axios.get(`http://localhost:3001/users/`,{params: {rut: getRut.state.rut}})
+     .then(response => {
+       const apiData = response.data.data;
+       const molde : UserType = { rut : apiData.rut,
+            correo : apiData.correo,
+            contraseña : apiData.contraseña,
+            nombre : apiData.nombre,
+            apellido : apiData.apellido,
+            roles : [] 
+       }
+       //setState(molde);
+       setState((state) => {
+        return({
+          ...state,
+          rut : apiData.rut,
+          correo : apiData.correo,
+          contraseña : apiData.contraseña,
+          nombre : apiData.nombre,
+          apellido : apiData.apellido
+        });
+      });
+     })
     }
-    console.log(rolTagsOnDisplay);
-    setState(test);
-    setSelected(rolTagsOnDisplay);
-  })  
-  }
+
 
   useEffect(() => {
     passDataToEdit();
@@ -83,8 +103,11 @@ export default function FormularioEdit() {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
     //e.preventDefault();
 
-    axios.put(`http://localhost:3001/users/'${oldID}'`, state)
-      .then(response => console.log(response.data.id));
+    axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
+    .then(response => {
+      axios.post(`http://localhost:3001/r_u/change`, {id:oldID, newRoles:state.roles}).then(res => console.log("Roles cambiados. "+res.data));
+      console.log("Usuario editado "+response.data)
+    });
     console.log('handleClick 👉️', state);
     volver(-1)
   }; 
@@ -120,7 +143,7 @@ export default function FormularioEdit() {
               </Checkbox.Group>
               <Spacer y={6}/>
               </Grid.Container>
-              <Button onClick={() => {setVisible(true); handleClick}}>Guardar</Button>
+              <Button onClick={handleClick}>Guardar</Button>
               <Modal
                 scroll
                 width="600px"

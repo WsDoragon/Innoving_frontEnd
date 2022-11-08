@@ -53,7 +53,14 @@ function Formulario() {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       //e.preventDefault();
-      axios.post('http://localhost:3001/users/create', state);
+      axios.post('http://localhost:3001/users/create', state).then(
+        response => {
+          console.log("Usuario creado "+response.data);
+          axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
+            res => {
+              console.log("Roles asignados "+res.data)
+          });
+      });
       console.log('handleClick 👉️', state);
       volver(-1)
     }; 
@@ -92,7 +99,7 @@ function Formulario() {
             <Spacer y={6}/>
 
             </Grid.Container>
-            <Button onClick={() => {setVisible(true); handleClick}}>Guardar</Button>
+            <Button onClick={handleClick}>Guardar</Button>
             <Modal
               scroll
               width="600px"
