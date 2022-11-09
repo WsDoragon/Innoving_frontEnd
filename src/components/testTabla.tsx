@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from "react";
 
 //@ts-ignore
-import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid } from "@nextui-org/react";
 import algo from './Axiostabla';
 import { StyledBadge } from "../styledIcons/StyledBadge";
 import { IconButton } from "../styledIcons/IconButton";
@@ -91,8 +91,8 @@ export default function TestTabla() {
 
     return(
       <div>
+          <Button onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
         
-        <Button onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
           <Table
           aria-label="Example table with dynamic content"
           css={{

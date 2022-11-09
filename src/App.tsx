@@ -40,6 +40,8 @@ function App() {
         <Route path="/administrador" element={<Administrador/>} >
           <Route path='usuarios_innoving' element={<TestTabla/>} />
           <Route path='usuarios_proveedores' element={<Componente />} />
+          <Route path='usuarios_inn_des' element={<Componente/>} />
+          <Route path='usuarios_prov_des' element={<Componente />} />
         </Route>
 
         <Route path="/proveedor" element={<Proveedor/>} >
