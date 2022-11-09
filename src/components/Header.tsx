@@ -44,7 +44,7 @@ const Header: React.FC = () => {
 
         <Modal
           scroll
-          width="600px"
+          width="300px"
           aria-labelledby="modal-title"
           aria-describedby="modal-description"
           {...bindings}
