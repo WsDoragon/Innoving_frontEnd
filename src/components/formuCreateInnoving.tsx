@@ -67,20 +67,22 @@ function Formulario() {
     return (
       <div>
       <Header/>
+      <Spacer y={1} />
+      
         <Grid.Container justify="center">
-            <Input width="75%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
+            <Input width="55%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
 
-            <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
+            <Input width="55%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
             <Spacer y={3} />
 
-            <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
+            <Input width="55%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
             <Spacer y={3} />
 
-            <Input width="75%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
+            <Input width="55%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
             <Spacer y={3} />
 
-            <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
+            <Input width="55%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
             <Spacer y={3} />
 
         <Grid.Container justify="center">
