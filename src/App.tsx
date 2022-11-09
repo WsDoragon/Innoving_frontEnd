@@ -25,7 +25,11 @@ function App() {
 
         <Route path="/header" element={<Header/>}/>
         <Route path="/gerente" element={<Gerente/>}/>
-        <Route path="/analista" element={<Analista/>}/>
+        <Route path="/analista" element={<Analista/>}>
+          <Route path='indicadores' element={<Page3 />} />
+          <Route path='evidencias' element={<Administrador />} />
+          <Route path='proveedores' element={<Proveedor />} />
+        </Route>
         <Route path="/administrador" element={<Administrador/>} />
         <Route path="/proveedor" element={<Proveedor/>} />
 
