@@ -1,4 +1,6 @@
 import axios from 'axios';
+import React from "react";
+
 //@ts-ignore
 import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal } from "@nextui-org/react";
 import algo from './Axiostabla';
@@ -10,6 +12,7 @@ import { DeleteIcon } from "../styledIcons/DeleteIcon";
 import Formulario from "./formuCreateInnoving";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
+import ModalDisable from './modalDisable';
 
 type UserType = {
     rut: string
@@ -18,6 +21,7 @@ type UserType = {
     correo:string
     pass: string
     roles: string
+    status: number
 };
 
 type GetUsersResponse = {
@@ -27,6 +31,23 @@ type GetUsersResponse = {
 export default function TestTabla(data:GetUsersResponse) {
   //PROBANDO
   const { setVisible, bindings } = useModal();
+
+  const [disableUser, setDisableUser] = useState<string>();
+  const [showResults, setShowResults] = React.useState(false)
+
+  const handler = (item: string) => {
+    setVisible(true)
+    setShowResults(true)
+    setDisableUser(item)
+  }
+
+  const desactivar = () => {
+    setVisible(false)
+    axios.put(`http://localhost:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+  }
+
+
+
   const navigate = useNavigate();
   const columns = [
         {
@@ -103,7 +124,7 @@ export default function TestTabla(data:GetUsersResponse) {
                       
                       onClick={() => console.log("Desactivar usuario", item.rut)}
                   >
-                      <Button onClick={() => setVisible(true)} color={"error"}>
+                      <Button onClick={() => handler(item.rut)} color={"error"}>
                           Desactivar
                       </Button>
                       
@@ -115,6 +136,8 @@ export default function TestTabla(data:GetUsersResponse) {
         </Table.Body>
           </Table>
 
+          {/*<ModalDisable toDisable = {disableUser}/>*/}
+          
           <Modal
             scroll
             width="600px"
@@ -129,17 +152,17 @@ export default function TestTabla(data:GetUsersResponse) {
           </Modal.Header>
           <Modal.Body>
             <Text id="modal-description">
-              ¿Está seguro de que quiere desactivar al usuario X?
+              ¿Está seguro de que quiere desactivar al usuario {disableUser}?
             </Text>
           </Modal.Body>
           <Modal.Footer>
-            <Button auto onClick={() => {setVisible(true)}}>
+            <Button auto onClick={() => {desactivar();setVisible(false)}}>
               Si
             </Button>
             <Button auto flat color="error" onClick={() => setVisible(false)}>
               No
             </Button>                
           </Modal.Footer>
-        </Modal>
+          </Modal>
         </div>
 )}

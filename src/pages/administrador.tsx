@@ -13,6 +13,7 @@ type UserType = {
     correo:string
     pass: string    
     roles: string
+    status:number
 };
 
 function Administrador(){
