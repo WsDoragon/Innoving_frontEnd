@@ -26,9 +26,9 @@ export default function Func (){
 
     axios.post("http://localhost:3001/users/login", state)
     .then( data =>{
-      console.log(data.data)
+      console.log(data.data,)
       if (data.data.message){
-        console.log(data.data)}
+        console.log(data.data,"wena me equivoque")}
       else{
         navigate("/header")
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
