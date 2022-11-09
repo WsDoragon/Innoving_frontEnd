@@ -1,4 +1,4 @@
-import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Text, FormElement } from "@nextui-org/react";
+import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Modal, Text, FormElement, useModal } from "@nextui-org/react";
 import React, { Component, useState } from "react";
 import { Selection } from '@react-types/shared/src/selection';
 import axios from "axios";
@@ -8,6 +8,9 @@ import { getValue } from "@testing-library/user-event/dist/utils";
 
 
 function Invi () {
+  const { setVisible, bindings } = useModal();
+
+  const [message, setMessage] = useState<any>();
   const [selected, setSelected] = React.useState<any>(new Set("Mes"));
 
   const [state, setState] = useState({
@@ -72,7 +75,11 @@ function Invi () {
     .then( data =>{
       console.log(data.data)
       if (data.data.message){
-        console.log(data.data)}
+        console.log(data.data.message)
+        setMessage(data.data.message)
+        console.log(data.data,"wena me equivoque")   
+        setVisible(true)  
+      }
       else{
         navigate("/proveedor#")
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
@@ -188,7 +195,41 @@ function Invi () {
         </Button>
 
         <Spacer y={2} />
-
+        <Modal
+          scroll
+          width="260px"
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+          css={{justify:"center"}}
+          {...bindings}
+        >
+          <Modal.Header>
+            <Text 
+            id="modal-title"
+            size={20}
+            css={{fontWeight:"bold"}}>
+              Aviso
+            </Text>
+          </Modal.Header>
+          <Modal.Body>
+            <Text 
+            id="modal-description"
+            size={18}
+            css={{textAlign:"center"}}>
+              {message}
+              </Text>
+          </Modal.Body>
+          <Modal.Footer
+          justify="center"
+          >
+          <Button
+            css={{justifyContent:"center"}} 
+            auto flat color="error" 
+            onClick={() => setVisible(false)}>
+            OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
         </div>
   )}
 

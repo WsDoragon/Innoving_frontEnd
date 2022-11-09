@@ -32,8 +32,6 @@ export default function Func (){
       
       if (data.data.message){
         console.log(data.data.message)
-
-        
         setMessage(data.data.message)
         console.log(data.data,"wena me equivoque")   
         setVisible(true)  
