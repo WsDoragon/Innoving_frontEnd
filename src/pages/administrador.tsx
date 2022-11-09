@@ -20,7 +20,7 @@ function Administrador(){
     const [users23, setUsers23] = useState<UserType[]>([]);
 
     const getUsers = async () => {
-      const todo = await axios.get("http://localhost:3001/users/all");
+      const todo = await axios.get("http://localhost:3001/users/allEnabled");
       console.log("hola: ",todo.data.data);
       setUsers23(todo.data.data);
     }
@@ -35,7 +35,7 @@ function Administrador(){
     
     const onClick = () => {
         if (showResults) {
-        setShowResults(true)
+            setShowResults(true)
         }
         else{
             setShowResults(true)
