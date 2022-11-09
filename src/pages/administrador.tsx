@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, Button, Link} from "@nextui-org/react";
-import { useNavigate } from "react-router-dom";
+import { Grid, Button, Link, Spacer} from "@nextui-org/react";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import TestTabla from "../components/testTabla";
 import axios from "axios"
@@ -18,40 +18,32 @@ type UserType = {
 
 function Administrador(){
     const [users23, setUsers23] = useState<UserType[]>([]);
+    const navigate = useNavigate();
 
     const getUsers = async () => {
       const todo = await axios.get("http://localhost:3001/users/allEnabled");
       console.log("hola: ",todo.data.data);
       setUsers23(todo.data.data);
     }
+    
     useEffect(() => {
       getUsers();
+      navigate("./usuarios_innoving");
+      
     }, []);
-  
-
-    const navigate = useNavigate();
-    
-    const [showResults, setShowResults] = React.useState(false)
-    
-    const onClick = () => {
-        if (showResults) {
-            setShowResults(true)
-        }
-        else{
-            setShowResults(true)
-        } 
-    }
 
     return(
-        <Grid.Container gap={2} justify="center">   
-        <Header/>
+        <>
+        <Header />
+        <Grid.Container  gap={2} justify="center">
             <Grid xs={12}>
-                <Button onPress={onClick} auto flat as={Link} href="#"> Usuarios </Button>
+                <Button onPress={() => navigate("./usuarios_innoving")} auto flat as={Link} href="#"> Usuarios Innoving </Button>
+                <Spacer y={0.5} />
+                <Button onPress={() => navigate("./usuarios_proveedores")} auto flat as={Link} href="#"> Usuarios Académicos/VIDCA </Button>
             </Grid>
-
-            {  showResults ? <TestTabla data = {users23} /> : null }
-
         </Grid.Container>
+        <Outlet />
+        </>
     );
 }
 
