@@ -68,7 +68,6 @@ function Formulario() {
       <div>
       <Header/>
       <Spacer y={1} />
-      
         <Grid.Container justify="center">
             <Input width="50%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
             <Spacer y={3} />
