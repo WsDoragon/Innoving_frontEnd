@@ -28,18 +28,29 @@ type GetUsersResponse = {
     data: UserType[];
   };
 
-export default function TestTabla(data:GetUsersResponse) {
+export default function TestTabla() {
   //PROBANDO
   const { setVisible, bindings } = useModal();
 
   const [disableUser, setDisableUser] = useState<string>();
   const [showResults, setShowResults] = React.useState(false)
+  const [users23, setUsers23] = useState<UserType[]>([]);
+
+  const getUsers = async () => {
+    const todo = await axios.get("http://localhost:3001/users/allEnabled");
+    console.log("hola: ",todo.data.data);
+    setUsers23(todo.data.data);
+  }
 
   const handler = (item: string) => {
     setVisible(true)
     setShowResults(true)
     setDisableUser(item)
   }
+
+  useEffect(() => {
+    getUsers();    
+  }, []);
 
   const desactivar = () => {
     setVisible(false)
@@ -99,7 +110,7 @@ export default function TestTabla(data:GetUsersResponse) {
                   {column.label}</Table.Column>
           )}
         </Table.Header>
-        <Table.Body items={data.data}>
+        <Table.Body items={users23}>
           {(item) => (
             <Table.Row key={item.rut}>
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>

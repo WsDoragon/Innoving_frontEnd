@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Componente from './components/componente';
 import Formulario from './components/formuCreateInnoving';
 import FormularioEdit from './components/formuEditInnoving';
+import TestTabla from './components/testTabla';
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
         </Route>
 
         <Route path="/administrador" element={<Administrador/>} >
-          <Route path='usuarios_innoving' element={<Componente />} />
+          <Route path='usuarios_innoving' element={<TestTabla/>} />
           <Route path='usuarios_proveedores' element={<Componente />} />
         </Route>
 
