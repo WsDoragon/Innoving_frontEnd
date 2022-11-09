@@ -1,4 +1,4 @@
-import {Button, Spacer, Input, Text, FormElement, Image} from "@nextui-org/react";
+import {Button, Spacer, Input, Text, FormElement, Modal, Image, useModal} from "@nextui-org/react";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function Func (){
+    const { setVisible, bindings } = useModal();
+
+    const [message, setMessage] = useState<any>();
     const navigate = useNavigate();
     const [state, setState] = useState({
       username: "",
@@ -26,9 +29,15 @@ export default function Func (){
 
     axios.post("http://localhost:3001/users/login", state)
     .then( data =>{
-      console.log(data.data,)
+      
       if (data.data.message){
-        console.log(data.data,"wena me equivoque")}
+        console.log(data.data.message)
+
+        
+        setMessage(data.data.message)
+        console.log(data.data,"wena me equivoque")   
+        setVisible(true)  
+      }
       else{
         navigate("/header")
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
@@ -94,8 +103,44 @@ export default function Func (){
         </Button>
         
         <Spacer x={3}/>
-        
+        <Modal
+          scroll
+          width="260px"
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+          css={{justify:"center"}}
+          {...bindings}
+        >
+          <Modal.Header>
+            <Text 
+            id="modal-title"
+            size={20}
+            css={{fontWeight:"bold"}}>
+              Aviso
+            </Text>
+          </Modal.Header>
+          <Modal.Body>
+            <Text 
+            id="modal-description"
+            size={18}
+            css={{textAlign:"center"}}>
+              {message}
+              </Text>
+          </Modal.Body>
+          <Modal.Footer
+          justify="center"
+          >
+          <Button
+            css={{justifyContent:"center"}} 
+            auto flat color="error" 
+            onClick={() => setVisible(false)}>
+            OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
         </div>
+
+        
   )}
 
 
