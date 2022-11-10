@@ -13,6 +13,7 @@ import Formulario from "./formuCreateInnoving";
 import { json, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import ModalDisable from './modalDisable';
+import ModalAbstracto from './modal/modalAbstracto';
 
 type UserType = {
     rut: string
@@ -28,9 +29,18 @@ type GetUsersResponse = {
     data: UserType[];
   };
 
+  type PropsMe = {
+    mensaje: string
+    active: boolean
+    consulta: string
+    state?:any
+}
+
 export default function TestTabla() {
   //PROBANDO
   const { setVisible, bindings } = useModal();
+
+  const [datos, setDatos] = useState<PropsMe>();
 
   const [disableUser, setDisableUser] = useState<string>();
   const [showResults, setShowResults] = React.useState(false)
@@ -46,6 +56,10 @@ export default function TestTabla() {
     setVisible(true)
     setShowResults(true)
     setDisableUser(item)
+  }
+
+  const handler2 = (data:string) => {
+    setDatos({mensaje: data, active:true, consulta:"desactivar"})
   }
 
   
@@ -181,6 +195,8 @@ export default function TestTabla() {
           </Table>
 
           {/*<ModalDisable toDisable = {disableUser}/>*/}
+
+          <ModalAbstracto configmodal = {datos}/>
           
           <Modal
             scroll
