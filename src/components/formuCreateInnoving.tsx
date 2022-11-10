@@ -59,12 +59,22 @@ function Formulario() {
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       axios.post('http://localhost:3001/users/create', state).then(
         response => {
-          console.log("Usuario creado "+response.data);
+          console.log("Usuario creado "+ response.data);
+          
+          if(response.status === 400){
+            console.log("ya existe")
+          }
+
           axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
             res => {
               console.log("Roles asignados "+res.data)
           });
-      });
+      }).catch(function(error){
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+      }});
       console.log('handleClick 👉️', state);
       delay(3000)
       volver(-1)
