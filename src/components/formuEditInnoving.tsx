@@ -14,6 +14,8 @@ type UserType = {
   roles: number[]
 };
 
+
+
 export default function FormularioEdit() {
   const volver = useNavigate();
   const getRut = useLocation();
@@ -27,6 +29,10 @@ export default function FormularioEdit() {
       rut: "",
       roles:[]
     });
+
+    
+
+
     const passDataToEdit = ()=>{
       axios.get(`http://localhost:3001/r_u/`,{params: {rut: getRut.state.rut}})
       .then(response => {

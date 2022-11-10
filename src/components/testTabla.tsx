@@ -10,7 +10,7 @@ import { EyeIcon } from "../styledIcons/EyeIcon";
 import { EditIcon } from "../styledIcons/EditIcon";
 import { DeleteIcon } from "../styledIcons/DeleteIcon";
 import Formulario from "./formuCreateInnoving";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import ModalDisable from './modalDisable';
 
@@ -20,7 +20,7 @@ type UserType = {
     apellido: string
     correo:string
     pass: string
-    roles: string
+    roles: any
     status: number
 };
 
@@ -37,7 +37,7 @@ export default function TestTabla() {
   const [users23, setUsers23] = useState<UserType[]>([]);
 
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allEnabled");
+    const todo = await axios.get("http://localhost:3001/users/all");
     console.log("hola: ",todo.data.data);
     setUsers23(todo.data.data);
   }
@@ -48,13 +48,29 @@ export default function TestTabla() {
     setDisableUser(item)
   }
 
+  
+
   useEffect(() => {
     getUsers();    
   }, []);
 
   const desactivar = () => {
     setVisible(false)
+    
     axios.put(`http://localhost:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+  }
+
+  const activar = () => {
+    setVisible(false)
+    
+    axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+  }
+
+  const rolesdeusuario = (roles:any) =>{
+    let a = JSON.stringify(roles).replaceAll('"','').replaceAll('[', '').replaceAll(']','').replaceAll(',',' - ')
+    return (a)
+
+    
   }
 
 
@@ -116,7 +132,7 @@ export default function TestTabla() {
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
-              <Table.Cell><Text b size={14}>{item[`roles`]}</Text></Table.Cell>
+              <Table.Cell><Text b size={14}>{rolesdeusuario(item[`roles`])}</Text></Table.Cell>
               <Table.Cell> 
                   <Row justify="center" align="center">
                   
@@ -130,16 +146,33 @@ export default function TestTabla() {
                   </Col>
                   <Spacer x={0.5}/>
                   <Col css={{ d: "flex" }}>
-                  <Tooltip
+                  {item.status == 1 &&
+                    <Tooltip
                       content="Desactivar usuario"
                       
-                      onClick={() => console.log("Desactivar usuario", item.rut)}
+                      onClick={() => {console.log("Desactivar usuario", item.rut)}}
                   >
-                      <Button onClick={() => handler(item.rut)} color={"error"}>
+                      
+                        <Button onClick={() => {item.status=0; handler(item.rut); console.log(item); navigate("../usuarios_innoving")}} color={"error"}>
                           Desactivar
                       </Button>
+
+                    </Tooltip>}
+
+                    {item.status == 0 &&
+                    <Tooltip
+                      content="Activar usuario"
                       
-                  </Tooltip>
+                      onClick={() => {console.log("Activar usuario", item.rut); item.status=1}}
+                  >
+                      
+                        <Button onClick={() => {item.status=0; handler(item.rut); console.log(item)}} color={"success"}>
+                          Activar
+                      </Button>
+
+                    </Tooltip>}
+
+
                   </Col>
               </Row></Table.Cell>      
             </Table.Row>

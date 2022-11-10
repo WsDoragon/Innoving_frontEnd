@@ -14,6 +14,10 @@ type UserType = {
   roles: number[]
 };
 
+async function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 function Formulario() {
     const volver = useNavigate();
     const { setVisible, bindings } = useModal();
@@ -27,6 +31,7 @@ function Formulario() {
         rut: "",
         roles: []
       });
+      
 
     function handleChange(e: React.ChangeEvent<FormElement>) {
         const value = e.target.value;
@@ -61,6 +66,7 @@ function Formulario() {
           });
       });
       console.log('handleClick 👉️', state);
+      delay(3000)
       volver(-1)
     }; 
      
