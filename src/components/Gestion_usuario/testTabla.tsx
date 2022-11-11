@@ -4,11 +4,11 @@ import React from "react";
 //@ts-ignore
 import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid } from "@nextui-org/react";
 import algo from './Axiostabla';
-import { StyledBadge } from "../styledIcons/StyledBadge";
-import { IconButton } from "../styledIcons/IconButton";
-import { EyeIcon } from "../styledIcons/EyeIcon";
-import { EditIcon } from "../styledIcons/EditIcon";
-import { DeleteIcon } from "../styledIcons/DeleteIcon";
+import { StyledBadge } from "../../styledIcons/StyledBadge";
+import { IconButton } from "../../styledIcons/IconButton";
+import { EyeIcon } from "../../styledIcons/EyeIcon";
+import { EditIcon } from "../../styledIcons/EditIcon";
+import { DeleteIcon } from "../../styledIcons/DeleteIcon";
 import Formulario from "./formuCreateInnoving";
 import { json, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
