@@ -12,9 +12,12 @@ import Page3 from "./pages/Gestion_usuario/page3";
 import Header from './components/Gestion_usuario/Header';
 import Componente from './components/Gestion_usuario/componente';
 import Formulario from './components/Gestion_usuario/formuCreateInnoving';
+import FormPROV from './components/Gestion_usuario/formoProv';
+import TablaPROV from './components/Gestion_usuario/tablaProv';
 //import FormularioProv from './components/Gestion_usuario/formuCreateProveedor';
 import FormularioEdit from './components/Gestion_usuario/formuEditInnoving';
 import TestTabla from './components/Gestion_usuario/testTabla';
+
 
 
 function App() {
@@ -40,7 +43,7 @@ function App() {
 
         <Route path="/administrador" element={<Administrador/>} >
           <Route path='usuarios_innoving' element={<TestTabla/>} />
-          <Route path='usuarios_proveedores' element={<Page3 />} />
+          <Route path='usuarios_proveedores' element={<TablaPROV />} />
           <Route path='usuarios_inn_des' element={<Componente/>} />
           <Route path='usuarios_prov_des' element={<Componente />} />
         </Route>
@@ -49,6 +52,7 @@ function App() {
         </Route>
         <Route path="/page3" element={<Page3/>} />
         <Route path="/formulario" element={<Formulario/>} />
+        <Route path="/formularioProv" element={<FormPROV/>} />
         <Route path="/formularioEdit" element={<FormularioEdit/>} />
         <Route path="/editarUser/:id" element={<FormularioEdit/>} />
         </Routes>
