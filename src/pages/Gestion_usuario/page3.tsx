@@ -4,9 +4,9 @@ import { Selection } from '@react-types/shared/src/selection';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getValue } from "@testing-library/user-event/dist/utils";
-import InputText from "../components/InputText";
-import InputFecha from "../components/InputFecha";
-import Header from "../components/Header";
+import InputText from "../../components/Gestion_usuario/InputText";
+import InputFecha from "../../components/Gestion_usuario/InputFecha";
+import Header from "../../components/Gestion_usuario/Header";
 
 type UserType = {
   rut: string
