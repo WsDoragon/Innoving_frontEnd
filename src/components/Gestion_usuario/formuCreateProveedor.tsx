@@ -2,7 +2,7 @@ import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { Modal, useModal,FormElement ,Button, Spacer, Input, Grid, Text, Checkbox } from "@nextui-org/react";
-import Header from "./Header";
+
 import axios from "axios";
 
 type UserType = {
@@ -60,7 +60,6 @@ function Formulario() {
      
     return (
       <div>
-      <Header/>
       <Spacer y={1} />
         <Grid.Container justify="center">
             <Input width="50%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>

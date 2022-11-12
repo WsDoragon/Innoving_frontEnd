@@ -8,9 +8,6 @@ import { getValue } from "@testing-library/user-event/dist/utils";
 
 
 function InputFecha () {
-  const { setVisible, bindings } = useModal();
-
-  const [message, setMessage] = useState<any>();
   const [selected, setSelected] = React.useState<any>(new Set("Mes"));
 
   const [state, setState] = useState({
@@ -21,13 +18,6 @@ function InputFecha () {
     anio: ""
   });
 
-
-  const [prueba, daniel] = useState({
-    username: "19941933-1",
-    password: "25agosto1998",
-  });
-
-
   const selectedValue = React.useMemo(
     () => {
       selected.forEach((value: any) => state.mes = value);
@@ -35,7 +25,7 @@ function InputFecha () {
     },
     [selected]
   );
-  const navigate = useNavigate();
+
 
   function handleChange(e: React.ChangeEvent<FormElement>) {
     const value = e.target.value;
@@ -44,50 +34,6 @@ function InputFecha () {
       [e.target.name]: value,
     });
   }
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
-    //e.preventDefault();
-    
-    console.log(state.username)
-    let us:string = "" 
-    us = state.username.replaceAll(".","")
-    //state.username = state.username.replaceAll(".","")
-    //state.username = state.username.replaceAll("-","")
-    state.username = us
-
-    if(state.dia[0] == "0"){
-      state.dia = state.dia.replace("0","")
-    }
-    
-    state.password = state.dia + state.mes + state.anio
-    
-    console.log('handleClick 👉️', state);
-    /*
-    if(state.username == prueba.username && state.password == prueba.password){
-      console.log("FELICIDADES")
-      navigate("/home")
-    }
-    else{
-      console.log("CAGASTE")
-    }*/
-  
-    axios.post("http://localhost:3001/users/login", state)
-    .then( data =>{
-      console.log(data.data)
-      if (data.data.message){
-        console.log(data.data.message)
-        setMessage(data.data.message)
-        console.log(data.data,"wena me equivoque")   
-        setVisible(true)  
-      }
-      else{
-        navigate("/proveedor#")
-        sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
-        console.log(sessionStorage.rol)
-      }
-    })
-
-  }; 
 
   return(
     <div className="wrapper">

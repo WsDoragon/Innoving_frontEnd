@@ -21,13 +21,6 @@ function Invi () {
     anio: ""
   });
 
-
-  const [prueba, daniel] = useState({
-    username: "19941933-1",
-    password: "25agosto1998",
-  });
-
-
   const selectedValue = React.useMemo(
     () => {
       selected.forEach((value: any) => state.mes = value);
@@ -62,14 +55,7 @@ function Invi () {
     state.password = state.dia + state.mes + state.anio
     
     console.log('handleClick 👉️', state);
-    /*
-    if(state.username == prueba.username && state.password == prueba.password){
-      console.log("FELICIDADES")
-      navigate("/home")
-    }
-    else{
-      console.log("CAGASTE")
-    }*/
+
   
     axios.post("http://localhost:3001/users/login", state)
     .then( data =>{

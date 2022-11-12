@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import InputText from "./InputText";
 import InputFecha from "./InputFecha";
-import Header from "./Header";
+
 
 type UserType = {
   rut: string
@@ -59,7 +59,7 @@ function Page3 () {
   }; 
   return(
     <div>
-      <Header/>
+
       <Spacer y={1} />
       <InputText></InputText>
       <InputFecha></InputFecha>

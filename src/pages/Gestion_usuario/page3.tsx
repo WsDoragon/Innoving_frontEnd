@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import InputText from "../../components/Gestion_usuario/InputText";
 import InputFecha from "../../components/Gestion_usuario/InputFecha";
-import Header from "../../components/Gestion_usuario/Header";
+
 
 type UserType = {
   rut: string
@@ -38,7 +38,8 @@ function Page3 () {
   });
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
-    axios.post('http://localhost:3001/users/create', state).then(
+    console.log("xd")
+    /*axios.post('http://localhost:3001/users/create', state).then(
       response => {
         console.log("Usuario creado "+ response.data);
         
@@ -58,11 +59,10 @@ function Page3 () {
     }});
     console.log('handleClick 👉️', state);
     delay(3000)
-    volver(-1)
+    volver(-1)*/
   }; 
   return(
     <div>
-      <Header/>
       <Spacer y={1} />
       <InputText></InputText>
       <InputFecha></InputFecha>

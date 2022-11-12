@@ -1,3 +1,4 @@
+
 import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Modal, Text, FormElement, useModal } from "@nextui-org/react";
 import React, { Component, useState } from "react";
 import { Selection } from '@react-types/shared/src/selection';
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import InputText from "../components/Gestion_usuario/InputText";
 import InputFecha from "../components/Gestion_usuario/InputFecha";
-import Header from "../components/Gestion_usuario/Header";
+
 
 type UserType = {
   rut: string
@@ -62,7 +63,6 @@ function Page3 () {
   }; 
   return(
     <div>
-      <Header/>
       <Spacer y={1} />
       <InputText></InputText>
       <InputFecha></InputFecha>
