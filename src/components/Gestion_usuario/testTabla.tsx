@@ -4,15 +4,16 @@ import React from "react";
 //@ts-ignore
 import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid } from "@nextui-org/react";
 import algo from './Axiostabla';
-import { StyledBadge } from "../styledIcons/StyledBadge";
-import { IconButton } from "../styledIcons/IconButton";
-import { EyeIcon } from "../styledIcons/EyeIcon";
-import { EditIcon } from "../styledIcons/EditIcon";
-import { DeleteIcon } from "../styledIcons/DeleteIcon";
+import { StyledBadge } from "../../styledIcons/StyledBadge";
+import { IconButton } from "../../styledIcons/IconButton";
+import { EyeIcon } from "../../styledIcons/EyeIcon";
+import { EditIcon } from "../../styledIcons/EditIcon";
+import { DeleteIcon } from "../../styledIcons/DeleteIcon";
 import Formulario from "./formuCreateInnoving";
 import { json, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import ModalDisable from './modalDisable';
+import ModalAbstracto from './modal/modalAbstracto';
 
 type UserType = {
     rut: string
@@ -28,12 +29,27 @@ type GetUsersResponse = {
     data: UserType[];
   };
 
+  type PropsMe = {
+    mensaje: string
+    active: boolean
+    consulta: string
+    state?:any
+}
+
 export default function TestTabla() {
+  function refreshPage() {
+    window.location.reload();
+  }
   //PROBANDO
   const { setVisible, bindings } = useModal();
 
+  const [datos, setDatos] = useState<PropsMe>();
+
   const [disableUser, setDisableUser] = useState<string>();
-  const [showResults, setShowResults] = React.useState(false)
+  /////////////////////////////////
+  const [showResults1, setShowResults] = React.useState(false)
+  const [showResults2, setShowResults2] = React.useState(false)
+  ////////////////////////////////
   const [users23, setUsers23] = useState<UserType[]>([]);
 
   const getUsers = async () => {
@@ -48,6 +64,16 @@ export default function TestTabla() {
     setDisableUser(item)
   }
 
+  const handler2 = (item: string) => {
+    setVisible(true)
+    setShowResults2(true)
+    setDisableUser(item)
+  }
+
+  const handler3 = (data:string) => {
+    setDatos({mensaje: data, active:true, consulta:"desactivar"})
+  }
+
   
 
   useEffect(() => {
@@ -58,12 +84,14 @@ export default function TestTabla() {
     setVisible(false)
     
     axios.put(`http://localhost:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+    refreshPage()
   }
 
   const activar = () => {
     setVisible(false)
     
     axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+    refreshPage()
   }
 
   const rolesdeusuario = (roles:any) =>{
@@ -166,7 +194,7 @@ export default function TestTabla() {
                       onClick={() => {console.log("Activar usuario", item.rut); item.status=1}}
                   >
                       
-                        <Button onClick={() => {item.status=0; handler(item.rut); console.log(item)}} color={"success"}>
+                        <Button onClick={() => {item.status=1; handler2(item.rut);console.log(item)}} color={"success"}>
                           Activar
                       </Button>
 
@@ -181,7 +209,10 @@ export default function TestTabla() {
           </Table>
 
           {/*<ModalDisable toDisable = {disableUser}/>*/}
+
+          {/*<ModalAbstracto configmodal = {datos}/>*/}
           
+          {showResults1 &&
           <Modal
             scroll
             width="600px"
@@ -203,10 +234,37 @@ export default function TestTabla() {
             <Button auto onClick={() => {desactivar();setVisible(false)}}>
               Si
             </Button>
-            <Button auto flat color="error" onClick={() => setVisible(false)}>
+            <Button auto flat color="error" onClick={() => {setVisible(false)}}>
               No
             </Button>                
           </Modal.Footer>
-          </Modal>
+          </Modal>}
+          {showResults2 &&
+          <Modal
+            scroll
+            width="600px"
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
+            {...bindings}
+          >
+          <Modal.Header>
+            <Text id="modal-title" size={18}>
+              Aviso
+            </Text>
+          </Modal.Header>
+          <Modal.Body>
+            <Text id="modal-description">
+              ¿Está seguro de que quiere activar al usuario {disableUser}?
+            </Text>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button auto onClick={() => {activar();setVisible(false)}}>
+              Si
+            </Button>
+            <Button auto flat color="error" onClick={() => {setVisible(false)}}>
+              No
+            </Button>                
+          </Modal.Footer>
+          </Modal>}
         </div>
 )}

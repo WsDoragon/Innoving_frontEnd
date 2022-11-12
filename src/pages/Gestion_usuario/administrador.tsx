@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Button, Link, Spacer} from "@nextui-org/react";
 import { Outlet, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
-import TestTabla from "../components/testTabla";
+import Header from "../../components/Gestion_usuario/Header";
+import TestTabla from "../../components/Gestion_usuario/testTabla";
 import axios from "axios"
 import {useState, useEffect} from "react"
 

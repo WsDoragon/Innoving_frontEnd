@@ -1,19 +1,19 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
-import Gerente from "./pages/gerente";
-import Analista from "./pages/analista";
-import Administrador from "./pages/administrador";
-import Proveedor from "./pages/proveedor";
-import Login from './pages/loginInv';
-import LoginFunc from './pages/loginFunc';
-import Page3 from "./pages/page3";
+import Gerente from "./pages/Gestion_usuario/gerente";
+import Analista from "./pages/Gestion_usuario/analista";
+import Administrador from "./pages/Gestion_usuario/administrador";
+import Proveedor from "./pages/Gestion_usuario/proveedor";
+import Login from './pages/Gestion_usuario/loginInv';
+import LoginFunc from './pages/Gestion_usuario/loginFunc';
+import Page3 from "./pages/Gestion_usuario/page3";
 
-import Header from './components/Header';
-import Componente from './components/componente';
-import Formulario from './components/formuCreateInnoving';
-import FormularioEdit from './components/formuEditInnoving';
-import TestTabla from './components/testTabla';
+import Header from './components/Gestion_usuario/Header';
+import Componente from './components/Gestion_usuario/componente';
+import Formulario from './components/Gestion_usuario/formuCreateInnoving';
+import FormularioEdit from './components/Gestion_usuario/formuEditInnoving';
+import TestTabla from './components/Gestion_usuario/testTabla';
 
 
 function App() {
