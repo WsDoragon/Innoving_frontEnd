@@ -1,7 +1,7 @@
 
 import { Grid } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../../components/Gestion_usuario/Header";
 
 function Proveedor(){
     const navigate = useNavigate();

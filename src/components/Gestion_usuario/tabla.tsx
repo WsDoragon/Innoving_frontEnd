@@ -1,9 +1,9 @@
 import { Table, Row, Col, Tooltip, User, Text } from "@nextui-org/react";
-import { StyledBadge } from "../styledIcons/StyledBadge";
-import { IconButton } from "../styledIcons/IconButton";
-import { EyeIcon } from "../styledIcons/EyeIcon";
-import { EditIcon } from "../styledIcons/EditIcon";
-import { DeleteIcon } from "../styledIcons/DeleteIcon";
+import { StyledBadge } from "../../styledIcons/StyledBadge";
+import { IconButton } from "../../styledIcons/IconButton";
+import { EyeIcon } from "../../styledIcons/EyeIcon";
+import { EditIcon } from "../../styledIcons/EditIcon";
+import { DeleteIcon } from "../../styledIcons/DeleteIcon";
 
 import axios from 'axios';
 
