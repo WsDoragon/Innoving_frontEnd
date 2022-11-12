@@ -135,13 +135,18 @@ export default function TestTabla() {
 
     return(
       <div>
-          <Button onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
+          <Button 
+          
+          css={{left:"10px"}}
+          onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
         
           <Table
+          
           aria-label="Example table with dynamic content"
           css={{
             height: "auto",
-            minWidth: "100%",
+            minWidth: "100%"
+            
           }}
       >
           <Table.Header columns={columns}>
