@@ -1,9 +1,12 @@
-import React, { useEffect } from "react"
-import { useState } from "react"
-import { useNavigate,useLocation } from "react-router-dom";
-import { Modal, useModal, Text, FormElement ,Button, Spacer, Input, Grid, Checkbox } from "@nextui-org/react";
-import Header from "./Header";
+import {Button, Spacer, Input, Image, Grid, Dropdown, Row, Modal, Text, FormElement, useModal } from "@nextui-org/react";
+import React, { Component, useState } from "react";
+import { Selection } from '@react-types/shared/src/selection';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { getValue } from "@testing-library/user-event/dist/utils";
+import InputText from "../components/InputText";
+import InputFecha from "../components/InputFecha";
+import Header from "../components/Header";
 
 type UserType = {
   rut: string
@@ -14,144 +17,90 @@ type UserType = {
   roles: number[]
 };
 
-export default function FormularioEdit() {
+async function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+function Page3 () {
   const volver = useNavigate();
-  const getRut = useLocation();
-  const rol_tags = ["gerente", "administrador", "analista"];
-  const [selected, setSelected] = useState<string[]>([]);
+  const { setVisible, bindings } = useModal();
+
   const [state, setState] = useState<UserType>({
-      nombre: "",
-      apellido: "",
-      contraseña: "",
-      correo: "",
-      rut: "",
-      roles:[]
-    });
-  const passDataToEdit = ()=>{
-    axios.get(`http://localhost:3001/users/u_r/'${getRut.state.rut}'`)
-    .then(response => {
-      const products = response.data;
-      console.log(products[0]);
-      let rolTagsOnDisplay : string[] = [];
-      const test : UserType = { rut : products[0].rut,
-          correo : products[0].correo,
-          contraseña : products[0].contraseña,
-          nombre : products[0].nombre,
-          apellido : products[0].apellido,
-          roles : [] 
-      }
-    for (let i of products){
-    test.roles.push(i.id_rol);
-    rolTagsOnDisplay.push(rol_tags[i.id_rol-1]);
-    }
-    console.log(rolTagsOnDisplay);
-    setState(test);
-    setSelected(rolTagsOnDisplay);
-  })  
-  }
-
-  useEffect(() => {
-    passDataToEdit();
-  }, []);
-
-  let oldID = state.rut;
-  console.log(state, oldID);
-
-  function handleChange(e: React.ChangeEvent<FormElement>) {
-      const value = e.target.value;
-      setState({
-        ...state,
-        [e.target.name]: value,
-      });
-    }
-    
-  const handleCheckbox = (e: string[]) => {
-    console.log(e);
-    let newRolTags : number[] = [];
-    for (let i of e){
-      newRolTags.push(1+rol_tags.indexOf(i));
-    }
-    setState((state) => {
-      return({
-        ...state,
-        roles: newRolTags
-      });
-    });
-    setSelected(e);
-  }
+    nombre: "",
+    apellido: "",
+    contraseña: "",
+    correo: "",
+    rut: "",
+    roles: []
+  });
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
-    //e.preventDefault();
+    axios.post('http://localhost:3001/users/create', state).then(
+      response => {
+        console.log("Usuario creado "+ response.data);
+        
+        if(response.status === 400){
+          console.log("ya existe")
+        }
 
-    axios.put(`http://localhost:3001/users/'${oldID}'`, state)
-      .then(response => console.log(response.data.id));
+        axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
+          res => {
+            console.log("Roles asignados "+res.data)
+        });
+    }).catch(function(error){
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+    }});
     console.log('handleClick 👉️', state);
+    delay(3000)
     volver(-1)
   }; 
-  const { setVisible, bindings } = useModal();  
-  return (
+  return(
     <div>
-      <Header></Header>
+      <Header/>
+      <Spacer y={1} />
+      <InputText></InputText>
+      <InputFecha></InputFecha>
+
+      <Spacer x={1} />
+      
       <Grid.Container justify="center">
-          <Input width="75%" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
-          <Spacer y={3} />
-          <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
-          <Spacer y={3} />
-
-          <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
-          <Spacer y={3} />
-          <Input width="75%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
-          <Spacer y={3} />
-
-          <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
-          <Spacer y={3} />
-
-          <Grid.Container justify="center">
-              <Checkbox.Group
-                  label="Roles"
-                  orientation="horizontal"
-                  color="primary"
-                  value={selected}
-                  onChange={handleCheckbox}
-                  >
-                  <Checkbox value="gerente">Gerente</Checkbox>
-                  <Checkbox value="administrador">Administrador</Checkbox>
-                  <Checkbox value="analista">Analista</Checkbox>
-              </Checkbox.Group>
-              <Spacer y={6}/>
-              </Grid.Container>
-              <Button onClick={() => {setVisible(true); handleClick}}>Guardar</Button>
-              <Modal
-                scroll
-                width="600px"
-                aria-labelledby="modal-title"
-                aria-describedby="modal-description"
-                {...bindings}
-              >
-                <Modal.Header>
-                  <Text id="modal-title" size={18}>
-                    Aviso
+      <Button onClick={() => setVisible(true)} >Guardar</Button>
+            <Modal
+              scroll
+              width="600px"
+              aria-labelledby="modal-title"
+              aria-describedby="modal-description"
+              {...bindings}
+            >
+              <Modal.Header>
+                <Text id="modal-title" size={18}>
+                  Aviso
+                </Text>
+              </Modal.Header>
+              <Modal.Body>
+                <Text id="modal-description">
+                  ¿Seguro que quiere guardar este usuario?
                   </Text>
-                </Modal.Header>
-                <Modal.Body>
-                  <Text id="modal-description">
-                    ¿Seguro que quiere guardar este usuario?
-                    </Text>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button auto onClick={() => {setVisible(true); volver("/administrador")}}>
-                    Si
-                  </Button>
-                  <Button auto flat color="error" onClick={() => setVisible(false)}>
-                    No
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-              <Spacer x={0.5} />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button auto onClick={handleClick}>
+                  Si
+                </Button>
+                <Button auto flat color="error" onClick={() => setVisible(false)}>
+                  No
+                </Button>
+              </Modal.Footer>
+            </Modal>
 
-              <Button onClick={() => {volver("/administrador")}} color="error" >Salir</Button> 
+            <Spacer x={0.5} />
 
+            <Button onClick={() => {volver(-1)}} color="error" >Salir</Button>
       </Grid.Container>
-      </div>
-    );
-  }
+      
+    </div>
+  )}
+
+export default Page3;

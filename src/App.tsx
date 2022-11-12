@@ -43,17 +43,13 @@ function App() {
           <Route path='usuarios_inn_des' element={<Componente/>} />
           <Route path='usuarios_prov_des' element={<Componente />} />
         </Route>
-
         <Route path="/proveedor" element={<Proveedor/>} >
-          <Route path='evidencias' element={<Componente />} />
+        <Route path='evidencias' element={<Componente />} />
         </Route>
-
         <Route path="/page3" element={<Page3/>} />
-        
         <Route path="/formulario" element={<Formulario/>} />
         <Route path="/formularioEdit" element={<FormularioEdit/>} />
         <Route path="/editarUser/:id" element={<FormularioEdit/>} />
-
         </Routes>
     </Router>
   );
