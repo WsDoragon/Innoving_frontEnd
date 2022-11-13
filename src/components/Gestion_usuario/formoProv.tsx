@@ -41,7 +41,7 @@ function Formulario() {
         dia: "",
         mes: "",
         anio: "",
-        roles: []
+        roles: [4]
       });
       
       const selectedValue = React.useMemo(
@@ -79,7 +79,12 @@ function Formulario() {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
         console.log(state)
-        /*
+        if(state.dia[0] == "0"){
+            state.dia = state.dia.replace("0","")
+        }
+        state.contraseña = state.dia + state.mes + state.anio
+
+        
         axios.post('http://localhost:3001/users/create', state).then(
         response => {
           console.log("Usuario creado "+ response.data);
@@ -101,7 +106,7 @@ function Formulario() {
       console.log('handleClick 👉️', state);
       delay(3000)
       volver(-1)
-      */
+      
     }; 
      
     return (
@@ -182,18 +187,7 @@ function Formulario() {
             <Spacer x={1} />
 
         <Grid.Container justify="center">
-            <Checkbox.Group
-                label="Roles"
-                orientation="horizontal"
-                color="primary"
-                value={selected}
-                onChange={handleCheckbox}
-                >
-                <Checkbox value="gerente">Gerente</Checkbox>
-                <Checkbox value="administrador">Administrador</Checkbox>
-                <Checkbox value="analista">Analista</Checkbox>
-            </Checkbox.Group>
-            <Spacer y={6}/>
+            <Spacer y={1}/>
 
             </Grid.Container>
             <Button onClick={() => setVisible(true)} >Guardar</Button>
