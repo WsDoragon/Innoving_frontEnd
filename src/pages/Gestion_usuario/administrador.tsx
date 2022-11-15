@@ -27,7 +27,7 @@ function Administrador(){
     }
     
     useEffect(() => {
-      getUsers();
+      //getUsers();
       navigate("./usuarios_innoving");
       
     }, []);

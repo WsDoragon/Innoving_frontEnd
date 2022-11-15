@@ -18,11 +18,20 @@ async function delay(ms: number) {
 
 export default function ModalAbstracto(configmodal:any) {
 
+    function refreshPage() {
+      window.location.reload();
+    }
+
     const volver = useNavigate();
     const { setVisible, bindings } = useModal();
 
+    useEffect(() => {
+      setVisible(true)
+      console.log(configmodal.configmodal)
+    }, []);
+
     const create = () => {
-        axios.post('http://localhost:3001/users/create', configmodal.state).then(
+        axios.post('http://localhost:3001/users/create', configmodal.configmodal.state).then(
           response => {
             console.log("Usuario creado "+ response.data);
             
@@ -30,7 +39,7 @@ export default function ModalAbstracto(configmodal:any) {
               console.log("ya existe")
             }
   
-            axios.post(`http://localhost:3001/r_u/add`, {id: configmodal.state.rut, roles: configmodal.state.roles}).then(
+            axios.post(`http://localhost:3001/r_u/add`, {id: configmodal.configmodal.state.rut, roles: configmodal.configmodal.state.roles}).then(
               res => {
                 console.log("Roles asignados "+res.data)
             });
@@ -40,26 +49,28 @@ export default function ModalAbstracto(configmodal:any) {
             console.log(error.response.status);
             console.log(error.response.headers);
         }});
-        console.log('handleClick 👉️', configmodal.state);
+        console.log('handleClick 👉️', configmodal.configmodal.state);
         delay(3000)
         setVisible(false)
         volver(-1)
       }; 
 
-      const desactivar = () => {
+      const desactivar = () => {  
         setVisible(false)
         
-        axios.put(`http://localhost:3001/users/disable`, {rut:configmodal.state.changeActUser}).then(res => console.log("usuario desactivado "+res.data))
+        axios.put(`http://localhost:3001/users/disable`, {rut:configmodal.configmodal.state}).then(res => console.log("usuario desactivado "+res.data))
+        refreshPage()
       }
     
       const activar = () => {
         setVisible(false)
         
-        axios.put(`http://localhost:3001/users/enable`, {rut:configmodal.state.changeActUser}).then(res => console.log("usuario activado "+res.data))
+        axios.put(`http://localhost:3001/users/enable`, {rut:configmodal.configmodal.state}).then(res => console.log("usuario activado "+res.data))
+        refreshPage()
       }
     
       const selector = () => {
-        switch(configmodal.consulta){
+        switch(configmodal.configmodal.consulta){
 
             case "crear":
                 console.log("accedido a crear")
@@ -73,15 +84,17 @@ export default function ModalAbstracto(configmodal:any) {
             case "desactivar":
                 console.log("accedido a desactivar");
                 desactivar()
+                
                 break;
             
             case "activar":
                 console.log("accedido a activar")
                 activar()
-                break;
+              
 
         }
       }
+
 
     return(
         <Modal
@@ -98,7 +111,7 @@ export default function ModalAbstracto(configmodal:any) {
           </Modal.Header>
           <Modal.Body>
             <Text id="modal-description">
-              {configmodal.mensaje}
+              {configmodal.configmodal.mensaje}
             </Text>
           </Modal.Body>
           <Modal.Footer>

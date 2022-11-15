@@ -37,6 +37,9 @@ type GetUsersResponse = {
 }
 
 export default function TestTabla() {
+  const [, updateState] = React.useState<any>();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
+///////////////////////////
   function refreshPage() {
     window.location.reload();
   }
@@ -49,6 +52,7 @@ export default function TestTabla() {
   /////////////////////////////////
   const [showResults1, setShowResults] = React.useState(false)
   const [showResults2, setShowResults2] = React.useState(false)
+  const [showResults3, setShowResults3] = React.useState(false)
   ////////////////////////////////
   const [users23, setUsers23] = useState<UserType[]>([]);
 
@@ -70,15 +74,20 @@ export default function TestTabla() {
     setDisableUser(item)
   }
 
-  const handler3 = (data:string) => {
-    setDatos({mensaje: data, active:true, consulta:"desactivar"})
+  const handler3 = (dataMensaje:any, dataConsulta: any, dataState?: any) => {
+    setDatos({mensaje: dataMensaje, active:true, consulta:dataConsulta, state: dataState})
+    setShowResults3(true)
   }
 
   
 
   useEffect(() => {
-    getUsers();    
+    getUsers();
   }, []);
+
+  useEffect(() => {
+    console.log("component updated")
+  }, [showResults3]);
 
   const desactivar = () => {
     setVisible(false)
@@ -90,9 +99,9 @@ export default function TestTabla() {
   const activar = () => {
     setVisible(false)
     
-    axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+    axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => {console.log("usuario desactivado "+res.data)})
     refreshPage()
-  }
+  } 
 
   const rolesdeusuario = (roles:any) =>{
     let a = JSON.stringify(roles).replaceAll('"','').replaceAll('[', '').replaceAll(']','').replaceAll(',',' - ')
@@ -100,8 +109,6 @@ export default function TestTabla() {
 
     
   }
-
-
 
   const navigate = useNavigate();
   const columns = [
@@ -185,7 +192,8 @@ export default function TestTabla() {
                       onClick={() => {console.log("Desactivar usuario", item.rut)}}
                   >
                       
-                        <Button onClick={() => {item.status=0; handler(item.rut); console.log(item); navigate("../usuarios_innoving")}} color={"error"}>
+                        <Button onClick={() => {item.status=0; handler3(`¿Está seguro de que quiere desactivar al usuario ${item.rut}?`,
+                                                "desactivar",item.rut);console.log(item); navigate("../usuarios_innoving")}} color={"error"}>
                           Desactivar
                       </Button>
 
@@ -198,7 +206,8 @@ export default function TestTabla() {
                       onClick={() => {console.log("Activar usuario", item.rut); item.status=1}}
                   >
                       
-                        <Button onClick={() => {item.status=1; handler2(item.rut);console.log(item)}} color={"success"}>
+                        <Button onClick={() => {item.status=1; handler3(`¿Está seguro de que quiere activar al usuario ${item.rut}?`,
+                                                "activar",item.rut);console.log(item)}} color={"success"}>
                           Activar
                       </Button>
 
@@ -214,7 +223,7 @@ export default function TestTabla() {
 
           {/*<ModalDisable toDisable = {disableUser}/>*/}
 
-          {/*<ModalAbstracto configmodal = {datos}/>*/}
+          {showResults3 && <ModalAbstracto configmodal = {datos}/>}
           
           {showResults1 &&
           <Modal
