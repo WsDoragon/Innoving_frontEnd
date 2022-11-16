@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, Dispatch, SetStateAction, MutableRefObject } from 'react'
 
 
-type PropsMe = {
+export type PropsMe = {
     mensaje: string
     active: boolean
     consulta: string
-    state:any
+    state:any,
+    callback: Function
 }
 
 async function delay(ms: number) {
@@ -56,17 +57,24 @@ export default function ModalAbstracto(configmodal:any) {
       }; 
 
       const desactivar = () => {  
-        setVisible(false)
         
-        axios.put(`http://localhost:3001/users/disable`, {rut:configmodal.configmodal.state}).then(res => console.log("usuario desactivado "+res.data))
-        refreshPage()
+        //setVisible(false)
+        
+        axios.put(`http://localhost:3001/users/disable`, {rut:configmodal.configmodal.state}).then(
+          res => {
+            configmodal.configmodal.callback({rut:configmodal.configmodal.state, enabled: false, continua: true});
+          })
+        //refreshPage()
       }
     
       const activar = () => {
-        setVisible(false)
+        //configmodal.configmodal.callback();
+        //setVisible(false)
         
-        axios.put(`http://localhost:3001/users/enable`, {rut:configmodal.configmodal.state}).then(res => console.log("usuario activado "+res.data))
-        refreshPage()
+        axios.put(`http://localhost:3001/users/enable`, {rut:configmodal.configmodal.state}).then(
+          res => {
+            configmodal.configmodal.callback({rut: configmodal.configmodal.state, enabled: true, continua:true});
+          })
       }
     
       const selector = () => {
@@ -118,7 +126,7 @@ export default function ModalAbstracto(configmodal:any) {
             <Button auto onClick={() => {selector(); setVisible(false)}}>
               Si
             </Button>
-            <Button auto flat color="error" onClick={() => setVisible(false)}>
+            <Button auto flat color="error" onClick={() => {setVisible(false); configmodal.configmodal.callback({continua:false});}}>
               No
             </Button>                
           </Modal.Footer>

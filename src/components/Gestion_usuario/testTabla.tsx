@@ -13,7 +13,7 @@ import Formulario from "./formuCreateInnoving";
 import { json, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import ModalDisable from './modalDisable';
-import ModalAbstracto from './modal/modalAbstracto';
+import ModalAbstracto, { PropsMe } from './modal/modalAbstracto';
 
 type UserType = {
     rut: string
@@ -29,12 +29,6 @@ type GetUsersResponse = {
     data: UserType[];
   };
 
-  type PropsMe = {
-    mensaje: string
-    active: boolean
-    consulta: string
-    state?:any
-}
 
 export default function TestTabla() {
   const [, updateState] = React.useState<any>();
@@ -75,7 +69,17 @@ export default function TestTabla() {
   }
 
   const handler3 = (dataMensaje:any, dataConsulta: any, dataState?: any) => {
-    setDatos({mensaje: dataMensaje, active:true, consulta:dataConsulta, state: dataState})
+    setDatos({mensaje: dataMensaje, active:true, consulta:dataConsulta, state: dataState, callback: (data: any) => {
+      setShowResults3(false);
+      console.log(data)
+      if (data.continua){
+        let users = JSON.parse(JSON.stringify(users23));
+        let index = users.findIndex((user: any) => user.rut == data.rut);
+        if (index != undefined) {
+          users[index].status = data.enabled ? 1 : 0;
+      }
+      setUsers23(users);}
+    }})
     setShowResults3(true)
   }
 
@@ -86,8 +90,9 @@ export default function TestTabla() {
   }, []);
 
   useEffect(() => {
-    console.log("component updated")
-  }, [showResults3]);
+    console.log("============== component updated ================")
+    console.log(users23);
+  }, [users23]);
 
   const desactivar = () => {
     setVisible(false)
@@ -127,6 +132,10 @@ export default function TestTabla() {
         {
           key:"roles",
           label: "Roles"
+        },
+        {
+          key:"status",
+          label: "Estado"
         },
         {
             key: "actions",
@@ -172,6 +181,7 @@ export default function TestTabla() {
               <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{rolesdeusuario(item[`roles`])}</Text></Table.Cell>
+              <Table.Cell><Text b size={14}>{item[`status`]}</Text></Table.Cell>
               <Table.Cell> 
                   <Row justify="center" align="center">
                   
@@ -192,7 +202,7 @@ export default function TestTabla() {
                       onClick={() => {console.log("Desactivar usuario", item.rut)}}
                   >
                       
-                        <Button onClick={() => {item.status=0; handler3(`¿Está seguro de que quiere desactivar al usuario ${item.rut}?`,
+                        <Button onClick={() => {handler3(`¿Está seguro de que quiere desactivar al usuario ${item.rut}?`,
                                                 "desactivar",item.rut);console.log(item); navigate("../usuarios_innoving")}} color={"error"}>
                           Desactivar
                       </Button>
@@ -206,7 +216,7 @@ export default function TestTabla() {
                       onClick={() => {console.log("Activar usuario", item.rut); item.status=1}}
                   >
                       
-                        <Button onClick={() => {item.status=1; handler3(`¿Está seguro de que quiere activar al usuario ${item.rut}?`,
+                        <Button onClick={() => {handler3(`¿Está seguro de que quiere activar al usuario ${item.rut}?`,
                                                 "activar",item.rut);console.log(item)}} color={"success"}>
                           Activar
                       </Button>
