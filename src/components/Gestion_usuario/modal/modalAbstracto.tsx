@@ -98,6 +98,11 @@ export default function ModalAbstracto(configmodal:any) {
             case "activar":
                 console.log("accedido a activar")
                 activar()
+                break;
+            default:
+              setVisible(false)
+              configmodal.configmodal.callback({continua:true});
+              break;
               
 
         }

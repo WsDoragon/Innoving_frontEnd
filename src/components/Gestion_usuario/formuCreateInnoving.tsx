@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Modal, useModal,FormElement ,Button, Spacer, Input, Grid, Text, Checkbox } from "@nextui-org/react";
 import Header from "./Header";
 import axios from "axios";
+import {toast, ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 type UserType = {
   rut: string
@@ -61,28 +63,42 @@ function Formulario() {
         response => {
           console.log("Usuario creado "+ response.data);
           
-          if(response.status === 400){
+          if(response.status === 409){
             console.log("ya existe")
           }
-
-          axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
-            res => {
-              console.log("Roles asignados "+res.data)
-          });
+          else{
+            axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
+              res => {
+                console.log("Roles asignados "+res.data)
+                console.log('handleClick 👉️', state);
+                delay(3000)
+                volver(-1)
+            });
+          }
       }).catch(function(error){
         if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+          
+            console.log(error.response)
+            toast.error(error.response.data.error, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              });
+          
+
       }});
-      console.log('handleClick 👉️', state);
-      delay(3000)
-      volver(-1)
+      setVisible(false)
     }; 
      
     return (
       <div>
       <Header/>
+      <ToastContainer/>
       <Spacer y={1} />
         <Grid.Container justify="center">
             <Input width="50%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>

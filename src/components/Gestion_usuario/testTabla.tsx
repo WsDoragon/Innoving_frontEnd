@@ -203,7 +203,7 @@ export default function TestTabla() {
                   >
                       
                         <Button onClick={() => {handler3(`¿Está seguro de que quiere desactivar al usuario ${item.rut}?`,
-                                                "desactivar",item.rut);console.log(item); navigate("../usuarios_innoving")}} color={"error"}>
+                                                "desactivar",item.rut);console.log(item);}} color={"error"}>
                           Desactivar
                       </Button>
 
