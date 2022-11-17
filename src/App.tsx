@@ -49,9 +49,10 @@ function App() {
           </Route>
 
           <Route path="proveedor" element={<Proveedor/>} >
-          <Route path='evidencias' element={<Componente />} />
+            <Route path='evidencias' element={<Componente />} />
           </Route>
         </Route>
+        
         <Route path="/page3" element={<Page3/>} />
         <Route path="/formulario" element={<Formulario/>} />
         <Route path="/formularioProv" element={<FormPROV/>} />

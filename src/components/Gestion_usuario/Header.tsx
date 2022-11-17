@@ -1,6 +1,6 @@
 import { Text ,Navbar, Button, Link, Spacer, Modal, useModal } from "@nextui-org/react";
 import { Image} from "@nextui-org/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet,useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
@@ -10,6 +10,14 @@ const Header: React.FC = () => {
   let administradorb = sessionStorage.rol.includes("Administrador");
   let analistab = sessionStorage.rol.includes("Analista");
   let proveedorb = sessionStorage.rol.includes("Proveedor");
+
+  useEffect(() => {
+    if(sessionStorage.autorizado != "false"){
+      sessionStorage.setItem("autorizado", "false")
+      console.log(sessionStorage.rol[0])
+      navigate(`./${JSON.parse(sessionStorage.rol)[0]}`)
+    }
+  }, []);
 
   return (
     <>
@@ -31,10 +39,10 @@ const Header: React.FC = () => {
         </Navbar.Brand>
         <Navbar.Content variant="underline" hideIn="xs">
 
-        { gerenteb ? <Navbar.Link onPress={() => navigate("./gerente")} href="#">Gerente</Navbar.Link> : null}
-        { administradorb? <Navbar.Link  onClick={() => {navigate("./administrador")} } href="#">Administrador</Navbar.Link> : null }
-        { analistab ? <Navbar.Link  onClick={() => navigate("./analista")} href="#">Analista</Navbar.Link> : null }  
-        { proveedorb ? <Navbar.Link  onClick={() => navigate("./proveedor")} href="#">Proveedor</Navbar.Link> : null }      
+        { gerenteb ? <Navbar.Link onClick={() => navigate("/home/gerente")} href="#">Gerente</Navbar.Link> : null}
+        { administradorb? <Navbar.Link  onClick={() => {navigate("/home/administrador")} } href="#">Administrador</Navbar.Link> : null }
+        { analistab ? <Navbar.Link  onClick={() => navigate("/home/analista")} href="#">Analista</Navbar.Link> : null }  
+        { proveedorb ? <Navbar.Link  onClick={() => navigate("/home/proveedor")} href="#">Proveedor</Navbar.Link> : null }      
            
         </Navbar.Content>
         <Navbar.Content>
@@ -61,7 +69,7 @@ const Header: React.FC = () => {
               </Text>
           </Modal.Body>
           <Modal.Footer>
-            <Button auto onClick={() => {setVisible(true); sessionStorage.removeItem('rol'); navigate("/")}}>
+            <Button auto onClick={() => {setVisible(true); sessionStorage.clear(); navigate("/")}}>
               Si
             </Button>
             <Button auto flat color="error" onClick={() => setVisible(false)}>

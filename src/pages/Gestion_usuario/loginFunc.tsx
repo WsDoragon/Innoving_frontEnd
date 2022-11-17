@@ -37,9 +37,10 @@ export default function Func (){
         setVisible(true)  
       }
       else{
-        navigate("/header")
+        navigate("/home")
+        console.log(data.data)
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
-        console.log(sessionStorage.rol)
+        console.log(JSON.parse(sessionStorage.rol))
       }
     })
   }; 
