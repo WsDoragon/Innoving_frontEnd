@@ -13,7 +13,7 @@ function Gerente(){
 
     return(
         <>
-        <Header />
+        
         <Grid.Container  gap={2} justify="center">
             <Grid xs={12}>
                 <Button onPress={() => navigate("./indicadores")} auto flat as={Link} href="#"> Indicadores </Button>

@@ -34,7 +34,7 @@ function Administrador(){
 
     return(
         <>
-        <Header />
+        
         <Grid.Container  gap={2} justify="center">
             <Grid xs={12}>
                 <Button onPress={() => navigate("./usuarios_innoving")} auto flat as={Link} href="#"> Usuarios Innoving </Button>

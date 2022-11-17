@@ -1,7 +1,7 @@
 import { Text ,Navbar, Button, Link, Spacer, Modal, useModal } from "@nextui-org/react";
 import { Image} from "@nextui-org/react";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet,useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const { setVisible, bindings } = useModal();
@@ -12,6 +12,7 @@ const Header: React.FC = () => {
   let proveedorb = sessionStorage.rol.includes("Proveedor");
 
   return (
+    <>
       <Navbar variant="static" css={{$$navbarBackgroundColor: '#000000', $$navbarTextColor: '#ffffff'}} disableBlur maxWidth="fluid">
         <Navbar.Brand>
           <Image
@@ -30,10 +31,10 @@ const Header: React.FC = () => {
         </Navbar.Brand>
         <Navbar.Content variant="underline" hideIn="xs">
 
-        { gerenteb ? <Navbar.Link onClick={() => navigate("/gerente")} href="#">Gerente</Navbar.Link> : null}
-        { administradorb? <Navbar.Link  onClick={() => {navigate("/administrador")} } href="#">Administrador</Navbar.Link> : null }
-        { analistab ? <Navbar.Link  onClick={() => navigate("/analista")} href="#">Analista</Navbar.Link> : null }  
-        { proveedorb ? <Navbar.Link  onClick={() => navigate("/proveedor")} href="#">Proveedor</Navbar.Link> : null }      
+        { gerenteb ? <Navbar.Link onPress={() => navigate("./gerente")} href="#">Gerente</Navbar.Link> : null}
+        { administradorb? <Navbar.Link  onClick={() => {navigate("./administrador")} } href="#">Administrador</Navbar.Link> : null }
+        { analistab ? <Navbar.Link  onClick={() => navigate("./analista")} href="#">Analista</Navbar.Link> : null }  
+        { proveedorb ? <Navbar.Link  onClick={() => navigate("./proveedor")} href="#">Proveedor</Navbar.Link> : null }      
            
         </Navbar.Content>
         <Navbar.Content>
@@ -72,7 +73,8 @@ const Header: React.FC = () => {
       </Navbar>
 
 
-      
+      <Outlet />
+      </>
   )
 }
 

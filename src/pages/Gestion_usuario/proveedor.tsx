@@ -8,7 +8,7 @@ function Proveedor(){
     
     return(
         <Grid.Container gap={2} justify="center">
-            <Header/>
+            
             <Grid xs={12}>
                 <div>
                     Hola mundo soy un proveedor
