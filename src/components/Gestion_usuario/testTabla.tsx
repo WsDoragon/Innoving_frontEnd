@@ -2,9 +2,8 @@ import axios from 'axios';
 import React from "react";
 
 //@ts-ignore
-import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid, Badge } from "@nextui-org/react";
 import algo from './Axiostabla';
-import { StyledBadge } from "../../styledIcons/StyledBadge";
 import { IconButton } from "../../styledIcons/IconButton";
 import { EyeIcon } from "../../styledIcons/EyeIcon";
 import { EditIcon } from "../../styledIcons/EditIcon";
@@ -181,7 +180,7 @@ export default function TestTabla() {
               <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{rolesdeusuario(item[`roles`])}</Text></Table.Cell>
-              <Table.Cell><Text b size={14}>{item[`status`]}</Text></Table.Cell>
+              <Table.Cell>{item[`status`] ? <Badge color="success" variant="flat">Activo</Badge> : <Badge color="error" variant="flat">Inactivo</Badge>}</Table.Cell>
               <Table.Cell> 
                   <Row justify="center" align="center">
                   
