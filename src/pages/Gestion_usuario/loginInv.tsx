@@ -48,7 +48,7 @@ function Invi () {
     //state.username = state.username.replaceAll("-","")
     state.username = us
 
-    if(state.dia[0].length == 1){
+    if(state.dia.length == 1){
       state.dia = "0" + state.dia
     }
     
