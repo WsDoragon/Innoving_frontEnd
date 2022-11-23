@@ -79,7 +79,7 @@ function Formulario() {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
         console.log(state)
-        if(state.dia[0].length == 1){
+        if(state.dia.length == 1){
             state.dia = "0" + state.dia
         }
         state.contraseña = state.dia + state.mes + state.anio
