@@ -39,10 +39,10 @@ const Header: React.FC = () => {
         </Navbar.Brand>
         <Navbar.Content variant="underline" hideIn="xs">
 
-        { gerenteb ? <Navbar.Link onClick={() => navigate("/home/gerente")} href="#">Gerente</Navbar.Link> : null}
-        { administradorb? <Navbar.Link  onClick={() => {navigate("/home/administrador")} } href="#">Administrador</Navbar.Link> : null }
-        { analistab ? <Navbar.Link  onClick={() => navigate("/home/analista")} href="#">Analista</Navbar.Link> : null }  
-        { proveedorb ? <Navbar.Link  onClick={() => navigate("/home/proveedor")} href="#">Proveedor</Navbar.Link> : null }      
+        { gerenteb ? <Navbar.Link isActive={window.location.pathname.includes("gerente")} onClick={() => navigate("/home/gerente")} href="#">Gerente</Navbar.Link> : null}
+        { administradorb? <Navbar.Link isActive={window.location.pathname.includes("administrador")}  onClick={() => {navigate("/home/administrador")} } href="#">Administrador</Navbar.Link> : null }
+        { analistab ? <Navbar.Link isActive={window.location.pathname.includes("analista")}  onClick={() => navigate("/home/analista")} href="#">Analista</Navbar.Link> : null }  
+        { proveedorb ? <Navbar.Link isActive={window.location.pathname.includes("proveedor")}  onClick={() => navigate("/home/proveedor")} href="#">Proveedor</Navbar.Link> : null }      
            
         </Navbar.Content>
         <Navbar.Content>
