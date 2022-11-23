@@ -67,7 +67,7 @@ function Invi () {
         setVisible(true)  
       }
       else{
-        navigate("/proveedor#")
+        navigate("/home")
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
         console.log(sessionStorage.rol)
       }
