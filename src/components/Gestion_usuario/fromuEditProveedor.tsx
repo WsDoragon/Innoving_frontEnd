@@ -61,6 +61,9 @@ export default function FormularioEdit() {
       axios.get(`http://localhost:3001/users/`,{params: {rut: getRut.state.rut}})
      .then(response => {
        const apiData = response.data.data;
+       const d: string = apiData.contraseña
+       setSelecte(new Set(d.slice(2,d.length-4)))
+
        const molde : UserType = { rut : apiData.rut,
             correo : apiData.correo,
             contraseña : apiData.contraseña,
@@ -75,14 +78,14 @@ export default function FormularioEdit() {
        setState((state) => {
         return({
           ...state,
-          rut : apiData.rut,
+          rut : apiData.rut,  
           correo : apiData.correo,
           contraseña : apiData.contraseña,
           nombre : apiData.nombre,
           apellido : apiData.apellido,
-          dia: apiData.dia,
+          dia: d.slice(0,2),
           mes: apiData.mes,
-          anio: apiData.anio
+          anio: d.slice(d.length-4,d.length),
         });
       });
      })
@@ -112,23 +115,15 @@ export default function FormularioEdit() {
       });
     }
     
-  const handleCheckbox = (e: string[]) => {
-    console.log(e);
-    let newRolTags : number[] = [];
-    for (let i of e){
-      newRolTags.push(1+rol_tags.indexOf(i));
-    }
-    setState((state) => {
-      return({
-        ...state,
-        roles: newRolTags
-      });
-    });
-    setSelected(e);
-  }
+
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
     //e.preventDefault();
+    if(state.dia.length == 1){
+      state.dia = "0" + state.dia
+    }
+    state.contraseña = state.dia + state.mes + state.anio
+
 
     axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
     .then(response => {
@@ -138,8 +133,13 @@ export default function FormularioEdit() {
     console.log('handleClick 👉️', state);
     volver(-1)
   }; 
+
+
   const { setVisible, bindings } = useModal();  
+
+
   return (
+    
     <div>
       <Header></Header>
       <Spacer y={1} />
@@ -154,6 +154,14 @@ export default function FormularioEdit() {
 
           <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
           <Spacer y={3} />
+          <Row justify="center">
+          <Text
+          size={20}
+          >
+            La constraseña actual es: 11 MAYO 1999
+            </Text>
+          </Row>
+          <Spacer y={1} />
 
           <Input width="50%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
           <Spacer y={3} />
