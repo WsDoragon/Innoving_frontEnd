@@ -18,7 +18,7 @@ function Analista() {
             <Grid xs={12}>
                 <Button onPress={() => navigate("./indicadores")} auto flat as={Link} href="#"> Indicadores </Button>
                 <Spacer y={0.5} />
-                <Button onPress={() => navigate("./proveedores")} auto flat as={Link} href="#"> Metas </Button>
+                <Button onPress={() => navigate("./metas")} auto flat as={Link} href="#"> Metas </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./proveedores")} auto flat as={Link} href="#"> Métricas </Button>
                 <Spacer y={0.5} />
