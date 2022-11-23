@@ -25,7 +25,10 @@ import { AppRouter } from './pages/Analisis_indicadores/router/AppRouter';
 import { Indicadores } from './pages/Analisis_indicadores/components/pages/Indicadores';
 
 import Indicadores from './pages/Configuración_Proyecto/Indicadores';
-
+import Metas from './pages/Configuración_Proyecto/metas';
+import Peticiones from './pages/Configuración_Proyecto/Peticiones';
+import Datos from './pages/Configuración_Proyecto/Datos';
+import HistorialIndicadores from './components/Configuración_proyecto/historialPeticion/HistorialIndicadores';
 function App() {
   return (
     <Router>
