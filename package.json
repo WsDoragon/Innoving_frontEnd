@@ -13,13 +13,22 @@
     "@types/react-dom": "^18.0.6",
     "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",
+<<<<<<< HEAD
     "boxicons": "^2.1.4",
+=======
+    "dateformat": "^5.0.3",
+>>>>>>> a93ec53 (init de configuracionProyecto)
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
     "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
+=======
+    "styled-components": "^5.3.6",
+    "sweetalert": "^2.1.2",
+>>>>>>> a93ec53 (init de configuracionProyecto)
     "typescript": "^4.8.3",
     "web-vitals": "^2.1.4"
   },
@@ -46,5 +55,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/dateformat": "^5.0.0",
+    "@types/styled-components": "^5.1.26"
   }
 }
