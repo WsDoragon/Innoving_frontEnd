@@ -17,6 +17,7 @@ import TablaPROV from './components/Gestion_usuario/tablaProv';
 //import FormularioProv from './components/Gestion_usuario/formuCreateProveedor';
 import FormularioEdit from './components/Gestion_usuario/formuEditInnoving';
 import TestTabla from './components/Gestion_usuario/testTabla';
+import HeaderDin from './components/Gestion_usuario/HeaderDin';
 
 
 
@@ -27,7 +28,7 @@ function App() {
         <Route path='/' element={<Login/>} />
         <Route path='/admin' element={<LoginFunc/>} />
 
-        <Route path="/home" element={<Header/>}>
+        <Route path="/home" element={<HeaderDin/>}>
           <Route path="gerente" element={<Gerente/>}>
             <Route path='indicadores' element={<Componente />} />
             <Route path='solicitudes_indicadores' element={<Componente />} />
