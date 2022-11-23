@@ -18,6 +18,10 @@ import TablaPROV from './components/Gestion_usuario/tablaProv';
 import FormularioEdit from './components/Gestion_usuario/formuEditInnoving';
 import TestTabla from './components/Gestion_usuario/testTabla';
 import HeaderDin from './components/Gestion_usuario/HeaderDin';
+import { Home } from './pages/Analisis_indicadores/components/pages/Home';
+import { ejes, indicadoresResumidos } from './pages/Analisis_indicadores/components/apifake';
+import { AppRouter } from './pages/Analisis_indicadores/router/AppRouter';
+import { Indicadores } from './pages/Analisis_indicadores/components/pages/Indicadores';
 
 
 
@@ -40,6 +44,9 @@ function App() {
             <Route path='metricas' element={<Componente />} />
             <Route path='evidencias' element={<Componente />} />
             <Route path='proveedores' element={<Componente />} />
+
+            <Route path='prueba' element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos}/>}/>
+            <Route path="prueba/indicador/:idIndicador" element={<Indicadores/>}></Route>
           </Route>
 
           <Route path="administrador" element={<Administrador/>} >
