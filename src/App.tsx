@@ -22,7 +22,7 @@ import HeaderDin from './components/Gestion_usuario/HeaderDin';
 import { Home } from './pages/Analisis_indicadores/components/pages/Home';
 import { ejes, indicadoresResumidos } from './pages/Analisis_indicadores/components/apifake';
 import { AppRouter } from './pages/Analisis_indicadores/router/AppRouter';
-import { Indicadores } from './pages/Analisis_indicadores/components/pages/Indicadores';
+
 
 import Indicadores from './pages/Configuración_Proyecto/Indicadores';
 import Metas from './pages/Configuración_Proyecto/metas';
@@ -39,12 +39,12 @@ function App() {
         <Route path="/home" element={<Header/>}>
           <Route path="gerente" element={<Gerente/>}>
             <Route path='indicadores' element={<Componente />} />
-            <Route path='solicitudes_indicadores' element={<Componente />} />
+            <Route path='solicitudes_indicadores' element={<HistorialIndicadores />} />
           </Route>
         
           <Route path="analista" element={<Analista/>}>
-            <Route path='indicadores' element={<Componente />} />
-            <Route path='metas' element={<Componente />} />
+            <Route path='indicadores' element={<Indicadores />} />
+            <Route path='metas' element={<Metas />} />
             <Route path='metricas' element={<Componente />} />
             <Route path='evidencias' element={<Componente />} />
             <Route path='proveedores' element={<Componente />} />
