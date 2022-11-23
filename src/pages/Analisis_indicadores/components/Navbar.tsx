@@ -17,7 +17,7 @@ export const Navbar = () => {
 
   return (
     <ContenedorNavbar >
-          <LinkInnoving className='innoving' to="/">
+          <LinkInnoving className='innoving' to="../">
             <LogoInnoving  src={logosvg}/>
           </LinkInnoving>
 
@@ -42,7 +42,7 @@ export const Navbar = () => {
                     <ContenedorMiniItems key={indi.id}>
                       <NavLink 
                       className={ ({isActive}) => `items ${isActive? 'itemsActive':''}`}
-                      to={`/prueba/indicador/${indi.id}`}> {indi.nombre}</NavLink>
+                      to={`../prueba/indicador/${indi.id}`}> {indi.nombre}</NavLink>
                     </ContenedorMiniItems>
                     : []
                   )
