@@ -50,7 +50,7 @@ function Invi () {
 
     if(state.dia[0].length == 1){
       state.dia = "0" + state.dia
-  }
+    }
     
     state.password = state.dia + state.mes + state.anio
     
