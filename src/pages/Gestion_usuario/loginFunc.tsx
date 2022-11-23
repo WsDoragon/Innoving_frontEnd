@@ -1,4 +1,4 @@
-import {Button, Spacer, Input, Text, FormElement, Modal, Image, useModal} from "@nextui-org/react";
+import {Button, Spacer, Input, Text, FormElement, Modal, Image, useModal,Card,Row} from "@nextui-org/react";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -47,7 +47,7 @@ export default function Func (){
 
   return(  
       <div className="wrapper">
-
+      
       <Spacer y={2}/>
 
           <Image
@@ -100,8 +100,18 @@ export default function Func (){
           onClick={handleClick}
           >Iniciar Sesión
         </Button>
+
+        
         
         <Spacer x={3}/>
+    
+        <Row justify="center">
+                <Button size="sm" >
+                  Recuperar Contraseña
+                </Button>
+                <text>ㅤ</text>
+                <Button onClick={() => navigate("/")} size="sm">Login Proveedor</Button>
+        </Row>
         <Modal
           scroll
           width="260px"
@@ -137,6 +147,13 @@ export default function Func (){
             </Button>
           </Modal.Footer>
         </Modal>
+
+        
+        
+        
+        
+ 
+
         </div>
 
         

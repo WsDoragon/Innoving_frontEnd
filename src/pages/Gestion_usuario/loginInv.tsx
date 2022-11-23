@@ -180,7 +180,9 @@ function Invi () {
           >Iniciar Sesión
         </Button>
 
-        <Spacer y={2} />
+        <Spacer y={3} />                
+                <Button onClick={() => navigate("/admin")} size="sm">Login Innoving</Button>
+        
         <Modal
           scroll
           width="260px"
@@ -216,6 +218,8 @@ function Invi () {
             </Button>
           </Modal.Footer>
         </Modal>
+
+        
         </div>
   )}
 
