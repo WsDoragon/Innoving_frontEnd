@@ -1,10 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import styled from 'styled-components';
-import "bootstrap-icons/font/bootstrap-icons.css";
+//import "bootstrap-icons/font/bootstrap-icons.css";
 
-import axios from "axios";
-import clienteAxios from "../../../../config/axios";
+
+import clienteAxios from "../../../config/axios";
 
 
 const  Modal = ({children, estado, cambiarEstado, titulo = "xd", mostrarHeader,

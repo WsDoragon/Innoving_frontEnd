@@ -7,7 +7,7 @@ import AddIndicador from '../../components/Configuración_proyecto/indicador/Add
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-import clienteAxios from "../../../config/axios"
+import clienteAxios from "../../config/axios"
 export default function Indicadores() {
 
   const [indicadores, setIndicadores]  = useState([]);

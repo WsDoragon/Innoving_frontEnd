@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Modal from './Modal';
 import styled from 'styled-components';
 
-import clienteAxios from "../../../../config/axios";
+import clienteAxios from "../../../config/axios";
 
 export default function  TablaIndicadores() {
   const [indicadores, setIndicadores] = useState([]);

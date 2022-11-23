@@ -3,7 +3,7 @@ import axios from 'axios'
 import dateFormat, {masks} from "dateformat";
 import swal from 'sweetalert'
 
-import clienteAxios from "../../../../config/axios";
+import clienteAxios from "../../../config/axios";
 
 class ListaMetas extends React.Component<any , any> {    
 

@@ -4,7 +4,7 @@ import HistorialIndicadores from '../../components/Configuración_proyecto/histo
 import HistorialMetas from '../../components/Configuración_proyecto/historialPeticion/HistorialMetas';
 import { useEffect, useState } from "react";
 import axios from "axios";
-import clienteAxios from "../../../config/axios"
+import clienteAxios from "../../config/axios"
 
 
 export default function HistorialPeticiones() {

@@ -2,7 +2,7 @@ import React from 'react'
 import swal from 'sweetalert'
 
 import axios from "axios";
-import clienteAxios from "../../../../config/axios";
+import clienteAxios from '../../../config/axios';
 
 class AddIndicador  extends React.Component<any , any > {
 

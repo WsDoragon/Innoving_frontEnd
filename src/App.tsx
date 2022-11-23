@@ -24,7 +24,7 @@ import { ejes, indicadoresResumidos } from './pages/Analisis_indicadores/compone
 import { AppRouter } from './pages/Analisis_indicadores/router/AppRouter';
 import { Indicadores } from './pages/Analisis_indicadores/components/pages/Indicadores';
 
-
+import Indicadores from './pages/Configuración_Proyecto/Indicadores';
 
 function App() {
   return (
@@ -70,6 +70,13 @@ function App() {
         <Route path="/editarProv/:id" element={<FormularioProvEdit/>} />
         
         </Routes>
+
+        
+       
+       
+        
+
+
     </Router>
   );
 }

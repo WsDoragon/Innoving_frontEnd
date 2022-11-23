@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ListaIndicadores from '../../components/Configuración_proyecto/peticiones/ListaIndicadores';
 import ListaMetas from '../../components/Configuración_proyecto/peticiones/ListaMetas';
 import axios from "axios";
-import clienteAxios from "../../../config/axios"
+import clienteAxios from "../../config/axios"
 
 
 import { Link } from "react-router-dom";
