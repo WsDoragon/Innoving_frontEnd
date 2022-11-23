@@ -1,6 +1,6 @@
 import React from 'react'
 
-class HistorialMetas extends React.Component {    
+class HistorialMetas extends React.Component<any,any>{    
 
     render(){
         const AStyle = {

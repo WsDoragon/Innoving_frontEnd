@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 
 import clienteAxios from "../../../../config/axios";
 
-class ListaMetas extends React.Component {    
+class ListaMetas extends React.Component<any , any> {    
 
   state = {
     idMetasA: [],
@@ -36,7 +36,7 @@ class ListaMetas extends React.Component {
             swal({
                 text: "Las solicitudes se aceptaron correctamente",
                 icon: "success",
-                timer: "2000"
+                timer: 2000
             })
         }
     })
@@ -64,25 +64,25 @@ class ListaMetas extends React.Component {
             swal({
                 text: "Las solicitudes se rechazaron correctamente",
                 icon: "success",
-                timer: "2000"
+                timer: 2000
             })
         }
     })
   }
 
   AClick = (e : any) => {
-    this.state.idMetasA.includes(e.target.value) ? 
+    this.state.idMetasA.includes(e.target.value as never) ? 
                         this.state.idMetasA = this.state.idMetasA.filter((item) => item !== e.target.value) 
                         : 
-                        this.state.idMetasA.push(e.target.value);
+                        this.state.idMetasA.push(e.target.value as never);
 
   }
 
   DClick = (e : any) => {
-    this.state.idMetasD.includes(e.target.value) ? 
+    this.state.idMetasD.includes(e.target.valu as never) ? 
                         this.state.idMetasD = this.state.idMetasD.filter((item) => item !== e.target.value)
                         : 
-                        this.state.idMetasD.push(e.target.value);
+                        this.state.idMetasD.push(e.target.value as never);
 
   }
 

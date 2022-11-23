@@ -29,7 +29,7 @@ export default function  TablaIndicadores() {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await clienteAxios.get('ejes/lista');
-      setEjes(res.data.data);
+      setEjes(res.data.dat);
     };
     fetchPosts();
   }, );
@@ -91,7 +91,7 @@ export default function  TablaIndicadores() {
             <td>
               <button className="button muted-button delete" onClick={() => 
                 clienteAxios.put(`indicadores/setpeticion/${indicador.id}`,
-                window.location.reload(true)
+                window.location.reload()
                 )
                 }>Eliminar</button>
             </td>

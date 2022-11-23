@@ -5,7 +5,7 @@ import swal from 'sweetalert'
 
 import clienteAxios from "../../../../config/axios";
 
-class ListaIndicadores extends React.Component {    
+class ListaIndicadores extends React.Component<any, any> {    
 
   state = {
     idIndicadoresA: [],
@@ -34,7 +34,7 @@ class ListaIndicadores extends React.Component {
             swal({
                 text: "Las solicitudes se aceptaron correctamente",
                 icon: "success",
-                timer: "2000"
+                timer: 2000
             })
         }
     })
@@ -62,7 +62,7 @@ class ListaIndicadores extends React.Component {
             swal({
                 text: "Las solicitudes se rechazaron correctamente",
                 icon: "success",
-                timer: "2000"
+                timer: 2000
             })
         }
     })
@@ -115,10 +115,10 @@ class ListaIndicadores extends React.Component {
                     type="checkbox"
                     name="lang"
                     value={indicador.id}
-                    onChange={e => this.state.idIndicadoresA.includes(e.target.value) ? this.state.idIndicadoresA = this.state.idIndicadoresA.filter((item) => 
+                    onChange={(e : any ) => this.state.idIndicadoresA.includes(e.target.value as never) ? this.state.idIndicadoresA = this.state.idIndicadoresA.filter((item) => 
                         item !== e.target.value) 
                         : 
-                        this.state.idIndicadoresA.push(e.target.value)
+                        this.state.idIndicadoresA.push(e.target.value as never )
                     }/>
                 </td>
                 :
@@ -128,10 +128,10 @@ class ListaIndicadores extends React.Component {
                     type="checkbox"
                     name="lang"
                     value={indicador.id}
-                    onChange={e => this.state.idIndicadoresD.includes(e.target.value) ? this.state.idIndicadoresD = this.state.idIndicadoresD.filter((item) => 
+                    onChange={(e : any) => this.state.idIndicadoresD.includes(e.target.value as never ) ? this.state.idIndicadoresD = this.state.idIndicadoresD.filter((item) => 
                         item !== e.target.value) 
                         : 
-                        this.state.idIndicadoresD.push(e.target.value)
+                        this.state.idIndicadoresD.push(e.target.value as never)
                     }/>
                 </td>
                 }

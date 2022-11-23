@@ -5,7 +5,7 @@ import axios from 'axios'
 import clienteAxios from '../../../../config/axios'
 
 
-class AddMeta extends React.Component {
+class AddMeta extends React.Component<any , any> {
 
   state = {
     idindicador : '',
@@ -64,7 +64,7 @@ class AddMeta extends React.Component {
         swal({
           text: "Error! los campos no se llenaron correctamente",
           icon: "error",
-          timer: "2000"
+          timer: 2000
         })
       }else{
         clienteAxios.post('metas/addmetas',{
@@ -85,7 +85,7 @@ class AddMeta extends React.Component {
         swal({
           text: "'Solicitud enviada correctamente'",
           icon: "success",
-          timer: "2000"
+          timer: 2000
         })
       }
   

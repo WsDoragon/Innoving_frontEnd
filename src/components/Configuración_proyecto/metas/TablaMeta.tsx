@@ -78,7 +78,7 @@ export default function TablaMeta(props : any) {
                   {/* <button className="button muted-button">Edit</button> */}
                   <button className="button muted-button delete" onClick={() =>
                     clienteAxios.put(`metas/setpeticion/${meta.idindicador}-${meta.fecha}`,
-                      window.location.reload(true))
+                      window.location.reload())
                   }>Eliminar</button>
                 </td>
               </tr>

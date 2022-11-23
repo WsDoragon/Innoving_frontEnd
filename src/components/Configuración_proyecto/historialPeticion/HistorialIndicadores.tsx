@@ -1,6 +1,6 @@
 import React from 'react'
 
-class HistorialIndicadores extends React.Component {    
+class HistorialIndicadores extends React.Component<any,any> {    
 
   render(){
     const AStyle = {
