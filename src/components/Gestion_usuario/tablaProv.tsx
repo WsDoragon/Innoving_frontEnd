@@ -177,7 +177,7 @@ export default function TablaProv() {
                   
                   <Col css={{ d: "flex" }}>
                   <Tooltip content="Editar Usuario">
-                      <Button onClick={() => {navigate(`/editarUser/${item.rut}`,{state:{rut:item.rut}})}} as={Link} href="#">
+                      <Button onClick={() => {navigate(`/editarProv/${item.rut}`,{state:{rut:item.rut}})}} as={Link} href="#">
                         Editar
                       {/*<EditIcon size={20} fill="#979797" />*/}
                       </Button>

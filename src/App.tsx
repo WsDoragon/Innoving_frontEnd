@@ -16,7 +16,7 @@ import FormPROV from './components/Gestion_usuario/formuCreateProv';
 import TablaPROV from './components/Gestion_usuario/tablaProv';
 //import FormularioProv from './components/Gestion_usuario/formuCreateProveedor';
 import FormularioEdit from './components/Gestion_usuario/formuEditInnoving';
-import FormularioProvEdit from './components/Gestion_usuario/formuEditInnoving';
+import FormularioProvEdit from './components/Gestion_usuario/fromuEditProveedor';
 import TestTabla from './components/Gestion_usuario/testTabla';
 import HeaderDin from './components/Gestion_usuario/HeaderDin';
 import { Home } from './pages/Analisis_indicadores/components/pages/Home';
@@ -67,7 +67,7 @@ function App() {
         <Route path="/formularioProv" element={<FormPROV/>} />
         <Route path="/formularioEdit" element={<FormularioEdit/>} />
         <Route path="/editarUser/:id" element={<FormularioEdit/>} />
-        <Route path="/editarProv/:id" element={<FormularioEdit/>} />
+        <Route path="/editarProv/:id" element={<FormularioProvEdit/>} />
         
         </Routes>
     </Router>

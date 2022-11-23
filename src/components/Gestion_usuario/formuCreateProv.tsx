@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text, Checkbox } from "@nextui-org/react";
+import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
 import axios from "axios";
 import Header from "./Header";
 
@@ -79,8 +79,8 @@ function Formulario() {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
         console.log(state)
-        if(state.dia[0] == "0"){
-            state.dia = state.dia.replace("0","")
+        if(state.dia[0].length == 1){
+            state.dia = "0" + state.dia
         }
         state.contraseña = state.dia + state.mes + state.anio
 
@@ -131,13 +131,13 @@ function Formulario() {
             <Spacer x={0.197}/>
 
             <Input
-                    size="xl"
-                    width="60px"
-                    placeholder="Día"             
-                    name="dia"
-                    onChange={handleChange} 
-                    value={state.dia}
-                    />
+              size="xl"
+              width="60px"
+              placeholder="Día"             
+              name="dia"
+              onChange={handleChange} 
+              value={state.dia}
+              />
 
             <Spacer x={1}/>
 

@@ -128,7 +128,7 @@ function Formulario() {
                 <Checkbox value="administrador">Administrador</Checkbox>
                 <Checkbox value="analista">Analista</Checkbox>
             </Checkbox.Group>
-            <Spacer y={6}/>
+            <Spacer y={4}/>
 
             </Grid.Container>
             <Button onClick={() => setVisible(true)} >Guardar</Button>

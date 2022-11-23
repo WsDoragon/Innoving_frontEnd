@@ -121,18 +121,19 @@ export default function FormularioEdit() {
   return (
     <div>
       <Header></Header>
+      <Spacer y={1} />
       <Grid.Container justify="center">
-          <Input width="75%" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
+          <Input width="50%" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
           <Spacer y={3} />
-          <Input width="75%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
-          <Spacer y={3} />
-
-          <Input width="75%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
-          <Spacer y={3} />
-          <Input width="75%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
+          <Input width="50%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
           <Spacer y={3} />
 
-          <Input width="75%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
+          <Input width="50%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
+          <Spacer y={3} />
+          <Input width="50%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
+          <Spacer y={3} />
+
+          <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
           <Spacer y={3} />
 
           <Grid.Container justify="center">
@@ -147,7 +148,7 @@ export default function FormularioEdit() {
                   <Checkbox value="administrador">Administrador</Checkbox>
                   <Checkbox value="analista">Analista</Checkbox>
               </Checkbox.Group>
-              <Spacer y={6}/>
+              <Spacer y={4}/>
               </Grid.Container>
               <Button onClick={() => setVisible(true)} >Guardar</Button>
               <Modal
