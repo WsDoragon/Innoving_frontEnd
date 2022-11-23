@@ -14,20 +14,14 @@
     "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",
     "boxicons": "^2.1.4",
-<<<<<<< HEAD
     "dateformat": "^5.0.3",
-=======
->>>>>>> parent of 460fa61... merge configuracion_proyecto
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
-<<<<<<< HEAD
     "sweetalert": "^2.1.2",
-=======
->>>>>>> parent of 460fa61... merge configuracion_proyecto
     "typescript": "^4.8.3",
     "web-vitals": "^2.1.4"
   },
