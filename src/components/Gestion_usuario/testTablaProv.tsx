@@ -29,7 +29,7 @@ type GetUsersResponse = {
   };
 
 
-export default function TestTabla() {
+export default function TestTablaProv() {
   const [, updateState] = React.useState<any>();
   const forceUpdate = React.useCallback(() => updateState({}), []);
 ///////////////////////////
@@ -50,7 +50,7 @@ export default function TestTabla() {
   const [users23, setUsers23] = useState<UserType[]>([]);
 
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allInnov");
+    const todo = await axios.get("http://localhost:3001/users/allProv");
     console.log("hola: ", todo.data.data);
     setUsers23(todo.data.data);
   }
@@ -129,10 +129,6 @@ export default function TestTabla() {
           label: "Correo",
         },
         {
-          key:"roles",
-          label: "Roles"
-        },
-        {
           key:"status",
           label: "Estado"
         },
@@ -179,14 +175,13 @@ export default function TestTabla() {
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
-              <Table.Cell><Text b size={14}>{rolesdeusuario(item[`roles`])}</Text></Table.Cell>
               <Table.Cell>{item[`status`] ? <Badge color="success" variant="flat">Activo</Badge> : <Badge color="error" variant="flat">Inactivo</Badge>}</Table.Cell>
               <Table.Cell> 
                   <Row justify="center" align="center">
                   
                   <Col css={{ d: "flex" }}>
                   <Tooltip content="Editar Usuario">
-                      <Button onClick={() => {navigate(`/editarUser/${item.rut}`,{state:{rut:item.rut}})}} as={Link} href="#">
+                      <Button onClick={() => {navigate(`/editarProv/${item.rut}`,{state:{rut:item.rut}})}} as={Link} href="#">
                         Editar
                       {/*<EditIcon size={20} fill="#979797" />*/}
                       </Button>

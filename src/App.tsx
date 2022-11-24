@@ -36,6 +36,7 @@ import Publicaciones from "./components/gestion_evidencias/Publicaciones";
 import RegProyect from "./components/gestion_evidencias/RegProyect";
 import RegPubli from "./components/gestion_evidencias/RegPubli";
 import UploadForm from "./components/gestion_evidencias/UploadForm";
+import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
 
 function App() {
   return (
@@ -71,7 +72,7 @@ function App() {
 
           <Route path="administrador" element={<Administrador />}>
             <Route path="usuarios_innoving" element={<TestTabla />} />
-            <Route path="usuarios_proveedores" element={<TablaPROV />} />
+            <Route path="usuarios_proveedores" element={<TestTablaProv />} />
             <Route path="usuarios_inn_des" element={<Componente />} />
             <Route path="usuarios_prov_des" element={<Componente />} />
           </Route>
