@@ -28,7 +28,7 @@ export const Indicadores = () => {
           <h2>Nombre indicador: {indicador?.nombre}</h2>
           <h2>Todas las evidencias</h2>
 
-          <EvidenciasIndicador type="error"/>
+          <EvidenciasIndicador type="bien"/>
           <EvidenciasIndicador type="bien"/>
         </ContenedorIndicador>
         <Outlet/>

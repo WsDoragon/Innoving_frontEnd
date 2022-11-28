@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import "./boxIndicadores.css"
 import { IndicadoresResumidos } from './interfaces'
 import { Box } from './styledUnique/Contenedores'
 import {Texto, TextoBlock, TextoNegrita} from "./styledUnique/Texto"

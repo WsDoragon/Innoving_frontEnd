@@ -9,8 +9,7 @@ import { TextoTitulo, TextoTituloPrincipal } from '../styledUnique/Texto';
 import { EvidenciasIndicador } from '../utilidades/EvidenciasIndicador';
 import { EvidenciaSinIndicador } from '../utilidades/EvidenciaSinIndicador';
 import { OptionIndicadores, SelectIndicadores } from '../styledUnique/Select';
-import logosvg from '../../assets/logo.svg';
-//const logosvg = require("../../assets/") as string;
+
 
 export const Home = ( props: {ejes: Array<Ejes>, indicadoresResumidos: Array<IndicadoresResumidos>}) => {
 
@@ -20,7 +19,6 @@ export const Home = ( props: {ejes: Array<Ejes>, indicadoresResumidos: Array<Ind
   return (
     <>
       <Topbar>
-        <LogoInnoving src={logosvg}/>
         <ContenedorBuscador marginLeft="20px"> 
           <ContenedorIconBuscador> 
             <i className='bx bx-search'></i>
@@ -36,10 +34,10 @@ export const Home = ( props: {ejes: Array<Ejes>, indicadoresResumidos: Array<Ind
       <ContenedorBody>
         <TextoTituloPrincipal>Ejes</TextoTituloPrincipal>
 
-        <ContenedorItemsAcordeon margin="20px" color="black">
+        <ContenedorItemsAcordeon margin="20px">
               {ejesIn.map(ejes => {
                 return(
-                <details className='acordeon acordeon2' key={ejes.id}>
+                <details className='acordeon' key={ejes.id}>
                   <summary>{ejes.nombre}</summary>
 
                     { indicadores.map((indi) => {
