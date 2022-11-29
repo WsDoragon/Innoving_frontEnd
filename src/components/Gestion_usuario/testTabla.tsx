@@ -149,13 +149,18 @@ export default function TestTabla() {
     ]
 
     return(
-      <div>
+      <div style={{marginLeft: 20, marginRight: 40}}>
           <Button 
           css={{left:"10px"}}
           onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
+
+          <Spacer y={0.5} ></Spacer>
         
           <Table
-          
+          bordered
+          shadow={true}
+          selectionMode="single"
+
           aria-label="Example table with dynamic content"
           css={{
             height: "auto",
@@ -184,17 +189,17 @@ export default function TestTabla() {
               <Table.Cell> 
                   <Row justify="center" align="center">
                   
-                  <Col css={{ d: "flex" }}>
+                  
                   <Tooltip content="Editar Usuario">
-                      <Button onClick={() => {navigate(`/editarUser/${item.rut}`,{state:{rut:item.rut}})}} as={Link} href="#">
+                      <Button onClick={() => {navigate(`/editarUser/${item.rut}`,{state:{rut:item.rut}})}} href="#">
                         Editar
                       {/*<EditIcon size={20} fill="#979797" />*/}
                       </Button>
                   </Tooltip>
-                  </Col>
+                  
                   <Spacer x={0.5}/>
-                  <Col css={{ d: "flex" }}>
-                  {item.status == 1 &&
+                  
+                  {item.status ?
                     <Tooltip
                       content="Desactivar usuario"
                       
@@ -206,9 +211,10 @@ export default function TestTabla() {
                           Desactivar
                       </Button>
 
-                    </Tooltip>}
+                    </Tooltip>
 
-                    {item.status == 0 &&
+                    :
+                    
                     <Tooltip
                       content="Activar usuario"
                       
@@ -223,70 +229,18 @@ export default function TestTabla() {
                     </Tooltip>}
 
 
-                  </Col>
+                  
               </Row></Table.Cell>      
             </Table.Row>
           )}
         </Table.Body>
+        
           </Table>
 
           {/*<ModalDisable toDisable = {disableUser}/>*/}
 
           {showResults3 && <ModalAbstracto configmodal = {datos}/>}
           
-          {showResults1 &&
-          <Modal
-            scroll
-            width="600px"
-            aria-labelledby="modal-title"
-            aria-describedby="modal-description"
-            {...bindings}
-          >
-          <Modal.Header>
-            <Text id="modal-title" size={18}>
-              Aviso
-            </Text>
-          </Modal.Header>
-          <Modal.Body>
-            <Text id="modal-description">
-              ¿Está seguro de que quiere desactivar al usuario {disableUser}?
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button auto onClick={() => {desactivar();setVisible(false)}}>
-              Si
-            </Button>
-            <Button auto flat color="error" onClick={() => {setVisible(false)}}>
-              No
-            </Button>                
-          </Modal.Footer>
-          </Modal>}
-          {showResults2 &&
-          <Modal
-            scroll
-            width="600px"
-            aria-labelledby="modal-title"
-            aria-describedby="modal-description"
-            {...bindings}
-          >
-          <Modal.Header>
-            <Text id="modal-title" size={18}>
-              Aviso
-            </Text>
-          </Modal.Header>
-          <Modal.Body>
-            <Text id="modal-description">
-              ¿Está seguro de que quiere activar al usuario {disableUser}?
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button auto onClick={() => {activar();setVisible(false)}}>
-              Si
-            </Button>
-            <Button auto flat color="error" onClick={() => {setVisible(false)}}>
-              No
-            </Button>                
-          </Modal.Footer>
-          </Modal>}
+          
         </div>
 )}
