@@ -74,6 +74,8 @@ export default function FormularioEdit() {
             anio: apiData.anio,
             roles : [] 
        }
+       console.log("xddd",apiData)
+
        //setState(molde);
        setState((state) => {
         return({
@@ -102,6 +104,12 @@ export default function FormularioEdit() {
   const selectedValue = React.useMemo(
     () => {
       selecte.forEach((value: any) => state.mes = value);
+      
+      if (state.mes.length == 1){
+        const d: string = state.contraseña
+        state.mes = d.substring(2, d.length-4)
+      }
+      
       return selecte;
     },
     [selecte]
@@ -123,7 +131,7 @@ export default function FormularioEdit() {
       state.dia = "0" + state.dia
     }
     state.contraseña = state.dia + state.mes + state.anio
-    console.log("HOLAAA XD",state.contraseña)
+   
 
     axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
     .then(response => {
