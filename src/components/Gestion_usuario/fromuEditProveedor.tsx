@@ -123,7 +123,7 @@ export default function FormularioEdit() {
       state.dia = "0" + state.dia
     }
     state.contraseña = state.dia + state.mes + state.anio
-
+    console.log("HOLAAA XD",state.contraseña)
 
     axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
     .then(response => {

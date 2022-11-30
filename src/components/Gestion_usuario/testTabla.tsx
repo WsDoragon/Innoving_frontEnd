@@ -149,9 +149,8 @@ export default function TestTabla() {
     ]
 
     return(
-      <div style={{marginLeft: 20, marginRight: 40}}>
+      <div>
           <Button 
-          css={{left:"10px"}}
           onClick={() => {navigate("/formulario")}} as={Link} href="#" >Crear nuevo usuario</Button>
 
           <Spacer y={0.5} ></Spacer>
