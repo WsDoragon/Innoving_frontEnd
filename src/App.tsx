@@ -39,6 +39,11 @@ import UploadForm from "./components/gestion_evidencias/UploadForm";
 import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
 import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
 
+// visualizacion de resultados
+import Barchart from './components/visualizacion_resultados/Barchart';
+import Gauge from './components/visualizacion_resultados/Gaugechart';
+import Linechart from './components/visualizacion_resultados/Linechart';
+
 function App() {
   return (
     <Router>
@@ -60,6 +65,7 @@ function App() {
             <Route path="metricas" element={<Componente />} />
             <Route path="evidencias" element={<Componente />} />
             <Route path="proveedores" element={<Componente />} />
+            <Route path="visualizacion" element={<Componente />} />
 
             <Route
               path="prueba"
