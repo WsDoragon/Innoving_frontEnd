@@ -148,15 +148,8 @@ export default function Func (){
           </Modal.Footer>
         </Modal>
 
-        
-        
-        
-        
- 
-
         </div>
 
-        
   )}
 
 
