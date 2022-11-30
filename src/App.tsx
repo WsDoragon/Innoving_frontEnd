@@ -38,6 +38,7 @@ import RegPubli from "./components/gestion_evidencias/RegPubli";
 import UploadForm from "./components/gestion_evidencias/UploadForm";
 import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
 import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
+import ResetPassword from "./pages/Gestion_usuario/resetPassword";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/admin" element={<LoginFunc />} />
         <Route path="/forgotPass" element={<ForgotPassword/>} />
+        <Route path="/resetpass/:id/:tokenresetpassword" element={ <ResetPassword /> } />
 
 
         <Route path="/home" element={<Header />}>
