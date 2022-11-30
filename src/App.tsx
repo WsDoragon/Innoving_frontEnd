@@ -61,16 +61,14 @@ function App() {
             <Route path="evidencias" element={<Componente />} />
             <Route path="proveedores" element={<Componente />} />
 
-            <Route
-              path="prueba"
-              element={
-                <Home ejes={ejes} indicadoresResumidos={indicadoresResumidos} />
-              }
-            />
-            <Route
-              path="prueba/indicador/:idIndicador"
-              element={<Indicadores />}
-            ></Route>
+            <Route path="evidencias2" element={<Files />} />
+            <Route path="publicaciones" element={<Publicaciones />} />
+            <Route path="proyectos" element={<Proyectos />} />
+
+            <Route path="prueba" element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos} />} />
+            <Route path="prueba/indicador/:idIndicador" element={<Indicadores />} >
+
+          </Route>
           </Route>
 
           <Route path="administrador" element={<Administrador />}>
@@ -81,7 +79,8 @@ function App() {
           </Route>
 
           <Route path="proveedor" element={<Proveedor />}>
-            <Route path="evidencias" element={<Componente />} />
+            <Route path="subirArchivos" element={<UploadForm />} />
+            <Route path="subirPublicacion" element={<RegPubli />} />
           </Route>
         </Route>
 
@@ -92,93 +91,6 @@ function App() {
         <Route path="/editarUser/:id" element={<FormularioEdit />} />
         <Route path="/editarProv/:id" element={<FormularioProvEdit />} />
 
-        <Route
-          path="/evidencias"
-          element={
-            <div className="App">
-              <Head />
-              <ListEvi />
-
-              <Files />
-            </div>
-          }
-        />
-        <Route
-          path="/rutaEvi"
-          element={
-            <div className="App">
-              <Head />
-
-              <ListEvi />
-              <Files />
-            </div>
-          }
-        />
-        <Route
-          path="/rutaUp"
-          element={
-            <div className="App">
-              <Head />
-
-              <UploadForm />
-            </div>
-          }
-        />
-        <Route
-          path="/rutaRegPubli"
-          element={
-            <div className="App">
-              <Head />
-
-              <RegPubli />
-            </div>
-          }
-        />
-        <Route
-          path="/archivos"
-          element={
-            <div className="App">
-              <Head />
-
-              <UploadForm />
-            </div>
-          }
-        />
-        <Route
-          path="/archivos"
-          element={
-            <div className="App">
-              <Head />
-
-              <ListEvi />
-
-              <Files />
-            </div>
-          }
-        />
-        <Route
-          path="/publicaciones"
-          element={
-            <div className="App">
-              <Head />
-
-              <ListEvi />
-
-              <Publicaciones />
-            </div>
-          }
-        />
-        <Route
-          path="/proyectos"
-          element={
-            <div className="App">
-              <Head />
-
-              <ListEvi />
-              <Proyectos />
-            </div>
-          }
-        />
       </Routes>
     </Router>
   );
