@@ -34,6 +34,8 @@ function Analista() {
                 <Button onPress={() => navigate("./publicaciones")} auto flat as={Link} href="#"> Publicaciones </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./proyectos")} auto flat as={Link} href="#"> Proyectos </Button>
+                <Spacer y={0.5} />
+                <Button onPress={() => navigate("./visualizacion")} auto flat as={Link} href="#"> Visualizacion de resulta </Button>
                 </Row>
         <Spacer x = {0.5} />
         <Outlet />
