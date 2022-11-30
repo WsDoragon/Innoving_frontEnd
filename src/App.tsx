@@ -37,6 +37,7 @@ import RegProyect from "./components/gestion_evidencias/RegProyect";
 import RegPubli from "./components/gestion_evidencias/RegPubli";
 import UploadForm from "./components/gestion_evidencias/UploadForm";
 import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
+import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/admin" element={<LoginFunc />} />
+        <Route path="/forgotPass" element={<ForgotPassword/>} />
+
 
         <Route path="/home" element={<Header />}>
           <Route path="gerente" element={<Gerente />}>
