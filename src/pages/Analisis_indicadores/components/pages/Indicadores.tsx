@@ -32,6 +32,8 @@ export const Indicadores = () => {
           <EvidenciasIndicador type="bien"/>
         </ContenedorIndicador>
         <Outlet/>
+
+        
       </ContenedorGrid>
     )
 }

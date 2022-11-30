@@ -99,3 +99,17 @@ export const ContenedorItemsAcordeon = styled.div<{margin?: string}>`
     padding: 10px;
     margin: ${props => props.margin? props.margin: "0px"};
 `
+
+export const ContenedorIndicadores = styled.div`
+    background-color: ${props => props.theme.colorInnoving.moradoClaro};
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+`
+
+export const SubIndicadores = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+`
