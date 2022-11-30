@@ -1,4 +1,4 @@
-import { Grid, Button, Link, Spacer } from "@nextui-org/react";
+import { Grid, Button, Link, Spacer, Row } from "@nextui-org/react";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Gestion_usuario/Header";
@@ -10,12 +10,13 @@ function Analista() {
     useEffect(() => {
         navigate("./indicadores");
       }, []);
+      
+      const style = {marginLeft: 20}
 
-    return (
-        <>
-        
-        <Grid.Container  gap={2} justify="center">
-            <Grid xs={12}>
+      return(
+          <div style={style}>
+          <Spacer y = {0.5} />
+          <Row>
                 <Button onPress={() => navigate("./indicadores")} auto flat as={Link} href="#"> Indicadores </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./proveedores")} auto flat as={Link} href="#"> Metas </Button>
@@ -27,10 +28,10 @@ function Analista() {
                 <Button onPress={() => navigate("./proveedores")} auto flat as={Link} href="#"> Provedores </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./prueba")} auto flat as={Link} href="#"> Analisis Indicadores </Button>
-            </Grid>
-        </Grid.Container>
+                </Row>
+        <Spacer x = {0.5} />
         <Outlet />
-        </>
+        </div >
     );
 }
 
