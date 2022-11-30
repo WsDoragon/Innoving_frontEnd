@@ -47,7 +47,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/admin" element={<LoginFunc />} />
         <Route path="/forgotPass" element={<ForgotPassword/>} />
-        <Route path="/resetpassword/:id/:tokenresetpassword" element={ <ResetPassword /> } />
+        <Route path="/resetpass/:id/:tokenresetpassword" element={ <ResetPassword /> } />
 
 
         <Route path="/home" element={<Header />}>
