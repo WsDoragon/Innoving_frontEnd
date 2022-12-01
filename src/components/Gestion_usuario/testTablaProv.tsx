@@ -148,9 +148,12 @@ export default function TestTablaProv() {
       <div >
           <Button 
           onClick={() => {navigate("/formularioProv")}} as={Link} href="#" >Crear nuevo usuario</Button>
+          <Spacer y={0.5} ></Spacer>
         
           <Table
-          
+          bordered
+          shadow={true}
+          selectionMode="single"
           aria-label="Example table with dynamic content"
           css={{
             height: "auto",

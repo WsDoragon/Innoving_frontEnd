@@ -62,7 +62,7 @@ export default function FormularioEdit() {
      .then(response => {
        const apiData = response.data.data;
        const d: string = apiData.contraseña
-       setSelecte(new Set(d.slice(2,d.length-4)))
+      setSelecte(new Set([d.slice(2,d.length-4)]))//aqui cambia todo creo, intenta hacer array
 
        const molde : UserType = { rut : apiData.rut,
             correo : apiData.correo,
@@ -74,7 +74,6 @@ export default function FormularioEdit() {
             anio: apiData.anio,
             roles : [] 
        }
-       console.log("xddd",apiData)
 
        //setState(molde);
        setState((state) => {
@@ -104,12 +103,6 @@ export default function FormularioEdit() {
   const selectedValue = React.useMemo(
     () => {
       selecte.forEach((value: any) => state.mes = value);
-      
-      if (state.mes.length == 1){
-        const d: string = state.contraseña
-        state.mes = d.substring(2, d.length-4)
-      }
-      
       return selecte;
     },
     [selecte]
@@ -160,17 +153,16 @@ export default function FormularioEdit() {
           <Spacer y={3} />
 
           <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
-          <Spacer y={3} />
-          <Row justify="center">
           
-          </Row>
-          <Spacer y={1} />
-
-          <Input width="50%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
           <Spacer y={3} />
           <Row justify="center">
+            <Text>
+              Contraseña:
+            </Text>
+          </Row>
+    
+          <Row justify="center">
 
-          <Spacer x={0.197}/>
 
           <Input
             size="xl"
@@ -226,6 +218,7 @@ export default function FormularioEdit() {
               value={state.anio}
               />
           </Row>
+
           <Spacer x={1} />
   
           <Grid.Container justify="center">
