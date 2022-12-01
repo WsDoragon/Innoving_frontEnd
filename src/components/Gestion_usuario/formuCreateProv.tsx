@@ -128,7 +128,7 @@ function Formulario() {
             
             <Row justify="center">
             <Text>
-              Contraseña:
+              Fecha de Nacimiento:
             </Text>
             </Row>
 

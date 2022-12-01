@@ -157,7 +157,7 @@ export default function FormularioEdit() {
           <Spacer y={3} />
           <Row justify="center">
             <Text>
-              Contraseña:
+              Fecha de Nacimiento:
             </Text>
           </Row>
     

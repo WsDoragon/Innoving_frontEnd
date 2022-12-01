@@ -145,9 +145,13 @@ export default function TestTablaProv() {
     ]
 
     return(
-      <div >
+      <div style={{marginRight:40, marginLeft:20}}>
           <Button 
-          onClick={() => {navigate("/formularioProv")}} as={Link} href="#" >Crear nuevo usuario</Button>
+          onClick={() => {navigate("/formularioProv")}} as={Link} href="#" 
+          css={{right:"20px"}}
+          >Crear nuevo usuario</Button>
+          
+          
           <Spacer y={0.5} ></Spacer>
         
           <Table
