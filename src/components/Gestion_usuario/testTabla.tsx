@@ -202,27 +202,30 @@ export default function TestTabla() {
           onClick={() => {navigate("/formulario")}} as={Link} href="#" 
           css={{right:"20px"}}
           >Crear nuevo usuario</Button>
-
-         
+        </Row>
+        
+         {/*ponerlos todos a la derecha estos*/}
           <input
-          type="search"
-          style={{borderRadius:15, textIndent:12}}
-          
-          placeholder="Busqueda por nombre"
-          value={searchQuery}
-          onChange={event => setSearchQuery(event.target.value)}
-        />
-            <Button 
+            type="search"
+            style={{borderRadius:15, textIndent:12,marginTop:10}}
+            
+            placeholder="Busqueda por nombre"
+            value={searchQuery}
+            onChange={event => setSearchQuery(event.target.value)}
+            />
+          <Button 
             color={"success"} 
             onClick={() => {activos()}}
-            style={{marginLeft:20}}>Activos</Button>
+            style={{marginRight:20}}
+            css={{float: 'right'}}>Activos</Button>
 
             <Button 
             color={"error"}
             onClick={() => {Inactivos()}}
-            style={{marginLeft:20}}>Inactivos</Button>
+            style={{marginRight:20}}
+            css={{float: 'right'}}>Inactivos</Button>
           
-        </Row>
+          
           <Spacer y={0.5} ></Spacer>  
         
           <Table
