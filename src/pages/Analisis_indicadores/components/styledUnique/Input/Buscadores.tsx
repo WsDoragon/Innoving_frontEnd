@@ -11,6 +11,7 @@ export const ContenedorBuscador = styled.div<{marginLeft?: string }>`
 
 
 export const Buscador = styled.input`
+
     position: absolute;
     top: 0;
     bottom: 0;
@@ -19,7 +20,7 @@ export const Buscador = styled.input`
     padding: 5px 8px 5px 30px;
     border-radius: 10px;
     outline: none;
-    border: none;
+    border: 1px solid black;
     font-size: 16px;
     @media (max-width: 750px){
         width: 100%;
