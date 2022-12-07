@@ -69,7 +69,7 @@ function Formulario() {
           else{
             axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
               res => {
-                console.log("Roles asignados "+res.data)
+                console.log("Roles asignados "+ res.data)
                 console.log('handleClick 👉️', state);
                 delay(3000)
                 volver(-1)

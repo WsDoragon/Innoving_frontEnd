@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
 import axios from "axios";
 import Header from "./Header";
+import { toast } from "react-toastify";
 
 
 type UserType = {
@@ -86,28 +87,40 @@ function Formulario() {
 
         
         axios.post('http://localhost:3001/users/create', state).then(
-        response => {
-          console.log("Usuario creado "+ response.data);
-          
-          if(response.status === 400){
-            console.log("ya existe")
-          }
-
-          axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
-            res => {
-              console.log("Roles asignados "+res.data)
-          });
-      }).catch(function(error){
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-      }});
-      console.log('handleClick 👉️', state);
-      delay(3000)
-      volver(-1)
-      
-    }; 
+          response => {
+            console.log("Usuario creado "+ response.data);
+            
+            if(response.status === 409){
+              console.log("ya existe")
+            }
+            else{
+              axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
+                res => {
+                  console.log("Roles asignados "+ res.data)
+                  console.log('handleClick 👉️', state);
+                  delay(3000)
+                  volver(-1)
+              });
+            }
+        }).catch(function(error){
+          if (error.response) {
+            
+              console.log(error.response)
+              toast.error(error.response.data.error, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+            
+  
+        }});
+        setVisible(false)
+      }; 
      
     return (
       <div>
