@@ -109,9 +109,40 @@ export default function TestTabla() {
 
   const rolesdeusuario = (roles:any) =>{
     let a = JSON.stringify(roles).replaceAll('"','').replaceAll('[', '').replaceAll(']','').replaceAll(',',' - ')
-    return (a)
+    return (a) 
+  }
 
-    
+  const activos = async () =>{
+    //const todoActivo = await axios.get("http://localhost:3001/users/allEnabled");
+    const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
+      let users: UserType[] = []
+      for (let i of result.data.data){
+        //console.log(i)
+        if (i.status != 0){
+          users.push(i);
+        }
+      }
+      console.log(users)
+      setUsers23(users);
+  });
+
+    console.log("hola: ", todoActivo);
+
+    //setUsers23(todoActivo.data.data);
+  }
+
+  const Inactivos = async () =>{
+    const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
+      let users: UserType[] = []
+      for (let i of result.data.data){
+        //console.log(i)
+        if (i.status != 1){
+          users.push(i);
+        }
+      }
+      console.log(users)
+      setUsers23(users);
+  });
   }
 
   const navigate = useNavigate();
@@ -150,11 +181,18 @@ export default function TestTabla() {
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
+        <Row>
           <Button 
           onClick={() => {navigate("/formulario")}} as={Link} href="#" 
           css={{right:"20px"}}
           >Crear nuevo usuario</Button>
+          
+          <Button onClick={() => {activos()}}>Activos</Button>
 
+          <Button 
+          onClick={() => {Inactivos()}}
+          style={{marginLeft:20}}>Inactivos</Button>
+        </Row>
           <Spacer y={0.5} ></Spacer>  
         
           <Table
