@@ -42,9 +42,9 @@ function Administrador(){
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./usuarios_proveedores")} auto flat as={Link} href="#"> Usuarios Académicos/VIDCA </Button>
                 <Spacer y={0.5} />
-                <Button onPress={() => navigate("./usuarios_inn_des")} auto flat as={Link} href="#"> Usuarios desactivados Innoving </Button>
+                <Button onPress={() => navigate("./usuarios_inn_des/", {state:{verdad:"si"}})} auto flat as={Link} href="#"> Usuarios desactivados Innoving </Button>
                 <Spacer y={0.5} />
-                <Button onPress={() => navigate("./usuarios_prov_des")} auto flat as={Link} href="#"> Usuarios desactivados Académicos/VIDCA </Button>
+                <Button onPress={() => navigate("./usuarios_inn_des", {state:{verdad:"no"}})} auto flat as={Link} href="#"> Usuarios desactivados Académicos/VIDCA </Button>
         </Row>
         <Spacer x = {0.5} />
         <Outlet />
