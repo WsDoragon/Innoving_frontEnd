@@ -82,6 +82,21 @@ export default function TestTabla() {
     setShowResults3(true)
   }
 
+  //Barra busqueda
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    if(searchQuery == ""){
+      getUsers()
+    }
+    const filteredData = users23.filter(
+      user => user.nombre.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setUsers23(filteredData);
+  }, [searchQuery]);
+
+  //
   
 
   useEffect(() => {
@@ -181,17 +196,32 @@ export default function TestTabla() {
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
+        
         <Row>
           <Button 
           onClick={() => {navigate("/formulario")}} as={Link} href="#" 
           css={{right:"20px"}}
           >Crear nuevo usuario</Button>
-          
-          <Button onClick={() => {activos()}}>Activos</Button>
 
-          <Button 
-          onClick={() => {Inactivos()}}
-          style={{marginLeft:20}}>Inactivos</Button>
+         
+          <input
+          type="search"
+          style={{borderRadius:15, textIndent:12}}
+          
+          placeholder="Busqueda por nombre"
+          value={searchQuery}
+          onChange={event => setSearchQuery(event.target.value)}
+        />
+            <Button 
+            color={"success"} 
+            onClick={() => {activos()}}
+            style={{marginLeft:20}}>Activos</Button>
+
+            <Button 
+            color={"error"}
+            onClick={() => {Inactivos()}}
+            style={{marginLeft:20}}>Inactivos</Button>
+          
         </Row>
           <Spacer y={0.5} ></Spacer>  
         
