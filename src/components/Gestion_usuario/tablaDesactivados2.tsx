@@ -22,7 +22,7 @@ type GetUsersResponse = {
   };
 
 
-export default function TablaDesactivadosInnoving() {
+export default function TablaDesactivados() {
   const [, updateState] = React.useState<any>();
 ///////////////////////////
   function refreshPage() {
@@ -39,9 +39,9 @@ export default function TablaDesactivadosInnoving() {
   ////////////////////////////////
   const [users23, setUsers23] = useState<UserType[]>([]);
 
-  console.log("entro por alla. 2")
+  console.log("entro por aqui. 1")
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allDisabled",{params: {soloInnoving: "yes"}});
+    const todo = await axios.get("http://localhost:3001/users/allDisabled",{params: {soloInnoving: "no"}});
     console.log("hola: ", todo.data.data);
     setUsers23(todo.data.data);
   }
@@ -60,7 +60,7 @@ export default function TablaDesactivadosInnoving() {
     }})
     setShowResults3(true)
   }
-
+  
   useEffect(() => {
     getUsers();
   }, []);

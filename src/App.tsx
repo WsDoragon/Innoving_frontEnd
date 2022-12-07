@@ -15,6 +15,8 @@ import Formulario from "./components/Gestion_usuario/formuCreateInnoving";
 import FormPROV from "./components/Gestion_usuario/formuCreateProv";
 import TablaPROV from "./components/Gestion_usuario/tablaProv";
 import TablaDesactivadosInnoving from "./components/Gestion_usuario/tablaDesactivadosInnoving";
+import TablaDesactivados from "./components/Gestion_usuario/tablaDesactivados2";
+
 //import FormularioProv from './components/Gestion_usuario/formuCreateProveedor';
 import FormularioEdit from "./components/Gestion_usuario/formuEditInnoving";
 import FormularioProvEdit from "./components/Gestion_usuario/fromuEditProveedor";
@@ -40,6 +42,7 @@ import UploadForm from "./components/gestion_evidencias/UploadForm";
 import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
 import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
 import ResetPassword from "./pages/Gestion_usuario/resetPassword";
+
 
 function App() {
   return (
@@ -78,7 +81,7 @@ function App() {
             <Route path="usuarios_innoving" element={<TestTabla />} />
             <Route path="usuarios_proveedores" element={<TestTablaProv />} />
             <Route path="usuarios_inn_des" element={<TablaDesactivadosInnoving />} />
-            <Route path="usuarios_prov_des" element={<Componente />} />
+            <Route path="usuarios_prov_des" element={<TablaDesactivados />} />
           </Route>
 
           <Route path="proveedor" element={<Proveedor />}>
