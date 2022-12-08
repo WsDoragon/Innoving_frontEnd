@@ -48,6 +48,7 @@ export default function TestTabla() {
   const [showResults3, setShowResults3] = React.useState(false)
   ////////////////////////////////
   const [users23, setUsers23] = useState<UserType[]>([]);
+  const [users24, setUsers24] = useState<UserType[]>([]);
 
   const getUsers = async () => {
     const todo = await axios.get("http://localhost:3001/users/allInnov");
@@ -77,7 +78,7 @@ export default function TestTabla() {
         if (index != undefined) {
           users[index].status = data.enabled ? 1 : 0;
       }
-      setUsers23(users);}
+      setUsers24(users);}
     }})
     setShowResults3(true)
   }
@@ -127,6 +128,7 @@ export default function TestTabla() {
     return (a) 
   }
 
+  //ver status con el filter para filtrar las cosas, no es necesario llamadas nuevas
   const activos = async () =>{
     //const todoActivo = await axios.get("http://localhost:3001/users/allEnabled");
     const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
