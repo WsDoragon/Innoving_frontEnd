@@ -14,7 +14,6 @@ export const Navbar = () => {
 
   return (
     <ContenedorNavbar >
-          
 
           <ContenedorBuscador> 
             <ContenedorIconBuscador> 
