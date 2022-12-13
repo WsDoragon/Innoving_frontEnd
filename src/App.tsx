@@ -41,7 +41,7 @@ import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
 
 // visualizacion de resultados
 import Barchart from './components/visualizacion_resultados/Barchart';
-import Gauge from './components/visualizacion_resultados/Gaugechart';
+// import Gauge from './components/visualizacion_resultados/Gaugechart';
 import Linechart from './components/visualizacion_resultados/Linechart';
 
 function App() {
