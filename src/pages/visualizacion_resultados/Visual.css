@@ -1,0 +1,108 @@
+.containerBody{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+  
+  .container1{
+    display: grid;
+    border: 1px solid black;
+    background: rgb(156, 156, 156);
+    padding: 5px;
+  
+  }
+  
+  .container2{
+    display: grid;
+    border: 1px solid black;
+    background: rgb(156, 156, 156);
+    padding: 5px;
+  
+  }
+  .containerGraphs{
+    display: block;
+    border: 1px solid black;
+    padding: 10px;
+    background: white;
+    width: 75%;
+    height: 50%;
+    justify-content:left;
+    justify-self:left;
+    align-self: center;
+  }
+  
+  .containerButtoms{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  
+  }
+  
+  .blockGauge{
+    border: 1px solid black;
+    grid-template-columns: 1fr 1fr;
+    background: rgb(156, 156, 156);
+    justify-self: center;
+    align-self: center;
+    width: 25%;
+    height:25%;
+  }
+  .graph {
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+  }
+  
+  .gauge{
+    justify-self: center;
+    align-self: center;
+    width:25%;
+    height:25%;
+  }
+  
+  .buttom{
+    display: inline-block;
+    position: relative;
+  }
+  
+  .graphTytle{
+    font-size: 14px;
+    /*background-image: linear-gradient(to left, #384e9510, #c31d1d);*/
+    color:#0000008a;
+    background-clip: text;
+    display: flex;
+    -webkit-background-clip: text;
+    justify-content: center;
+    align-items: center
+  }
+  
+  .dropdown1{
+    display:inline-block;
+    text-align: left;
+    width: 200px;
+    height: 30px;
+  }
+  
+  .dropdown2{
+    display:inline-block;
+    text-align: left;
+    width: 200px;
+    height: 30px;
+  }
+  
+  .dropdownStyle{
+    background-color: rgb(207, 207, 207) !important;
+    border-color: black !important;
+    color: black !important;
+    width: 150px !important;
+  
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  

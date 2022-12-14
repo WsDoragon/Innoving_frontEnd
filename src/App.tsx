@@ -44,6 +44,9 @@ import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
 import ResetPassword from "./pages/Gestion_usuario/resetPassword";
 
 
+// visualizacion de resultados
+import Visual from "./pages/visualizacion_resultados/Visual";
+
 function App() {
   return (
     <Router>
@@ -66,8 +69,11 @@ function App() {
             <Route path="metricas" element={<Componente />} />
             <Route path='evidencias' element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos}/>} />
             
+            <Route path="visualizacion" element={<Visual />} />
+
             <Route path="evidencias2" element={<Files />} />
             <Route path="publicaciones" element={<Publicaciones />} />
+            
             
             <Route path="prueba/indicador/1" element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos} />} />
             <Route path="prueba/indicador/:idIndicador" element={<Indicadores />} >
