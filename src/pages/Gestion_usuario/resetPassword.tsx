@@ -42,7 +42,7 @@ export default function ResetPassword(){
                     text: "contraseña cambiada correctamente"
                 })
                 console.log(res)
-                //navigate("/admin")
+                navigate("/admin")
             }).catch((err) => {
                 swal.fire({
                     showConfirmButton:true,

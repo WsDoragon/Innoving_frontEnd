@@ -24,8 +24,8 @@ function ForgotPassword(){
                     icon: 'success',
                     text: 'Revise su email, se le ha enviado un enlace para crear una nueva contraseña'
                 })
-
                 console.log(res)
+                navigate("/admin")
 
             }).catch((err) => {
                 swal.fire({
@@ -34,7 +34,7 @@ function ForgotPassword(){
                     text: "Error al intentar enviar los datos, compruebe el correo introducido o vuelva a intentarlo mas tarde."
                 })
                 console.log(err)
-            });
+                            });
     }
     
     return(
