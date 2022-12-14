@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import swal from 'sweetalert2'
+import { Spacer } from '@nextui-org/react';
 
 
 let regExPassword = /^(?=.*[A-Z])(?=.*[0123456789])[A-Za-z\d@$!%*?&#]{8,16}$/;
@@ -69,18 +70,25 @@ export default function ResetPassword(){
     }
 
     return(
-        <div className='main' onSubmit={handleSubmit}>
+        <div className="wrapper" onSubmit={handleSubmit}>
+            <h3>Cambio de contraseña</h3>
+
             <form className='mainContainer'>
-                <h3>Nueva contraseña</h3>
-                <div className='divPassword'>Constraseña:*</div>
+                <div className='divPassword'>Nueva contraseña:</div>
+                
                 <div className='containerPassword'>
                     <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} name="password" placeholder='Introduce tu contraseña' required/>
                     <button onClick={switchShowPassword}>{showPassword ? "ocultar" : "mostrar"}</button>
                 </div>
 
-                <div>Confirmar contraseña:*</div>
+                <Spacer y={1}/>
+                <div>Confirmar contraseña:</div>
+
                 <input type="password" value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" placeholder='Confirmar la contraseña' required/>
                 <div className='confirmPassword'>{isError}</div>
+
+                <Spacer y={1}/>   
+
                 <div className='divButton'>
                     <button type='submit'>Enviar</button>
                 </div>

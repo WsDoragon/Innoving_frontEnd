@@ -1,9 +1,10 @@
-import { Grid } from "@nextui-org/react";
+import { Button, FormElement, Grid, Input, Spacer, Text } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 import React, {useState} from 'react';
 import axios from 'axios';
 import swal from 'sweetalert2'
+import { Row } from "reactstrap";
 
 
 
@@ -22,7 +23,7 @@ function ForgotPassword(){
                 swal.fire({
                     showConfirmButton: true,
                     icon: 'success',
-                    text: 'Revise su email, se le ha enviado un enlace para crear una nueva contraseña'
+                    text: 'Revise su email, se le ha enviado un link para restaurar su contraseña'
                 })
                 console.log(res)
                 navigate("/admin")
@@ -31,23 +32,51 @@ function ForgotPassword(){
                 swal.fire({
                     showConfirmButton:true,
                     icon: 'error',
-                    text: "Error al intentar enviar los datos, compruebe el correo introducido o vuelva a intentarlo mas tarde."
+                    text: "Error al intentar enviar los datos, compruebe el correo introducido."
                 })
                 console.log(err)
                             });
     }
+
+    const [state, setState] = useState({
+        email: ""
+    });
+  
+      function handleChange(e: React.ChangeEvent<FormElement>) {
+        const value = e.target.value;
+        setState({
+          ...state,
+          [e.target.name]: value,
+        });
+      }
     
     return(
-        <div className="main">
-            <form className="mainContainer" onSubmit={handleSubmit}>
-                <h3>Cambiar contraseña</h3>
-                <div>Introduzca su correo electrónico:</div>
-                <input type="string" name="email" placeholder="Email" required/>
+        <div className="wrapper">
+            <Spacer y={1}/>
+            <h3>Cambiar contraseña</h3>
+            <Spacer y={0.5}/>
+            <Row>
+            <Text> Se le enviará un link para restaurar su contraseña. Introduzca su correo electronico.  </Text>
+            </Row>
 
+            <Spacer y={1}/>
+            <form className="mainContainer" onSubmit={handleSubmit}>                                                       
+                    <Input
+                        size="md"
+                        width="200px"
+                        css={{$$inputPlaceholderColor:"#747574"}}
+                        labelPlaceholder="Correo electrónico"
+                        name="email"
+                        onChange={handleChange} 
+                        value={state.email}
+                    />
+                
+                <Spacer y={1}/>
                 <div className="divButton">
-                    <button type="submit">Enviar</button>
+                    <Button type="submit">Enviar</Button>
                 </div>
             </form>
+            
         </div>
     );
 }
