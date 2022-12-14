@@ -40,9 +40,9 @@ function ForgotPassword(){
     return(
         <div className="main">
             <form className="mainContainer" onSubmit={handleSubmit}>
-                <h3>Recuperar cuenta</h3>
-                <div>Correo electrónico:</div>
-                <input type="string" name="email" placeholder="Introduce tu email" required/>
+                <h3>Cambiar contraseña</h3>
+                <div>Introduzca su correo electrónico:</div>
+                <input type="string" name="email" placeholder="Email" required/>
 
                 <div className="divButton">
                     <button type="submit">Enviar</button>
