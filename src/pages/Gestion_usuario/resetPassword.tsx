@@ -83,7 +83,9 @@ export default function ResetPassword(){
 
     return(
         <div className="wrapper" onSubmit={handleSubmit}>
+            <Spacer y={1}/>     
             <h3>Cambio de contraseña</h3>
+            <Spacer y={1}/>   
 
             <form className='mainContainer'>
                 <div className='divPassword'>Nueva contraseña:</div>

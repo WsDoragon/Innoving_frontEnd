@@ -54,18 +54,18 @@ function ForgotPassword(){
         <div className="wrapper">
             <Spacer y={1}/>
             <h3>Cambiar contraseña</h3>
-            <Spacer y={0.5}/>
-            <Row>
-            <Text> Se le enviará un link para restaurar su contraseña. Introduzca su correo electronico.  </Text>
-            </Row>
-
             <Spacer y={1}/>
-            <form className="mainContainer" onSubmit={handleSubmit}>                                                       
+            <Row>
+            <Text> Se le enviará un link para restaurar su contraseña. Introduzca su correo electrónico.  </Text>
+            </Row>
+            
+            <form className="mainContainer" onSubmit={handleSubmit}>
+                    <div>Correo electrónico:</div>                                                       
                     <Input
-                        size="md"
+                        size="xl"
                         width="200px"
                         css={{$$inputPlaceholderColor:"#747574"}}
-                        labelPlaceholder="Correo electrónico"
+                        placeholder="Correo electrónico"
                         name="email"
                         onChange={handleChange} 
                         value={state.email}
