@@ -51,9 +51,15 @@ export default function TestTabla() {
   const [users24, setUsers24] = useState<UserType[]>([]);
 
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allInnov");
-    console.log("hola: ", todo.data.data);
-    setUsers23(todo.data.data);
+    const todo = await axios.get("http://localhost:3001/users/allInnov").then((res) => {
+      console.log("hola: ", res.data.data);
+      setUsers24(res.data.data);
+      console.log("24", users24)
+    
+      setUsers23(res.data.data)
+      console.log("23", users23)
+    });
+    
   }
 
   const handler = (item: string) => {
@@ -78,7 +84,8 @@ export default function TestTabla() {
         if (index != undefined) {
           users[index].status = data.enabled ? 1 : 0;
       }
-      setUsers24(users);}
+      setUsers23(users);
+      setUsers24(users)}
     }})
     setShowResults3(true)
   }
@@ -91,7 +98,7 @@ export default function TestTabla() {
     if(searchQuery == ""){
       getUsers()
     }
-    const filteredData = users23.filter(
+    const filteredData = users24.filter(
       user => user.nombre.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setUsers23(filteredData);
@@ -102,26 +109,13 @@ export default function TestTabla() {
 
   useEffect(() => {
     getUsers();
+    
   }, []);
 
   useEffect(() => {
     console.log("============== component updated ================")
     console.log(users23);
   }, [users23]);
-
-  const desactivar = () => {
-    setVisible(false)
-    
-    axios.put(`http://localhost:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
-    refreshPage()
-  }
-
-  const activar = () => {
-    setVisible(false)
-    
-    axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => {console.log("usuario desactivado "+res.data)})
-    refreshPage()
-  } 
 
   const rolesdeusuario = (roles:any) =>{
     let a = JSON.stringify(roles).replaceAll('"','').replaceAll('[', '').replaceAll(']','').replaceAll(',',' - ')
@@ -131,7 +125,7 @@ export default function TestTabla() {
   //ver status con el filter para filtrar las cosas, no es necesario llamadas nuevas
   const activos = async () =>{
     //const todoActivo = await axios.get("http://localhost:3001/users/allEnabled");
-    const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
+    /*const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
       let users: UserType[] = []
       for (let i of result.data.data){
         //console.log(i)
@@ -142,14 +136,22 @@ export default function TestTabla() {
       console.log(users)
       setUsers23(users);
   });
+  */
+  let users: UserType[] = []
+  for (let i of users24){
+    if (i.status != 0){
+      users.push(i)
+    }
+  }
+  setUsers23(users)
 
-    console.log("hola: ", todoActivo);
+  console.log("activos: ", users23);
 
     //setUsers23(todoActivo.data.data);
   }
 
   const Inactivos = async () =>{
-    const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
+  /*  const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
       let users: UserType[] = []
       for (let i of result.data.data){
         //console.log(i)
@@ -160,6 +162,16 @@ export default function TestTabla() {
       console.log(users)
       setUsers23(users);
   });
+  */
+  let users: UserType[] = []
+  for (let i of users24){
+    if (i.status != 1){
+      users.push(i)
+    }
+  }
+  setUsers23(users)
+
+  console.log("activos: ", users23);
   }
 
   const navigate = useNavigate();
