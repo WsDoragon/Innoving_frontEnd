@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
 import axios from "axios";
 import Header from "./Header";
-import { toast } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify"
 
 
 type UserType = {
@@ -125,6 +125,7 @@ function Formulario() {
     return (
       <div>
       <Header/>
+      <ToastContainer/>
       <Spacer y={1} />
         <Grid.Container justify="center">
             <Input width="50%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
