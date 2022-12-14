@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import swal from 'sweetalert2'
-import { Spacer } from '@nextui-org/react';
+import { Button, FormElement, Input, Spacer } from '@nextui-org/react';
 
 
 let regExPassword = /^(?=.*[A-Z])(?=.*[0123456789])[A-Za-z\d@$!%*?&#]{8,16}$/;
@@ -68,6 +68,18 @@ export default function ResetPassword(){
     const switchShowPassword = () => {
         setShowPassword(!showPassword)
     }
+    const [state, setState] = useState({
+        confirmPass: "",
+        password: "",
+      });
+  
+      function handleChange(e: React.ChangeEvent<FormElement>) {
+        const value = e.target.value;
+        setState({
+          ...state,
+          [e.target.name]: value,
+        });
+      }
 
     return(
         <div className="wrapper" onSubmit={handleSubmit}>
@@ -75,22 +87,39 @@ export default function ResetPassword(){
 
             <form className='mainContainer'>
                 <div className='divPassword'>Nueva contraseña:</div>
-                
+
                 <div className='containerPassword'>
-                    <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} name="password" placeholder='Introduce tu contraseña' required/>
-                    <button onClick={switchShowPassword}>{showPassword ? "ocultar" : "mostrar"}</button>
+                    <Input.Password
+                        clearable
+                        type="password"
+                        size= "xl"
+                        width="200px"
+                        placeholder="Contraseña"
+                        name="password"
+                        onChange={handleChange} 
+                        value={state.password}
+                    />
                 </div>
 
                 <Spacer y={1}/>
                 <div>Confirmar contraseña:</div>
 
-                <input type="password" value={confirmPassword} onChange={(e) => checkValidation(e)} name="confirmPassword" placeholder='Confirmar la contraseña' required/>
+                <Input.Password
+                        clearable
+                        type="password"
+                        size= "xl"
+                        width="200px"
+                        placeholder="Contraseña"
+                        name="confirmPass"
+                        onChange={handleChange} 
+                        value={state.confirmPass}
+                    />
                 <div className='confirmPassword'>{isError}</div>
 
                 <Spacer y={1}/>   
 
                 <div className='divButton'>
-                    <button type='submit'>Enviar</button>
+                    <Button type='submit'>Enviar</Button>
                 </div>
             </form>
         </div>
