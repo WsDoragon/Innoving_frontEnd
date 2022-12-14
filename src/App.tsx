@@ -40,9 +40,7 @@ import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
 import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
 
 // visualizacion de resultados
-import Barchart from './components/visualizacion_resultados/Barchart';
-// import Gauge from './components/visualizacion_resultados/Gaugechart';
-import Linechart from './components/visualizacion_resultados/Linechart';
+import Visual from "./pages/visualizacion_resultados/Visual";
 
 function App() {
   return (
@@ -65,12 +63,12 @@ function App() {
             <Route path="metricas" element={<Componente />} />
             <Route path="evidencias" element={<Componente />} />
             <Route path="proveedores" element={<Componente />} />
-            <Route path="visualizacion" element={<Componente />} />
+            <Route path="visualizacion" element={<Visual />} />
 
             <Route path="evidencias2" element={<Files />} />
             <Route path="publicaciones" element={<Publicaciones />} />
             <Route path="proyectos" element={<Proyectos />} />
-
+            
             <Route path="prueba" element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos} />} />
             <Route path="prueba/indicador/:idIndicador" element={<Indicadores />} >
 
