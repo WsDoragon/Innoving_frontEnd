@@ -21,14 +21,15 @@ const UploadForm = () =>{
 
 
     return(
+        <div>
         <Form onSubmit={onSubmit}>
 
             <FormGroup>
                 <Label htmlFor="head-form"></Label>
                 Subir archivos
             </FormGroup>
-
-            <FormGroup row>
+            
+            <FormGroup>
                 <Label sm={2}>Nombre</Label>
                 <Col sm={9}>
                     <Input
@@ -38,9 +39,8 @@ const UploadForm = () =>{
                         onChange = {onChange}
                     />
                 </Col>
-            </FormGroup>
-
-            <FormGroup row>
+                </FormGroup>
+                <FormGroup>
                 <Label sm={2}>Archivo</Label>
                 <Col sm={9}>
                     <Input
@@ -50,7 +50,8 @@ const UploadForm = () =>{
                         onChange = {onChange}
                     />
                 </Col>
-            </FormGroup>
+                </FormGroup>
+            
 
             <Button type="submit" color="primary">
                 Subir
@@ -58,6 +59,7 @@ const UploadForm = () =>{
 
 
         </Form>
+        </div>
     )
 }
 

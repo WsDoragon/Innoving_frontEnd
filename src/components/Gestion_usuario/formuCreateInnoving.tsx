@@ -69,7 +69,7 @@ function Formulario() {
           else{
             axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
               res => {
-                console.log("Roles asignados "+res.data)
+                console.log("Roles asignados "+ res.data)
                 console.log('handleClick 👉️', state);
                 delay(3000)
                 volver(-1)
@@ -110,11 +110,13 @@ function Formulario() {
             <Input width="50%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
             <Spacer y={3} />
 
+            <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
+            <Spacer y={3} />
+            
             <Input width="50%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
             <Spacer y={3} />
 
-            <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
-            <Spacer y={3} />
+
 
         <Grid.Container justify="center">
             <Checkbox.Group

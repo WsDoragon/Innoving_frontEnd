@@ -12,6 +12,7 @@ function Proveedor(){
         <Row>
                 
                 <Button onPress={() => navigate("./subirArchivos")} auto flat as={Link} href="#"> Subir archivos </Button>
+                <Spacer y = {0.5} />
                 <Button onPress={() => navigate("./subirPublicacion")} auto flat as={Link} href="#"> Subir publicación </Button>
         </Row>
         <Spacer x = {0.5} />

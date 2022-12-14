@@ -17,7 +17,7 @@ function ForgotPassword(){
             email: e.target.email.value
         }
 
-        await axios.post("http://localhost:3001/users/passwordReset", userEmail)
+        await axios.post("http://localhost:3001/users/forgotPassword", userEmail)
             .then((res) => {
                 swal.fire({
                     showConfirmButton: true,
@@ -25,12 +25,15 @@ function ForgotPassword(){
                     text: 'Revise su email, se le ha enviado un enlace para crear una nueva contraseña'
                 })
 
+                console.log(res)
+
             }).catch((err) => {
                 swal.fire({
                     showConfirmButton:true,
                     icon: 'error',
                     text: "Error al intentar enviar los datos, compruebe el correo introducido o vuelva a intentarlo mas tarde."
                 })
+                console.log(err)
             });
     }
     

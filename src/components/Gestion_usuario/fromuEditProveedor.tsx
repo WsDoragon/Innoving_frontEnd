@@ -62,7 +62,7 @@ export default function FormularioEdit() {
      .then(response => {
        const apiData = response.data.data;
        const d: string = apiData.contraseña
-       setSelecte(new Set(d.slice(2,d.length-4)))
+      setSelecte(new Set([d.slice(2,d.length-4)]))//aqui cambia todo creo, intenta hacer array
 
        const molde : UserType = { rut : apiData.rut,
             correo : apiData.correo,
@@ -74,6 +74,7 @@ export default function FormularioEdit() {
             anio: apiData.anio,
             roles : [] 
        }
+
        //setState(molde);
        setState((state) => {
         return({
@@ -123,7 +124,7 @@ export default function FormularioEdit() {
       state.dia = "0" + state.dia
     }
     state.contraseña = state.dia + state.mes + state.anio
-    console.log("HOLAAA XD",state.contraseña)
+   
 
     axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
     .then(response => {
@@ -152,17 +153,16 @@ export default function FormularioEdit() {
           <Spacer y={3} />
 
           <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
-          <Spacer y={3} />
-          <Row justify="center">
           
-          </Row>
-          <Spacer y={1} />
-
-          <Input width="50%" placeholder="Contraseña" type="text" name="contraseña" onChange={handleChange} value={state.contraseña}/>
           <Spacer y={3} />
           <Row justify="center">
+            <Text>
+              Fecha de Nacimiento:
+            </Text>
+          </Row>
+    
+          <Row justify="center">
 
-          <Spacer x={0.197}/>
 
           <Input
             size="xl"
@@ -218,6 +218,7 @@ export default function FormularioEdit() {
               value={state.anio}
               />
           </Row>
+
           <Spacer x={1} />
   
           <Grid.Container justify="center">

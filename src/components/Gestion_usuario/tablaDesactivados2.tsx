@@ -2,16 +2,9 @@ import axios from 'axios';
 import React from "react";
 
 //@ts-ignore
-import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid, Badge } from "@nextui-org/react";
-import algo from './Axiostabla';
-import { IconButton } from "../../styledIcons/IconButton";
-import { EyeIcon } from "../../styledIcons/EyeIcon";
-import { EditIcon } from "../../styledIcons/EditIcon";
-import { DeleteIcon } from "../../styledIcons/DeleteIcon";
-import Formulario from "./formuCreateInnoving";
-import { json, useNavigate } from "react-router-dom";
+import { Table, Row, Tooltip, User, Text, Button, Link, Spacer, useModal, Badge } from "@nextui-org/react";
+import  { useNavigate, useLocation }  from "react-router-dom";
 import { useState, useEffect } from 'react'
-import ModalDisable from './modalDisable';
 import ModalAbstracto, { PropsMe } from './modal/modalAbstracto';
 
 type UserType = {
@@ -29,9 +22,8 @@ type GetUsersResponse = {
   };
 
 
-export default function TestTabla() {
+export default function TablaDesactivados() {
   const [, updateState] = React.useState<any>();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
 ///////////////////////////
   function refreshPage() {
     window.location.reload();
@@ -43,29 +35,15 @@ export default function TestTabla() {
 
   const [disableUser, setDisableUser] = useState<string>();
   /////////////////////////////////
-  const [showResults1, setShowResults] = React.useState(false)
-  const [showResults2, setShowResults2] = React.useState(false)
   const [showResults3, setShowResults3] = React.useState(false)
   ////////////////////////////////
   const [users23, setUsers23] = useState<UserType[]>([]);
-  const [users24, setUsers24] = useState<UserType[]>([]);
 
+  console.log("entro por aqui. 1")
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allInnov");
+    const todo = await axios.get("http://localhost:3001/users/allDisabled",{params: {soloInnoving: "no"}});
     console.log("hola: ", todo.data.data);
     setUsers23(todo.data.data);
-  }
-
-  const handler = (item: string) => {
-    setVisible(true)
-    setShowResults(true)
-    setDisableUser(item)
-  }
-
-  const handler2 = (item: string) => {
-    setVisible(true)
-    setShowResults2(true)
-    setDisableUser(item)
   }
 
   const handler3 = (dataMensaje:any, dataConsulta: any, dataState?: any) => {
@@ -78,28 +56,11 @@ export default function TestTabla() {
         if (index != undefined) {
           users[index].status = data.enabled ? 1 : 0;
       }
-      setUsers24(users);}
+      setUsers23(users);}
     }})
     setShowResults3(true)
   }
-
-  //Barra busqueda
-
-  const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    if(searchQuery == ""){
-      getUsers()
-    }
-    const filteredData = users23.filter(
-      user => user.nombre.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setUsers23(filteredData);
-  }, [searchQuery]);
-
-  //
   
-
   useEffect(() => {
     getUsers();
   }, []);
@@ -123,45 +84,6 @@ export default function TestTabla() {
     refreshPage()
   } 
 
-  const rolesdeusuario = (roles:any) =>{
-    let a = JSON.stringify(roles).replaceAll('"','').replaceAll('[', '').replaceAll(']','').replaceAll(',',' - ')
-    return (a) 
-  }
-
-  //ver status con el filter para filtrar las cosas, no es necesario llamadas nuevas
-  const activos = async () =>{
-    //const todoActivo = await axios.get("http://localhost:3001/users/allEnabled");
-    const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
-      let users: UserType[] = []
-      for (let i of result.data.data){
-        //console.log(i)
-        if (i.status != 0){
-          users.push(i);
-        }
-      }
-      console.log(users)
-      setUsers23(users);
-  });
-
-    console.log("hola: ", todoActivo);
-
-    //setUsers23(todoActivo.data.data);
-  }
-
-  const Inactivos = async () =>{
-    const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
-      let users: UserType[] = []
-      for (let i of result.data.data){
-        //console.log(i)
-        if (i.status != 1){
-          users.push(i);
-        }
-      }
-      console.log(users)
-      setUsers23(users);
-  });
-  }
-
   const navigate = useNavigate();
   const columns = [
         {
@@ -175,10 +97,6 @@ export default function TestTabla() {
         {
           key: "correo",
           label: "Correo",
-        },
-        {
-          key:"roles",
-          label: "Roles"
         },
         {
           key:"status",
@@ -198,38 +116,6 @@ export default function TestTabla() {
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
-        
-        <Row>
-          <Button 
-          onClick={() => {navigate("/formulario")}} as={Link} href="#" 
-          css={{right:"20px"}}
-          >Crear nuevo usuario</Button>
-        </Row>
-        
-         {/*ponerlos todos a la derecha estos*/}
-          <input
-            type="search"
-            style={{borderRadius:15, textIndent:12,marginTop:10}}
-            
-            placeholder="Busqueda por nombre"
-            value={searchQuery}
-            onChange={event => setSearchQuery(event.target.value)}
-            />
-          <Button 
-            color={"success"} 
-            onClick={() => {activos()}}
-            style={{marginRight:20}}
-            css={{float: 'right'}}>Activos</Button>
-
-            <Button 
-            color={"error"}
-            onClick={() => {Inactivos()}}
-            style={{marginRight:20}}
-            css={{float: 'right'}}>Inactivos</Button>
-          
-          
-          <Spacer y={0.5} ></Spacer>  
-        
           <Table
           bordered
           shadow={true}
@@ -258,20 +144,9 @@ export default function TestTabla() {
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
-              <Table.Cell><Text b size={14}>{rolesdeusuario(item[`roles`])}</Text></Table.Cell>
               <Table.Cell>{item[`status`] ? <Badge color="success" variant="flat">Activo</Badge> : <Badge color="error" variant="flat">Inactivo</Badge>}</Table.Cell>
               <Table.Cell> 
                   <Row justify="center" align="center">
-                  
-                  
-                  <Tooltip content="Editar Usuario">
-                      <Button onClick={() => {navigate(`/editarUser/${item.rut}`,{state:{rut:item.rut}})}} href="#">
-                        Editar
-                      {/*<EditIcon size={20} fill="#979797" />*/}
-                      </Button>
-                  </Tooltip>
-                  
-                  <Spacer x={0.5}/>
                   
                   {item.status ?
                     <Tooltip

@@ -14,6 +14,9 @@ import Componente from "./components/Gestion_usuario/componente";
 import Formulario from "./components/Gestion_usuario/formuCreateInnoving";
 import FormPROV from "./components/Gestion_usuario/formuCreateProv";
 import TablaPROV from "./components/Gestion_usuario/tablaProv";
+import TablaDesactivadosInnoving from "./components/Gestion_usuario/tablaDesactivadosInnoving";
+import TablaDesactivados from "./components/Gestion_usuario/tablaDesactivados2";
+
 //import FormularioProv from './components/Gestion_usuario/formuCreateProveedor';
 import FormularioEdit from "./components/Gestion_usuario/formuEditInnoving";
 import FormularioProvEdit from "./components/Gestion_usuario/fromuEditProveedor";
@@ -38,6 +41,8 @@ import RegPubli from "./components/gestion_evidencias/RegPubli";
 import UploadForm from "./components/gestion_evidencias/UploadForm";
 import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
 import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
+import ResetPassword from "./pages/Gestion_usuario/resetPassword";
+
 
 // visualizacion de resultados
 import Visual from "./pages/visualizacion_resultados/Visual";
@@ -49,6 +54,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/admin" element={<LoginFunc />} />
         <Route path="/forgotPass" element={<ForgotPassword/>} />
+        <Route path="/resetpass/:id/:tokenresetpassword" element={ <ResetPassword /> } />
 
 
         <Route path="/home" element={<Header />}>
@@ -61,15 +67,15 @@ function App() {
             <Route path="indicadores" element={<Componente />} />
             <Route path="metas" element={<Componente />} />
             <Route path="metricas" element={<Componente />} />
-            <Route path="evidencias" element={<Componente />} />
-            <Route path="proveedores" element={<Componente />} />
+            <Route path='evidencias' element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos}/>} />
+            
             <Route path="visualizacion" element={<Visual />} />
 
             <Route path="evidencias2" element={<Files />} />
             <Route path="publicaciones" element={<Publicaciones />} />
-            <Route path="proyectos" element={<Proyectos />} />
             
-            <Route path="prueba" element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos} />} />
+            
+            <Route path="prueba/indicador/1" element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos} />} />
             <Route path="prueba/indicador/:idIndicador" element={<Indicadores />} >
 
           </Route>
@@ -78,8 +84,8 @@ function App() {
           <Route path="administrador" element={<Administrador />}>
             <Route path="usuarios_innoving" element={<TestTabla />} />
             <Route path="usuarios_proveedores" element={<TestTablaProv />} />
-            <Route path="usuarios_inn_des" element={<Componente />} />
-            <Route path="usuarios_prov_des" element={<Componente />} />
+            <Route path="usuarios_inn_des" element={<TablaDesactivadosInnoving />} />
+            <Route path="usuarios_prov_des" element={<TablaDesactivados />} />
           </Route>
 
           <Route path="proveedor" element={<Proveedor />}>

@@ -60,7 +60,7 @@ function RegPubli() {
         Registrar Publicación
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>Titulo</Label>
         <Col sm={9}>
           <Input
@@ -73,7 +73,7 @@ function RegPubli() {
         </Col>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>Autores</Label>
         <Col sm={9}>
           <Input
@@ -99,7 +99,7 @@ function RegPubli() {
         <Label check>¿Hay autores extranjeros?</Label>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>Revista</Label>
         <Col sm={9}>
           <Input
@@ -112,7 +112,7 @@ function RegPubli() {
         </Col>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>Indexación</Label>
         <Col sm={9}>
           <Input
@@ -125,7 +125,7 @@ function RegPubli() {
         </Col>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>IssnDoi</Label>
         <Col sm={9}>
           <Input
@@ -138,7 +138,7 @@ function RegPubli() {
         </Col>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>Año</Label>
         <Col sm={9}>
           <Input
@@ -151,7 +151,7 @@ function RegPubli() {
         </Col>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>Disciplina</Label>
         <Col sm={9}>
           <Input
@@ -164,7 +164,7 @@ function RegPubli() {
         </Col>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup>
         <Label sm={2}>Clasificacion</Label>
         <Col sm={9}>
           <Input

@@ -2,12 +2,9 @@ import { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ejes, indicadoresResumidos } from '../components/apifake'
 import { Buscador, ContenedorBuscador, ContenedorIconBuscador } from './styledUnique/Input/Buscadores';
-import { LogoInnoving } from './styledUnique/Imagenes';
 import { ContenedorItemsAcordeon, ContenedorMiniItems, ContenedorNavbar } from './styledUnique/Contenedores';
-import { LinkInnoving } from './styledUnique/Buttons';
 import "./navbar.css"
-import logosvg from '../assets/logo.svg';
-//const logosvg = require ( '../assets/logo.svg') as string;
+
 
 export const Navbar = () => {
 
@@ -17,9 +14,7 @@ export const Navbar = () => {
 
   return (
     <ContenedorNavbar >
-          <LinkInnoving className='innoving' to="../">
-            <LogoInnoving  src={logosvg}/>
-          </LinkInnoving>
+          
 
           <ContenedorBuscador> 
             <ContenedorIconBuscador> 
