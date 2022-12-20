@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from "react";
 
 //@ts-ignore
-import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid, Badge } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid, Badge, Radio } from "@nextui-org/react";
 import algo from './Axiostabla';
 import { IconButton } from "../../styledIcons/IconButton";
 import { EyeIcon } from "../../styledIcons/EyeIcon";
@@ -13,6 +13,7 @@ import { json, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import ModalDisable from './modalDisable';
 import ModalAbstracto, { PropsMe } from './modal/modalAbstracto';
+import RadioGroup from '@nextui-org/react/types/radio/radio-group';
 
 type UserType = {
     rut: string
@@ -46,9 +47,11 @@ export default function TestTabla() {
   const [showResults1, setShowResults] = React.useState(false)
   const [showResults2, setShowResults2] = React.useState(false)
   const [showResults3, setShowResults3] = React.useState(false)
-  ////////////////////////////////
-  const [users23, setUsers23] = useState<UserType[]>([]);
-  const [users24, setUsers24] = useState<UserType[]>([]);
+  //////////////////////////////// Almacen de usuarios
+  const [users23, setUsers23] = useState<UserType[]>([]); //Actualizan tabla
+  const [users24, setUsers24] = useState<UserType[]>([]); //Almacena los usuarios
+
+  
 
   const getUsers = async () => {
     const todo = await axios.get("http://localhost:3001/users/allInnov").then((res) => {
@@ -105,6 +108,29 @@ export default function TestTabla() {
   }, [searchQuery]);
 
   //
+
+  // Seleccionar usuarios (Todos - Inactivos - Activos)
+
+    //Radios control
+  const [checked, setChecked] = React.useState('Todos');
+  
+  useEffect(() => {
+    switch(checked) {
+
+      case "Inactivos":
+        Inactivos()
+        return
+
+      case "Activos":
+        activos()
+        return
+
+      default:
+        setUsers23(users24)
+        return console.log("default")
+    }
+
+  },[checked])
   
 
   useEffect(() => {
@@ -210,15 +236,28 @@ export default function TestTabla() {
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
-        
-        <Row>
+        <div>
           <Button 
           onClick={() => {navigate("/formulario")}} as={Link} href="#" 
           css={{right:"20px"}}
           >Crear nuevo usuario</Button>
-        </Row>
+        
         
          {/*ponerlos todos a la derecha estos*/}
+         <Radio.Group 
+            label="Filtro usuarios:"
+            value={checked}
+            onChange={setChecked}
+            orientation="horizontal"
+            style={{marginRight:20}}
+            css={{float:'right'}}
+          >
+            
+              <Radio value="Todos" color="primary">Todos</Radio>
+              <Radio value="Activos" color="success">Activos</Radio>
+              <Radio value="Inactivos" color="error">Inactivos</Radio>
+            
+          </Radio.Group>
           <input
             type="search"
             style={{borderRadius:15, textIndent:12,marginTop:10}}
@@ -227,20 +266,12 @@ export default function TestTabla() {
             value={searchQuery}
             onChange={event => setSearchQuery(event.target.value)}
             />
-          <Button 
-            color={"success"} 
-            onClick={() => {activos()}}
-            style={{marginRight:20}}
-            css={{float: 'right'}}>Activos</Button>
+          
 
-            <Button 
-            color={"error"}
-            onClick={() => {Inactivos()}}
-            style={{marginRight:20}}
-            css={{float: 'right'}}>Inactivos</Button>
           
+          </div>
           
-          <Spacer y={0.5} ></Spacer>  
+          <Spacer y={1.5} ></Spacer>  
         
           <Table
           bordered
