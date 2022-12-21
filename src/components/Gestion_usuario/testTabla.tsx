@@ -18,7 +18,6 @@ import RadioGroup from '@nextui-org/react/types/radio/radio-group';
 type UserType = {
     rut: string
     nombre: string
-    apellido: string
     correo:string
     pass: string
     roles: any
@@ -234,17 +233,7 @@ export default function TestTabla() {
         { name: "STATUS", uid: "pass" },
         { name: "ACTIONS", uid: "rut" },
     ]
-    // Se calcula la cantidad de paginas para la paginacion de la tabla
-    const pagination = () => {
-      let pageSize = 4
-      if (users23.length%pageSize > 0){
-        return (users23.length/pageSize + 1)
-      }
-      else{
-        return (users23.length/pageSize)
-      }
-      
-    };
+    
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
@@ -312,7 +301,7 @@ export default function TestTabla() {
           {(item) => (
             <Table.Row key={item.rut}>
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>
-              <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
+              <Table.Cell><Text b size={14}> {item[`nombre`]} </Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{rolesdeusuario(item[`roles`])}</Text></Table.Cell>
               <Table.Cell>{item[`status`] ? <Badge color="success" variant="flat">Activo</Badge> : <Badge color="error" variant="flat">Inactivo</Badge>}</Table.Cell>
