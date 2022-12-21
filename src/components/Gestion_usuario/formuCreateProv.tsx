@@ -1,7 +1,7 @@
 import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
+import { Modal, useModal, FormElement, Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
 import axios from "axios";
 import Header from "./Header";
 import {toast, ToastContainer} from "react-toastify"
@@ -46,10 +46,6 @@ function Formulario() {
       });
       
 
-    const validateDate = (vadate:String) => {
-      return vadate.match(/^19[0-9]{2}$/i);
-    };
-
     const selectedValue = React.useMemo(
       () => {
         selecte.forEach((value:any) => state.mes = value);
@@ -74,12 +70,13 @@ function Formulario() {
         if(state.dia.length == 1){
             state.dia = "0" + state.dia
         }
-        state.contraseña = state.dia + state.mes + state.anio
-        
-        if(state.contraseña == " "){
-          state.contraseña = ""
+                
+        if(state.mes == " "){
+          state.mes = ""
         }
-        
+        state.contraseña = state.dia + "$" + state.mes + "$" + state.anio
+
+        console.log(state.contraseña)
         axios.post('http://localhost:3001/users/create', state).then(
           response => {
             console.log("Usuario creado " + response.data);
@@ -152,6 +149,8 @@ function Formulario() {
               width="60px"
               placeholder="Día"             
               name="dia"
+              minLength={2}
+              maxLength={2}
               onChange={handleChange} 
               value={state.dia}
               />
@@ -197,6 +196,9 @@ function Formulario() {
                     width="65px"
                     placeholder="Año"
                     name="anio"
+                    maxLength={4}
+                    minLength={4}
+                    pattern = "(19|20)[0-9]{2}"
                     onChange={handleChange} 
                     value={state.anio}
                     />

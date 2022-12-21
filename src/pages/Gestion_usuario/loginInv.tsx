@@ -44,15 +44,13 @@ function Invi () {
     console.log(state.username)
     let us:string = "" 
     us = state.username.replaceAll(".","")
-    //state.username = state.username.replaceAll(".","")
-    //state.username = state.username.replaceAll("-","")
     state.username = us
 
     if(state.dia.length == 1){
       state.dia = "0" + state.dia
     }
     
-    state.password = state.dia + state.mes + state.anio
+    state.password = state.dia + "$" + state.mes + "$" + state.anio
     
     console.log('handleClick 👉️', state);
 
