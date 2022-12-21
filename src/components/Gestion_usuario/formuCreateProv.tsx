@@ -5,6 +5,7 @@ import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Gri
 import axios from "axios";
 import Header from "./Header";
 import {toast, ToastContainer} from "react-toastify"
+import internal from "stream";
 
 
 type UserType = {
@@ -28,10 +29,9 @@ function Formulario() {
     
     const volver = useNavigate();
     const { setVisible, bindings } = useModal();
-    const rol_tags = ["gerente", "administrador", "analista"];
     const [selected, setSelected] = useState<string[]>([]);
 
-    const [selecte, setSelecte] = React.useState<any>(new Set("Mes"));
+    const [selecte, setSelecte] = React.useState<any>(new Set("Mes "));
 
     const [state, setState] = useState<UserType>({
         nombre: "",
@@ -45,13 +45,18 @@ function Formulario() {
         roles: [4]
       });
       
-      const selectedValue = React.useMemo(
-        () => {
-          selecte.forEach((value: any) => state.mes = value);
-          return selecte;
-        },
-        [selecte]
-      );
+
+    const validateDate = (vadate:String) => {
+      return vadate.match(/^19[0-9]{2}$/i);
+    };
+
+    const selectedValue = React.useMemo(
+      () => {
+        selecte.forEach((value:any) => state.mes = value);
+        return selecte;
+      },
+      [selecte]
+    );
 
 
 
@@ -63,20 +68,6 @@ function Formulario() {
         });
       }
 
-      const handleCheckbox = (e: string[]) => {
-        console.log(e);
-        let newRolTags : number[] = [];
-        for (let i of e){
-          newRolTags.push(1+rol_tags.indexOf(i));
-        }
-        setState((state) => {
-          return({
-            ...state,
-            roles: newRolTags
-          });
-        });
-        setSelected(e);
-      }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
         console.log(state)
@@ -84,11 +75,14 @@ function Formulario() {
             state.dia = "0" + state.dia
         }
         state.contraseña = state.dia + state.mes + state.anio
-
+        
+        if(state.contraseña == " "){
+          state.contraseña = ""
+        }
         
         axios.post('http://localhost:3001/users/create', state).then(
           response => {
-            console.log("Usuario creado "+ response.data);
+            console.log("Usuario creado " + response.data);
             
             if(response.status === 409){
               console.log("ya existe")
