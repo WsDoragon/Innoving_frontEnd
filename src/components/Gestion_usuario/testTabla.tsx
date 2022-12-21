@@ -364,6 +364,8 @@ export default function TestTabla() {
           )}
         </Table.Body>
 
+        {/* Premio para el que logre hacer que no se desconfigure esto...
+            Sino se elimina y no se pone la paginacion... */}
         <Table.Pagination
         total={pagination()}
         shadow
