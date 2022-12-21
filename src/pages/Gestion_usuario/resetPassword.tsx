@@ -6,7 +6,7 @@ import swal from 'sweetalert2'
 import { Button, FormElement, Input, Spacer } from '@nextui-org/react';
 
 
-let regExPassword = /^(?=.*[A-Z])(?=.*[0123456789])[A-Za-z\d@$!%*?&#]{8,16}$/;
+let regExPassword = /^(?=.*[A-Z])(?=.*[0123456789])[A-Za-z]{8,16}$/;
 
 export default function ResetPassword(){
     let { id, tokenresetpassword } = useParams();
