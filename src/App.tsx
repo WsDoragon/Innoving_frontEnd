@@ -82,8 +82,6 @@ function App() {
           <Route path="administrador" element={<Administrador />}>
             <Route path="usuarios_innoving" element={<TestTabla />} />
             <Route path="usuarios_proveedores" element={<TestTablaProv />} />
-            <Route path="usuarios_inn_des" element={<TablaDesactivadosInnoving />} />
-            <Route path="usuarios_prov_des" element={<TablaDesactivados />} />
           </Route>
 
           <Route path="proveedor" element={<Proveedor />}>
