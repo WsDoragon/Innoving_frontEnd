@@ -15,6 +15,7 @@ export const Navbar = () => {
   return (
     <ContenedorNavbar >
 
+          {/*
           <ContenedorBuscador> 
             <ContenedorIconBuscador> 
               <i className='bx bx-search'></i>
@@ -23,7 +24,8 @@ export const Navbar = () => {
               placeholder='Buscar'
             />
           </ContenedorBuscador>
-
+  */}
+          <h2>Ejes</h2>
           <ContenedorItemsAcordeon>
             {ejesIn.map(ejes => {
               return(
