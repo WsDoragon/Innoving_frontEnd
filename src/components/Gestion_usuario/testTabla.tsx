@@ -233,45 +233,56 @@ export default function TestTabla() {
         { name: "STATUS", uid: "pass" },
         { name: "ACTIONS", uid: "rut" },
     ]
+    // Se calcula la cantidad de paginas para la paginacion de la tabla
+    const pagination = () => {
+      let pageSize = 4
+      if (users23.length%pageSize > 0){
+        return (users23.length/pageSize + 1)
+      }
+      else{
+        return (users23.length/pageSize)
+      }
+      
+    };
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
-        <div>
+        
           <Button 
           onClick={() => {navigate("/formulario")}} as={Link} href="#" 
-          css={{right:"20px"}}
+          //css={{right:"20px"}}
           >Crear nuevo usuario</Button>
         
-        
-         {/*ponerlos todos a la derecha estos*/}
-         <Radio.Group 
-            label="Filtro usuarios:"
-            value={checked}
-            onChange={setChecked}
-            orientation="horizontal"
-            style={{marginRight:20}}
-            css={{float:'right'}}
-          >
-            
-              <Radio value="Todos" color="primary">Todos</Radio>
-              <Radio value="Activos" color="success">Activos</Radio>
-              <Radio value="Inactivos" color="error">Inactivos</Radio>
-            
-          </Radio.Group>
-          <input
+        <Spacer y={0.5}/>
+        {/*ponerlos todos a la derecha estos*/}
+        <input
             type="search"
-            style={{borderRadius:15, textIndent:12,marginTop:10}}
+            style={{borderRadius:15, textIndent:12,marginTop:"1.25%", float:'right', width:"20%", marginRight:"2%"}}
             
             placeholder="Busqueda por nombre"
             value={searchQuery}
             onChange={event => setSearchQuery(event.target.value)}
+            
             />
-          
 
-          
+        <div style={{marginLeft:"1.25%"}}>
+          <Radio.Group 
+              label="Filtro usuarios:"
+              value={checked}
+              onChange={setChecked}
+              orientation="horizontal"
+              style={{paddingLeft:"200px"}}
+              css={{left:"20px"}}
+            >
+              
+                <Radio value="Todos" color="primary" size="sm">Todos</Radio>
+                <Radio value="Activos" color="success" size="sm">Activos</Radio>
+                <Radio value="Inactivos" color="error" size="sm">Inactivos</Radio>
+              
+            </Radio.Group>
           </div>
           
-          <Spacer y={1.5} ></Spacer>  
+          {<Spacer y={0.5}/> }
         
           <Table
           bordered
@@ -284,6 +295,7 @@ export default function TestTabla() {
             minWidth: "100%"
             
           }}
+          
       >
           <Table.Header columns={columns}>
           {(column) => (
@@ -351,7 +363,15 @@ export default function TestTabla() {
             </Table.Row>
           )}
         </Table.Body>
-        
+
+        <Table.Pagination
+        total={pagination()}
+        shadow
+        noMargin
+        align="center"
+        rowsPerPage={4}
+        onPageChange={(page) => console.log({ page })}
+      />
           </Table>
 
           {/*<ModalDisable toDisable = {disableUser}/>*/}
