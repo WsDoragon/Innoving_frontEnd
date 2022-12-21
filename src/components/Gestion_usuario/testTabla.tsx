@@ -76,7 +76,8 @@ export default function TestTabla() {
     setShowResults2(true)
     setDisableUser(item)
   }
-
+  
+  // Desactivar o activar usuario, procesado en otro componente
   const handler3 = (dataMensaje:any, dataConsulta: any, dataState?: any) => {
     setDatos({mensaje: dataMensaje, active:true, consulta:dataConsulta, state: dataState, callback: (data: any) => {
       setShowResults3(false);
