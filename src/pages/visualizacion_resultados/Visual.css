@@ -6,8 +6,8 @@
   
   .container1{
     display: grid;
-    border: 1px solid black;
-    background: rgb(156, 156, 156);
+    border: black 5px double;
+    background: rgb(196, 194, 194);
     padding: 5px;
   
   }
@@ -19,21 +19,10 @@
     padding: 5px;
   
   }
-  .containerGraphs{
-    display: block;
-    border: 1px solid black;
-    padding: 10px;
-    background: white;
-    width: 75%;
-    height: 50%;
-    justify-content:left;
-    justify-self:left;
-    align-self: center;
-  }
-  
+
   .containerButtoms{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: inline-block;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   
   }
   
@@ -48,7 +37,7 @@
   }
   .graph {
     display: inline-block;
-    width: 50%;
+    width: 65%;
     height: 50%;
   }
   
@@ -59,9 +48,10 @@
     height:25%;
   }
   
-  .buttom{
-    display: inline-block;
-    position: relative;
+  .boton{
+    display:inline;
+    padding: 5px;
+
   }
   
   .graphTytle{
@@ -80,6 +70,7 @@
     text-align: left;
     width: 200px;
     height: 30px;
+    padding: 5px;
   }
   
   .dropdown2{
