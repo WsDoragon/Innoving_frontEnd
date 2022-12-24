@@ -67,15 +67,13 @@ function App() {
             <Route path="indicadores" element={<Componente />} />
             <Route path="metas" element={<Componente />} />
             <Route path="metricas" element={<Componente />} />
-            <Route path='evidencias' element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos}/>} />
+            <Route path='evidencias' element={<Componente/>}/>
             
             <Route path="visualizacion" element={<Visual />} />
 
             <Route path="evidencias2" element={<Files />} />
             <Route path="publicaciones" element={<Publicaciones />} />
             
-            
-            <Route path="prueba/indicador/1" element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos} />} />
             <Route path="prueba/indicador/:idIndicador" element={<Indicadores />} >
 
           </Route>
@@ -84,8 +82,6 @@ function App() {
           <Route path="administrador" element={<Administrador />}>
             <Route path="usuarios_innoving" element={<TestTabla />} />
             <Route path="usuarios_proveedores" element={<TestTablaProv />} />
-            <Route path="usuarios_inn_des" element={<TablaDesactivadosInnoving />} />
-            <Route path="usuarios_prov_des" element={<TablaDesactivados />} />
           </Route>
 
           <Route path="proveedor" element={<Proveedor />}>
@@ -107,3 +103,4 @@ function App() {
 }
 
 export default App;
+

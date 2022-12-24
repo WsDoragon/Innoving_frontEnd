@@ -15,6 +15,7 @@ export const BotonSimple = styled.button`
 `
 export const BotonExtendido = styled(BotonSimple)`
     background-color: ${props => props.theme.coloresInterfaz.verde};
+    padding: 4px;
 `
 
 export const BotonIcon = styled.i`

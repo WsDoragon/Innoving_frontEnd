@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from "react";
 
 //@ts-ignore
-import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid, Badge } from "@nextui-org/react";
+import { Table, Row, Col, Tooltip, User, Text, Button, Link, Spacer, Modal, useModal, Grid, Badge, Radio } from "@nextui-org/react";
 import algo from './Axiostabla';
 import { IconButton } from "../../styledIcons/IconButton";
 import { EyeIcon } from "../../styledIcons/EyeIcon";
@@ -37,36 +37,30 @@ export default function TestTablaProv() {
     window.location.reload();
   }
   //PROBANDO
-  const { setVisible, bindings } = useModal();
 
   const [datos, setDatos] = useState<PropsMe>();
 
-  const [disableUser, setDisableUser] = useState<string>();
   /////////////////////////////////
-  const [showResults1, setShowResults] = React.useState(false)
-  const [showResults2, setShowResults2] = React.useState(false)
+
   const [showResults3, setShowResults3] = React.useState(false)
   ////////////////////////////////
-  const [users23, setUsers23] = useState<UserType[]>([]);
-
+  const [users23, setUsers23] = useState<UserType[]>([]); //Actualizan tabla
+  const [users24, setUsers24] = useState<UserType[]>([]); //Almacena los usuarios
+  
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allProv");
-    console.log("hola: ", todo.data.data);
-    setUsers23(todo.data.data);
+    const todo = await axios.get("http://localhost:3001/users/allProv").then((res) => {
+      console.log("hola: ", res.data.data);
+      setUsers24(res.data.data);
+      console.log("24", users24)
+    
+      setUsers23(res.data.data)
+      console.log("23", users23)
+    });
+    
   }
 
-  const handler = (item: string) => {
-    setVisible(true)
-    setShowResults(true)
-    setDisableUser(item)
-  }
 
-  const handler2 = (item: string) => {
-    setVisible(true)
-    setShowResults2(true)
-    setDisableUser(item)
-  }
-
+  // Desactivar o activar usuario, procesado en otro componente
   const handler3 = (dataMensaje:any, dataConsulta: any, dataState?: any) => {
     setDatos({mensaje: dataMensaje, active:true, consulta:dataConsulta, state: dataState, callback: (data: any) => {
       setShowResults3(false);
@@ -81,9 +75,48 @@ export default function TestTablaProv() {
     }})
     setShowResults3(true)
   }
+  //////////
 
+  //Barra busqueda
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    if(searchQuery == ""){
+      getUsers()
+    }
+    const filteredData = users24.filter(
+      user => user.nombre.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setUsers23(filteredData);
+  }, [searchQuery]);
+
+  //
+
+  // Seleccionar usuarios (Todos - Inactivos - Activos)
+
+    //Radios control
+    const [checked, setChecked] = React.useState('Todos');
   
+    useEffect(() => {
+      switch(checked) {
+  
+        case "Inactivos":
+          Inactivos()
+          return
+  
+        case "Activos":
+          activos()
+          return
+  
+        default:
+          setUsers23(users24)
+          return console.log("default")
+      }
+  
+    },[checked])
 
+  // on load page
   useEffect(() => {
     getUsers();
   }, []);
@@ -92,27 +125,43 @@ export default function TestTablaProv() {
     console.log("============== component updated ================")
     console.log(users23);
   }, [users23]);
+  /////
 
-  const desactivar = () => {
-    setVisible(false)
-    
-    axios.put(`http://localhost:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
-    refreshPage()
-  }
-
-  const activar = () => {
-    setVisible(false)
-    
-    axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => {console.log("usuario desactivado "+res.data)})
-    refreshPage()
-  } 
-
+  /* Se queda quieto esto, quizas y solo quizas pongo los roles
+  en lo que es esta tabla (por estetica mas que nada) */
+/*
   const rolesdeusuario = (roles:any) =>{
     let a = JSON.stringify(roles).replaceAll('"','').replaceAll('[', '').replaceAll(']','').replaceAll(',',' - ')
     return (a)
 
     
   }
+*/
+
+  //ver status con el filter para filtrar las cosas, no es necesario llamadas nuevas
+  const activos = async () =>{
+  let users: UserType[] = []
+  for (let i of users24){
+    if (i.status != 0){
+      users.push(i)
+    }
+  }
+  setUsers23(users)
+
+  console.log("activos: ", users23);
+  }
+
+  const Inactivos = async () =>{
+    let users: UserType[] = []
+    for (let i of users24){
+      if (i.status != 1){
+        users.push(i)
+      }
+    }
+    setUsers23(users)
+  
+    console.log("activos: ", users23);
+    }
 
   const navigate = useNavigate();
   const columns = [
@@ -137,22 +186,45 @@ export default function TestTablaProv() {
             label: "Actions"
         } 
     ];
-    const columns2 = [
-        { name: "NAME", uid: "nombre" },
-        { name: "ROLE", uid: "correo" },
-        { name: "STATUS", uid: "pass" },
-        { name: "ACTIONS", uid: "rut" },
-    ]
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
           <Button 
           onClick={() => {navigate("/formularioProv")}} as={Link} href="#" 
-          css={{right:"20px"}}
+          //css={{right:"20px"}}
           >Crear nuevo usuario</Button>
           
           
           <Spacer y={0.5} ></Spacer>
+        {/*ponerlos todos a la derecha estos*/}
+        <input
+            type="search"
+            style={{borderRadius:15, textIndent:12,marginTop:"1.25%", float:'right', width:"20%", marginRight:"2%"}}
+            
+            placeholder="Busqueda por nombre"
+            value={searchQuery}
+            onChange={event => setSearchQuery(event.target.value)}
+            
+            />
+
+        <div style={{marginLeft:"1.25%"}}>
+          <Radio.Group 
+              label="Filtro usuarios:"
+              value={checked}
+              onChange={setChecked}
+              orientation="horizontal"
+              style={{paddingLeft:"200px"}}
+              css={{left:"20px"}}
+            >
+              
+                <Radio value="Todos" color="primary" size="sm">Todos</Radio>
+                <Radio value="Activos" color="success" size="sm">Activos</Radio>
+                <Radio value="Inactivos" color="error" size="sm">Inactivos</Radio>
+              
+            </Radio.Group>
+          </div>
+          
+          {<Spacer y={0.5}/> }
         
           <Table
           bordered
@@ -185,16 +257,15 @@ export default function TestTablaProv() {
               <Table.Cell> 
                   <Row justify="center" align="center">
                   
-                  <Col css={{ d: "flex" }}>
                   <Tooltip content="Editar Usuario">
                       <Button onClick={() => {navigate(`/editarProv/${item.rut}`,{state:{rut:item.rut}})}} as={Link} href="#">
                         Editar
                       {/*<EditIcon size={20} fill="#979797" />*/}
                       </Button>
                   </Tooltip>
-                  </Col>
+                  
                   <Spacer x={0.5}/>
-                  <Col css={{ d: "flex" }}>
+                  
                   {item.status == 1 &&
                     <Tooltip
                       content="Desactivar usuario"
@@ -224,70 +295,15 @@ export default function TestTablaProv() {
                     </Tooltip>}
 
 
-                  </Col>
+                  
               </Row></Table.Cell>      
             </Table.Row>
           )}
         </Table.Body>
           </Table>
 
-          {/*<ModalDisable toDisable = {disableUser}/>*/}
-
           {showResults3 && <ModalAbstracto configmodal = {datos}/>}
           
-          {showResults1 &&
-          <Modal
-            scroll
-            width="600px"
-            aria-labelledby="modal-title"
-            aria-describedby="modal-description"
-            {...bindings}
-          >
-          <Modal.Header>
-            <Text id="modal-title" size={18}>
-              Aviso
-            </Text>
-          </Modal.Header>
-          <Modal.Body>
-            <Text id="modal-description">
-              ¿Está seguro de que quiere desactivar al usuario {disableUser}?
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button auto onClick={() => {desactivar();setVisible(false)}}>
-              Si
-            </Button>
-            <Button auto flat color="error" onClick={() => {setVisible(false)}}>
-              No
-            </Button>                
-          </Modal.Footer>
-          </Modal>}
-          {showResults2 &&
-          <Modal
-            scroll
-            width="600px"
-            aria-labelledby="modal-title"
-            aria-describedby="modal-description"
-            {...bindings}
-          >
-          <Modal.Header>
-            <Text id="modal-title" size={18}>
-              Aviso
-            </Text>
-          </Modal.Header>
-          <Modal.Body>
-            <Text id="modal-description">
-              ¿Está seguro de que quiere activar al usuario {disableUser}?
-            </Text>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button auto onClick={() => {activar();setVisible(false)}}>
-              Si
-            </Button>
-            <Button auto flat color="error" onClick={() => {setVisible(false)}}>
-              No
-            </Button>                
-          </Modal.Footer>
-          </Modal>}
+          
         </div>
 )}
