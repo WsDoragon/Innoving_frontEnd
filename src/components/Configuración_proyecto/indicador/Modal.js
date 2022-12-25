@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import styled from 'styled-components';
 //import "bootstrap-icons/font/bootstrap-icons.css";
 
+import axios from 'axios'
 
-import clienteAxios from "../../../config/axios";
+
 
 
 const  Modal = ({children, estado, cambiarEstado, titulo = "xd", mostrarHeader,
@@ -12,13 +13,10 @@ mostrarOverlay, posicionModal, indicador}) => {
   
   const [indicadorAux, SetIndicadorAux] = useState(indicador);
 
-
   function Guardar(e){
     e.preventDefault();
-    console.log(indicador.id);
-    clienteAxios.put('indicadores/editarindicador',{
-      idantigua: indicador.id,
-      id : (indicadorAux.CalificacionCORFO.charAt(0) + indicadorAux.NumeroIndicador),
+    axios.put('http://localhost:3001/indicadores/editarindicador',{
+      id : indicadorAux.id,
       CalificacionCORFO : indicadorAux.CalificacionCORFO,
       NumeroIndicador : indicadorAux.NumeroIndicador,
       MisionUniversitaria : indicadorAux.MisionUniversitaria,
@@ -28,8 +26,14 @@ mostrarOverlay, posicionModal, indicador}) => {
       Unidad : indicadorAux.Unidad,
       FuenteInformacion : indicadorAux.FuenteInformacion,
       Responsable : indicadorAux.Responsable,
-      Frecuencia : indicadorAux.Frecuencia
+      Frecuencia : indicadorAux.Frecuencia,
+      Aprobado : 0,
+      Peticion: "Editar",
+      id_editado: (indicadorAux.CalificacionCORFO.charAt(0) + indicadorAux.NumeroIndicador),
+      Descripcion: indicadorAux.Descripcion,
     })
+    cambiarEstado(false);
+    //window.location.reload(true);
   }
   
 
@@ -44,12 +48,9 @@ mostrarOverlay, posicionModal, indicador}) => {
                             <h3> {titulo} </h3>
                         </EncabezadoModal>
                     }
-
-                    <BotonCerrar onClick={() => {cambiarEstado(false); SetIndicadorAux(indicador)}}> 
-
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                      </svg>
+                    
+                    <BotonCerrar onClick={() => {cambiarEstado(false); SetIndicadorAux(indicador)}} style={{position: "absolute"}}> 
+                    X
                     </BotonCerrar>
 
                     <TablaModal>
@@ -91,12 +92,12 @@ mostrarOverlay, posicionModal, indicador}) => {
                       <select value={indicadorAux.eje} onChange={e => SetIndicadorAux({
                         ...indicadorAux,eje: e.target.value
                       })}>
-                        <option value="Gobernanza y Sinergias">Gobernanza y Sinergias</option>
-                        <option value="Gestión del Cambio y Capital Humano Avanzado">Gestión del Cambio y Capital Humano Avanzado</option>
-                        <option selected value="I+D Aplicado y Vínculo con Sector Productivo">I+D Aplicado y Vínculo con Sector Productivo</option>
-                        <option value="Comercialización de Tecnología y Emprendimiento de Base Tecnológica">Comercialización de Tecnología y Emprendimiento de Base Tecnológica</option>
-                        <option value="Alianzas Internacionales">Alianzas Internacionales</option>
-                        <option value=" Armonización Curricular y postgrados tecnológicos"> Armonización Curricular y postgrados tecnológicos</option>
+                        <option value={1}>Gobernanza y Sinergias</option>
+                        <option value={2}>Gestión del Cambio y Capital Humano Avanzado</option>
+                        <option selected value={3}>I+D Aplicado y Vínculo con Sector Productivo</option>
+                        <option value={4}>Comercialización de Tecnología y Emprendimiento de Base Tecnológica</option>
+                        <option value={5}>Alianzas Internacionales</option>
+                        <option value={6}> Armonización Curricular y postgrados tecnológicos</option>
                       </select>
                       <label>Unidad de medida</label>
                       <input type="text" value={indicadorAux.Unidad} onChange={e => SetIndicadorAux({
@@ -121,8 +122,11 @@ mostrarOverlay, posicionModal, indicador}) => {
                         <option value="Semestral">Semestral</option>
                         <option value="Anual">Anual</option>
                       </select>
-
-                      <button className='Enviar' onClick={Guardar}>Enviar</button>
+                      <label>Descripción (opcional)</label>
+                      <input type="text" value={indicadorAux.Descripcion} onChange={e => SetIndicadorAux({
+                        ...indicadorAux,Descripcion: e.target.value
+                      })}/>
+                      <button onClick={Guardar}>Enviar</button>
                     </form>
                     </TablaModal>
 

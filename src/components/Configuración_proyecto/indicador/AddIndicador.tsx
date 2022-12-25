@@ -1,10 +1,9 @@
 import React from 'react'
+import axios from 'axios'
 import swal from 'sweetalert'
 
-import axios from "axios";
-import clienteAxios from '../../../config/axios';
 
-class AddIndicador  extends React.Component<any , any > {
+class AddIndicador extends React.Component<any, any> {
 
   state = {
     CalificacionCORFO : 'Mínimo',
@@ -17,8 +16,9 @@ class AddIndicador  extends React.Component<any , any > {
     FuenteInformacion : '',
     Responsable: '',
     Frecuencia: 'Mensual',
+    Descripcion: '',
 
-    usado: false, 
+    usado: false,
     num: false,
     nom: false,
     uni: false,
@@ -29,7 +29,7 @@ class AddIndicador  extends React.Component<any , any > {
   onAddClick = () => {
     var usado = false;
 
-    this.props.indicadores.map((x : any)  => x.id === (this.state.CalificacionCORFO.charAt(0) + this.state.NumeroIndicador) ?
+    this.props.indicadores.map((x : any) => x.NumeroIndicador === parseInt( this.state.NumeroIndicador, 10)?
       usado = true
       :x)
 
@@ -97,7 +97,7 @@ class AddIndicador  extends React.Component<any , any > {
 
     }else{
 
-        clienteAxios.post('/indicadores/addindicadores',{
+      axios.post('http://localhost:3001/indicadores/addindicadores',{
         id: (this.state.CalificacionCORFO.charAt(0) + this.state.NumeroIndicador),
         CalificacionCORFO : this.state.CalificacionCORFO,
         NumeroIndicador : this.state.NumeroIndicador,
@@ -109,6 +109,7 @@ class AddIndicador  extends React.Component<any , any > {
         FuenteInformacion : this.state.FuenteInformacion,
         Responsable : this.state.Responsable,
         Frecuencia : this.state.Frecuencia,
+        Descripcion: this.state.Descripcion
       })
 
       this.setState( {
@@ -117,11 +118,12 @@ class AddIndicador  extends React.Component<any , any > {
         MisionUniversitaria : 'Primera',
         nombre : '',
         TipoIndicador: 'Entrada resultado',
-        eje : 'Gobernanza y Sinergias',
+        eje : 1,
         Unidad : '',
         FuenteInformacion : '',
         Responsable: '',
         Frecuencia: 'Mensual',
+        Descripcion: '',
 
         num: false,
         nom: false,
@@ -134,7 +136,10 @@ class AddIndicador  extends React.Component<any , any > {
         text: "'Solicitud enviada correctamente'",
         icon: "success",
         timer: 2000
-      })
+      }).then(function(){ 
+        window.location.reload();
+        }
+      )
 
     }
   }
@@ -157,7 +162,7 @@ class AddIndicador  extends React.Component<any , any > {
           <input type="text" value={this.state.NumeroIndicador} style={{borderColor: 'red'}} onChange={e => this.setState({
           NumeroIndicador: e.target.value
           })}/>
-          <p style={{fontSize: '12px'}}>Ya existe un Indicador con esa id</p>
+          <p style={{fontSize: '12px'}}>Ya existe un Indicador con ese número</p>
           </>
         : this.state.num?
           <>
@@ -273,6 +278,11 @@ class AddIndicador  extends React.Component<any , any > {
           <option value="Anual">Anual</option>
         </select>
         
+        <label>Descripción (opcional)</label>
+          <input type="text" value={this.state.Descripcion} onChange={e => this.setState({
+            Descripcion: e.target.value
+          })}/>
+    
       </form>
       <button onClick={
           () => this.onAddClick()

@@ -29,6 +29,7 @@ import Metas from './pages/Configuración_Proyecto/metas';
 import Peticiones from './pages/Configuración_Proyecto/Peticiones';
 import Datos from './pages/Configuración_Proyecto/Datos';
 import HistorialIndicadores from './components/Configuración_proyecto/historialPeticion/HistorialIndicadores';
+import HistorialPeticiones from './pages/Configuración_Proyecto/HistorialPeticiones';
 function App() {
   return (
     <Router>
@@ -39,7 +40,8 @@ function App() {
         <Route path="/home" element={<Header/>}>
           <Route path="gerente" element={<Gerente/>}>
             <Route path='indicadores' element={<Componente />} />
-            <Route path='solicitudes_indicadores' element={<HistorialIndicadores />} />
+            <Route path='solicitudes_indicadores' element={<Peticiones />} />
+            <Route path='historial_peticiones' element={<HistorialPeticiones />} />
           </Route>
         
           <Route path="analista" element={<Analista/>}>

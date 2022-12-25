@@ -17,7 +17,7 @@ export default function HistorialPeticiones() {
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await clienteAxios.get('indicadores/lista');
+        const res = await axios.get('http://localhost:3001/indicadores/lista');
         setIndicadores(res.data.data);
       };
       fetchPosts();
@@ -25,7 +25,7 @@ export default function HistorialPeticiones() {
 
       useEffect(() => {
         const fetchPosts = async () => {
-          const res = await clienteAxios.get('metas/lista');
+          const res = await axios.get('http://localhost:3001/metas/lista');
           setMetas(res.data.data);
         };
         fetchPosts();
@@ -33,7 +33,7 @@ export default function HistorialPeticiones() {
 
       useEffect(() => {
         const fetchPosts = async () => {
-          const res = await clienteAxios.get('historial/lista');
+          const res = await axios.get('http://localhost:3001/historial/lista');
           setHistorial(res.data.data);
         };
         fetchPosts();
@@ -41,7 +41,7 @@ export default function HistorialPeticiones() {
 
       useEffect(() => {
         const fetchPosts = async () => {
-          const res = await axios.get('ejes/lista');
+          const res = await axios.get('http://localhost:3001/ejes/lista');
           setEjes(res.data.data);
         };
         fetchPosts();

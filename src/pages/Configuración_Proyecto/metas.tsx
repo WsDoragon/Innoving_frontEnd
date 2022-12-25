@@ -18,19 +18,19 @@ export default function Metas() {
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await clienteAxios.get('indicadores/lista');
+        const res = await axios.get('http://localhost:3001/indicadores/lista');
         setIndicadores(res.data.data);
       };
       fetchPosts();
-    }, );
+    }, []);
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await clienteAxios.get('metas/lista');
+        const res = await axios.get('http://localhost:3001/metas/lista');
         setMetas(res.data.data);
       };
       fetchPosts();
-    }, );
+    }, []);
 
   return (
     <div className="container">

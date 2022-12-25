@@ -18,27 +18,27 @@ export default function Peticiones() {
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await clienteAxios.get('indicadores/lista');
+        const res = await axios.get('http://localhost:3001/indicadores/lista');
         setIndicadores(res.data.data);
       };
       fetchPosts();
-    }, );
+    }, []);
 
       useEffect(() => {
         const fetchPosts = async () => {
-          const res = await axios.get('metas/lista');
+          const res = await axios.get('http://localhost:3001/metas/lista');
           setMetas(res.data.data);
         };
         fetchPosts();
-      }, );
+      }, []);
 
       useEffect(() => {
         const fetchPosts = async () => {
-          const res = await clienteAxios.get('ejes/lista');
-          setEjes(res.data);
+          const res = await clienteAxios.get('http://localhost:3001/ejes/lista');
+          setEjes(res.data.data);
         };
         fetchPosts();
-      }, );
+      }, []);
 
   return (
     <div className="container">
@@ -46,17 +46,15 @@ export default function Peticiones() {
       <div className="flex-row">
         <div className="flex-large">
           <h2>Indicadores</h2>
-          <ListaIndicadores indicadores={indicadores} ejes={ejes}/>
+          <ListaIndicadores 
+              indicadores={indicadores} 
+              ejes={ejes}
+          />
 
           <h2>Metas</h2>
           <ListaMetas metas={metas} indicadores={indicadores}/>
 
-          <Link to="/historial-peticiones" className="flex-row historial" style={{color: "green"}}>
-            <button className="historial-button">
-            Historial
-            </button>
-          </Link>
-
+  
         </div>
 
       </div>

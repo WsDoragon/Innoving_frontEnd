@@ -15,18 +15,19 @@ export default function Indicadores() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await clienteAxios.get('indicadores/lista');
+      const res = await axios.get('http://localhost:3001/indicadores/lista');
       setIndicadores(res.data.data);
     };
     fetchPosts();
-  }, );
-
+  }, []);
   return (
     <div className="container">
       <div className="flex-row">
         <div className="flex-large">
           <h2>Añadir Indicador</h2>
-          <AddIndicador indicadores ={indicadores}/>
+          <AddIndicador
+          indicadores ={indicadores}
+          />
         </div>
         <div className="flex-large">
           <h2>Ver Indicadores</h2>

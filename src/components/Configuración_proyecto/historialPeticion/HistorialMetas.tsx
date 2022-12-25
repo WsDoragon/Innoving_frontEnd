@@ -1,6 +1,6 @@
 import React from 'react'
 
-class HistorialMetas extends React.Component<any,any>{    
+class HistorialMetas extends React.Component<any,any> {    
 
     render(){
         const AStyle = {
@@ -29,64 +29,27 @@ class HistorialMetas extends React.Component<any,any>{
             <tbody>
             {this.props.historial.map((historia : any) => (
                 <tr>
+                {console.log(historia)}
                 {this.props.metas.map((meta : any) => (
-                    historia.id_imm === meta.id && historia.tipo === 2?
+                    (historia.id_imm == meta.id && historia.tipo === 2)?
                     <>
-                        {meta.antiguaid === '0'?
-                            <>
-                            {this.props.indicadores.map((indicador : any) => (
-                                indicador.id === meta.idindicador ?
-                                <td>{indicador.id}</td>
-                                :
-                                <></>
-                            ))}
-                            </>
-
+                        <>
+                        {this.props.indicadores.map((indicador : any) => (
+                            indicador.id === meta.idindicador ?
+                            <td>{indicador.id}</td>
                             :
-
-                            <>
-                            {this.props.indicadores.map((indicador : any) => (
-                                indicador.id === meta.antiguaid && indicador.antiguaid === '0'?
-                                <td>{indicador.id}</td>
+                            <></>
+                        ))}
+                        </>
                             
-                                :
-                                indicador.id === meta.antiguaid?
-                                    <td>{indicador.antiguaid}</td>
-                                    :
-                                    <></>
-                                
-                            ))}
-                            </>
-
-                        }
-                            
-                        {meta.antiguaid === '0'?
-                            <>
-                            {this.props.indicadores.map((indicador : any ) => (
-                                indicador.id === meta.idindicador ?
-                                <td>{indicador.nombre}</td>
-                                :
-                                <></>
-                            ))}
-                            </>
-
+                        <>
+                        {this.props.indicadores.map((indicador : any) => (
+                            indicador.id === meta.idindicador ?
+                            <td>{indicador.nombre}</td>
                             :
-
-                            <>
-                            {this.props.indicadores.map((indicador : any) => (
-                                indicador.id === meta.antiguaid && indicador.antiguaid === '0'?
-                                <td>{indicador.nombre}</td>
-                            
-                                :
-                                indicador.id === meta.antiguaid?
-                                    <td>{indicador.nombre}</td>
-                                    :
-                                    <></>
-                                
-                            ))}
-                            </>
-
-                        }
+                            <></>
+                        ))}
+                        </>
 
                         <td>{meta.fecha}</td>
                         <td>{meta.cantidad}</td>

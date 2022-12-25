@@ -3,13 +3,12 @@ import axios from 'axios'
 import dateFormat, {masks} from "dateformat";
 import swal from 'sweetalert'
 
-import clienteAxios from "../../../config/axios";
-
-class ListaMetas extends React.Component<any , any> {    
+class ListaMetas extends React.Component<any,any> {    
 
   state = {
     idMetasA: [],
     idMetasD: [],
+    idMetasE: []
   }
 
   onAprobarClick = () => {
@@ -20,12 +19,22 @@ class ListaMetas extends React.Component<any , any> {
         buttons: ["No", "Si"]
     }).then(respuesta => {
         if (respuesta){
-            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+            let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss').toString();
             for(let i=0; i < this.state.idMetasA.length ; i++){ 
-                clienteAxios.put(`metas/setaprobado/${this.state.idMetasA[i]}_Añadir_${today}`)
+                axios.put(`http://localhost:3001/metas/setaprobado/${this.state.idMetasA[i]}_Añadir_${today}`)
             }
             for(let i=0; i < this.state.idMetasD.length ; i++){ 
-                clienteAxios.put(`metas/deletemetas/${this.state.idMetasD[i]}_Eliminar_${today}`)
+                axios.put(`http://localhost:3001/metas/deletemetas/${this.state.idMetasD[i]}_Eliminar_${today}`)
+            }
+            for(let i=0; i < this.state.idMetasE.length ; i++){ 
+                let e : any = this.state.idMetasE[i];
+                let ids_aux = e.split(",");
+                
+                let id_eliminar = ids_aux[1];
+                let id_reemplazar = ids_aux[0];
+                
+                axios.delete(`http://localhost:3001/metas/eliminarmeta/${id_eliminar}_${id_reemplazar}`)
+                axios.put(`http://localhost:3001/metas/setaprobado/${id_reemplazar}_Editar_${today}`)
             }
             this.setState( {
                 idMetasA: [],
@@ -33,11 +42,14 @@ class ListaMetas extends React.Component<any , any> {
                 fechasMetasA: [],
                 fechasMetasD: [],
               })
-            swal({
-                text: "Las solicitudes se aceptaron correctamente",
+              swal({
+                text: "'Solicitud enviada correctamente'",
                 icon: "success",
                 timer: 2000
-            })
+              }).then(function(){ 
+                //window.location.reload();
+                }
+              )
         }
     })
   }
@@ -52,25 +64,35 @@ class ListaMetas extends React.Component<any , any> {
         if (respuesta){
             let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
             for(let i=0; i < this.state.idMetasA.length ; i++){ 
-                clienteAxios.put(`metas/deletemetas/${this.state.idMetasA[i]}_Añadir_${today}`)
+                axios.put(`http://localhost:3001/metas/deletemetas/${this.state.idMetasA[i]}_Añadir_${today}`)
             }
             for(let i=0; i < this.state.idMetasD.length ; i++){ 
-                clienteAxios.put(`metas/setaprobado/${this.state.idMetasD[i]}_Eliminar_${today}`)
+                axios.put(`http://localhost:3001/metas/setaprobado/${this.state.idMetasD[i]}_Eliminar_${today}`)
+            }
+            for(let i=0; i < this.state.idMetasE.length ; i++){ 
+                let e  : any = this.state.idMetasE[i];
+                let ids_aux = e.split(",");
+                let id_reemplazar = ids_aux[0];
+                let id = ids_aux[1];
+                axios.delete(`http://localhost:3001/metas/eliminarmetaeditado/${id_reemplazar}_${id}_${today}`)
             }
             this.setState( {
                 idMetasA: [],
                 idMetasD: []
               })
-            swal({
-                text: "Las solicitudes se rechazaron correctamente",
+              swal({
+                text: "'Solicitud enviada correctamente'",
                 icon: "success",
                 timer: 2000
-            })
+              }).then(function(){ 
+                window.location.reload();
+                }
+              )
         }
     })
   }
 
-  AClick = (e : any) => {
+  AClick = (e : any ) => {
     this.state.idMetasA.includes(e.target.value as never) ? 
                         this.state.idMetasA = this.state.idMetasA.filter((item) => item !== e.target.value) 
                         : 
@@ -79,10 +101,10 @@ class ListaMetas extends React.Component<any , any> {
   }
 
   DClick = (e : any) => {
-    this.state.idMetasD.includes(e.target.valu as never) ? 
+    this.state.idMetasD.includes(e.target.value as never) ? 
                         this.state.idMetasD = this.state.idMetasD.filter((item) => item !== e.target.value)
                         : 
-                        this.state.idMetasD.push(e.target.value as never);
+                        this.state.idMetasD.push(e.target.value as never );
 
   }
 
@@ -93,6 +115,10 @@ class ListaMetas extends React.Component<any , any> {
 
     const DStyle = {
         color: 'rgb(170, 25, 25)'
+    };
+
+    const EStyle = {
+        color: 'rgb(64, 168, 248)'
     };
 
     return(
@@ -125,7 +151,8 @@ class ListaMetas extends React.Component<any , any> {
                         e => this.AClick(e)
                         }/>
                 </td>
-                :
+
+                : meta.Peticion === 'Eliminar' ?
                 <td>
                     <input
                     className='checkbox'
@@ -135,6 +162,19 @@ class ListaMetas extends React.Component<any , any> {
                     onChange={
                         e => this.DClick(e)
                         }/>
+                </td>
+                :
+                <td>
+                <input
+                className='checkbox'
+                type="checkbox"
+                name="lang"
+                value={[meta.id, meta.antiguaid]}
+                onChange={(e : any )=> this.state.idMetasE.includes(e.target.value as never) ? this.state.idMetasE = this.state.idMetasE.filter((item) => 
+                    item !== e.target.value) 
+                    : 
+                    this.state.idMetasE.push(e.target.value as never)
+                  }/>
                 </td>
                 }
                 <td>{meta.idindicador}</td>
@@ -152,11 +192,13 @@ class ListaMetas extends React.Component<any , any> {
                 <td>{meta.fecha}</td>
                 <td>{meta.cantidad}</td>
 
-
                 {meta.Peticion === 'Añadir'?
                     <td style={AStyle}>{meta.Peticion}</td>
+                    : meta.Peticion === 'Eliminar'?
+                    <td style={DStyle}>{meta.Peticion}</td>
                     :
-                    <td style={DStyle}>{meta.Peticion}</td>}
+                    <td style={EStyle}>{meta.Peticion}</td>}
+
             </tr>
             :
             <div/>
