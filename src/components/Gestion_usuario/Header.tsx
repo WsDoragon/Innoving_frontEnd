@@ -14,18 +14,18 @@ import { Outlet, useNavigate } from "react-router-dom";
 const Header: React.FC = () => {
   const { setVisible, bindings } = useModal();
   const navigate = useNavigate();
-  let gerenteb = sessionStorage?.rol?.includes("Gerente");
-  let administradorb = sessionStorage?.rol?.includes("Administrador");
-  let analistab = true || sessionStorage?.rol?.includes("Analista");
-  let proveedorb = sessionStorage?.rol?.includes("Proveedor");
+  let gerenteb = sessionStorage.rol.includes("Gerente");
+  let administradorb = sessionStorage.rol.includes("Administrador");
+  let analistab = sessionStorage.rol.includes("Analista");
+  let proveedorb = sessionStorage.rol.includes("Proveedor");
 
-  // useEffect(() => {
-  //   if (sessionStorage.autorizado != "false") {
-  //     sessionStorage.setItem("autorizado", "false");
-  //     console.log(sessionStorage.rol[0]);
-  //     navigate(`./${JSON.parse(sessionStorage.rol)[0]}`);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (sessionStorage.autorizado != "false") {
+      sessionStorage.setItem("autorizado", "false");
+      console.log(sessionStorage.rol[0]);
+      navigate(`./${JSON.parse(sessionStorage.rol)[0]}`);
+    }
+  }, []);
 
   return (
     <>
