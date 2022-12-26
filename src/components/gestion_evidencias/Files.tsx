@@ -1,252 +1,165 @@
-import React,{useState} from "react"
-import {Table,Button,Container,Modal,ModalBody,ModalHeader,FormGroup,ModalFooter} from "reactstrap"
+import React, { useState, useEffect } from "react";
+import {
+  Table,
+  Button,
+  Container,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  FormGroup,
+  Label,
+  Input,
+} from "reactstrap";
+import axios from "axios";
+import FileDownload from "js-file-download";
+import Swal from "sweetalert2";
 
-
-type dataFiles = {
-    id: number,
-    nombre: string,
-    nombreArchivo: string,
-    idPubli: number,
-    idProy: number
+interface File {
+  id: number;
+  nombre: string;
+  ruta: string;
+  idFkPub: string;
 }
 
-const dataExample: dataFiles[] =  [
-    {id:1, nombre: "reg.pdf",nombreArchivo: "registro de ejemplo 1",idPubli: 1,idProy:0},
-    {id:2, nombre: "planilla2021.exel",nombreArchivo: "notas alumnos",idPubli: 2,idProy:0},
-    {id:3, nombre: "presentacion final.pptx",nombreArchivo: "presentacion publicacion",idPubli: 5,idProy:0},
-]
+export default function Publicaciones() {
+  const [files, setFiles] = useState<File[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentFile, setCurrentFile] = useState<File>({
+    id: 0,
+    nombre: "",
+    ruta: "",
+    idFkPub: "",
+  });
+  const [pubId, setPubId] = useState<number>(-1);
 
-type dataPubli = {
-    id:number,
-    titulo:string
-}
+  useEffect(() => {
+    axios.get("http://localhost:3001/api/files").then(({ data }) => {
+      console.log(data.data);
+      setFiles(data.data);
+    });
+  }, [currentFile]);
 
-type dataProyec = {
-    id:number,
-    nombre:string
-}
+  const openModal = (file: File) => {
+    setCurrentFile(file);
+    setIsModalOpen(true);
+  };
 
-const dataPub: dataPubli[] = [
-    {id:1, titulo: "hola"},
-    {id:2,titulo: "como andas"}
-]
-
-const dataPro: dataProyec[] = [
-    {id:5,nombre:"leo"},
-    {id:10,nombre:"fabi"}
-]
-
-
-function Files(){    
-
-    const [showAsoc,setShowAsoc] = React.useState(false)
-
-    const [showDelete,setShowDelete] = React.useState(false)
-
-    const [showPubli,setShowPubli] = React.useState(false)
-
-    const [showProyec,setShowProyec] = React.useState(false)
-
-    const handleShow = (d:boolean,id:string) => {
-        if(id === "asociar") setShowAsoc(d)
-        else if(id === "eliminar") setShowDelete(d)
-        else if(id === "publi") setShowPubli(d)
-        else if(id === "proye") setShowProyec(d)
+  const closeModal = (flag: boolean) => {
+    if (flag) {
+      if (pubId > 0) {
+        axios
+          .post("http://localhost:3001/api/files/" + currentFile.id, {
+            pubId,
+          })
+          .then(() => {
+            Swal.fire({
+              title: "Cambios Registrados",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          });
+      }
     }
+    setIsModalOpen(false);
+    setCurrentFile({
+      id: 0,
+      nombre: "",
+      ruta: "",
+      idFkPub: "",
+    });
+  };
 
-        return(
-            <Container>
-                <br />
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>
-                                ID
-                            </th>
+  return (
+    <Container>
+      <Table className="text-center">
+        <thead>
+          <tr>
+            <th>ID</th>
 
-                            <th>
-                                nombre
-                            </th>
+            <th>Nombre</th>
+            <th>Publicación ID</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
 
-                            <th>
-                                nombreArchivo
-                            </th>
+        <tbody>
+          {files?.map((archivo) => (
+            <tr>
+              <td>{archivo.id}</td>
+              <td>{archivo.nombre}</td>
+              <td>{archivo.idFkPub}</td>
+              <td>
+                <Button
+                  style={{ marginRight: "10px" }}
+                  color="primary"
+                  onClick={() => {
+                    axios({
+                      url: `http://localhost:3001/api/files/download/${archivo.id}`,
+                      method: "GET",
+                      responseType: "blob",
+                    }).then((response) => {
+                      FileDownload(response.data, archivo.nombre);
+                    });
+                  }}
+                >
+                  Descargar
+                </Button>
+                <Button color="secondary" onClick={() => openModal(archivo)}>
+                  Asociar
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <Modal isOpen={isModalOpen}>
+        <ModalHeader>
+          <div>
+            <h3>Asociar archivo</h3>
+          </div>
+        </ModalHeader>
 
-                            <th>
-                                idPubli
-                            </th>
+        <ModalBody>
+          <Table className="text-center">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+              </tr>
+            </thead>
 
-                            <th>
-                                idProy
-                            </th>
+            <tbody>
+              <tr>
+                <td>{currentFile?.id}</td>
+                <td>{currentFile?.nombre}</td>
+              </tr>
+            </tbody>
+          </Table>
 
-                            <th>
-                                acciones
-                            </th>
-                        </tr>
-                    </thead>
+          <FormGroup>
+            <Label for="pubId">Ingresar Publicación ID: </Label>
+            <Input
+              type="number"
+              name="number"
+              id="pubId"
+              placeholder="publicacion ID"
+              defaultValue={currentFile?.idFkPub}
+              onChange={(e) => setPubId(Number(e.target.value))}
+            />
+          </FormGroup>
+        </ModalBody>
 
-                    <tbody>
-
-                        {dataExample.map((archivos)=>(
-                            <tr>
-                                <td>{archivos.id}</td>
-                                <td>{archivos.nombre}</td>
-                                <td>{archivos.nombreArchivo}</td>
-                                <td>{archivos.idPubli}</td>
-                                <td>{archivos.idProy}</td>
-                                <td>
-                                    <Button color = "primary" onClick={()=>handleShow(true,"asociar")}>Asociar</Button>{"  "}
-                                    <Button color = "danger" onClick={()=>handleShow(true,"eliminar")}  >eliminar</Button>
-                                </td>
-                            </tr>
-                        ))}
-
-                        <Modal isOpen = {showAsoc}>
-                            <ModalHeader>
-                                <div>
-                                    <h3>Asociar</h3>
-                                </div>
-                            </ModalHeader>
-
-                            <ModalBody>
-
-                                <Button color="primary" onClick={()=>handleShow(true,"publi")} >Publicaciones</Button>{"  \n "}
-                                <Button color="primary" onClick={()=>handleShow(true,"proye")} >proyectos</Button>
-
-                            </ModalBody>
-
-                            <ModalFooter>
-                                <Button color="danger" onClick={()=>handleShow(false,"asociar")}>cancelar</Button>
-                            </ModalFooter>
-
-                        </Modal>
-
-                        <Modal isOpen = {showDelete}>
-                            <ModalHeader>
-                                <div>
-                                    <h3>Borrar</h3>
-                                </div>
-                            </ModalHeader>
-
-                            <ModalBody>
-
-                            <Button color="danger">borrar!</Button>
-
-                            </ModalBody>
-
-                            <ModalFooter>
-                                <Button color="danger" onClick={()=>handleShow(false,"eliminar")} >Cancelar</Button>
-                            </ModalFooter>
-
-                        </Modal>
-
-                        <Modal isOpen = {showPubli}>
-                            <ModalHeader>
-                                <div>
-                                    <h3>Asociar a publicaciones</h3>
-                                </div>
-                            </ModalHeader>
-
-                            <ModalBody>
-
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            ID
-                                        </th>
-                                            
-                                        <th>
-                                            Titulo
-                                        </th>
-
-                                        <th>
-                                            acción
-                                        </th>
-
-                                        </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    {dataPub.map((archivos)=>(
-                                <tr>
-                                    <td>{archivos.id}</td>
-                                    <td>{archivos.titulo}</td>
-                                    <td>
-                                        <Button color = "primary">Asociar</Button>
-                                        
-                                    </td>
-                                </tr>
-                            ))}
-
-                                </tbody>
-
-                            </Table>
-
-                            </ModalBody>
-
-                            <ModalFooter>
-                                <Button color="danger" onClick={()=>handleShow(false,"publi")} >Cancelar</Button>
-                            </ModalFooter>
-
-                        </Modal>
-
-                        <Modal isOpen = {showProyec}>
-                            <ModalHeader>
-                                <div>
-                                    <h3>Asociar a proyectos</h3>
-                                </div>
-                            </ModalHeader>
-
-                            <ModalBody>
-
-                            <Table>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            ID
-                                        </th>
-                                            
-                                        <th>
-                                            Nombre
-                                        </th>
-
-                                        <th>
-                                            acción
-                                        </th>
-
-                                        </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    {dataPro.map((archivos)=>(
-                                <tr>
-                                    <td>{archivos.id}</td>
-                                    <td>{archivos.nombre}</td>
-                                    <td>
-                                        <Button color = "primary">Asociar</Button>
-                                        
-                                    </td>
-                                </tr>
-                            ))}
-
-                                </tbody>
-
-                            </Table>
-
-                            </ModalBody>
-
-                            <ModalFooter>
-                                <Button color="danger" onClick={()=>handleShow(false,"proye")} >Cancelar</Button>
-                            </ModalFooter>
-                        </Modal>
-                    </tbody>
-                </Table>
-            </Container>
-        )
-    }
-
-export default Files
+        <ModalFooter>
+          <Button color="primary" onClick={() => closeModal(true)}>
+            Continuar
+          </Button>
+          <Button color="danger" onClick={() => closeModal(false)}>
+            Cancelar
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </Container>
+  );
+}
