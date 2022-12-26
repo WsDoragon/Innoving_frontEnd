@@ -106,7 +106,7 @@ export default function Func (){
         <Spacer x={3}/>
     
         <Row justify="center">
-                <Button size="sm" >
+                <Button onClick={() => navigate("/forgotPass")} size="sm" >
                   Recuperar Contraseña
                 </Button>
                 <text>ㅤ</text>
@@ -148,15 +148,8 @@ export default function Func (){
           </Modal.Footer>
         </Modal>
 
-        
-        
-        
-        
- 
-
         </div>
 
-        
   )}
 
 

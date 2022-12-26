@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Grid, Button, Link, Spacer} from "@nextui-org/react";
+import { Grid, Button, Link, Spacer, Row} from "@nextui-org/react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Gestion_usuario/Header";
 
@@ -11,21 +11,24 @@ function Gerente(){
         navigate("./indicadores");
       }, []);
 
+    const style = {marginLeft: 20}
+
     return(
-        <>
-        
-        <Grid.Container  gap={2} justify="center">
-            <Grid xs={12}>
+        <div style={style}>
+        <Spacer y = {0.5} />
+        <Row>
                 <Button onPress={() => navigate("./indicadores")} auto flat as={Link} href="#"> Indicadores </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./solicitudes_indicadores")} auto flat as={Link} href="#"> Solicitud de indicadores </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./historial_peticiones")} auto flat as={Link} href="#"> Historial peticiones </Button>
 
-            </Grid>
-        </Grid.Container>
+            
+        </Row>
+        <Spacer x = {0.5} />
         <Outlet />
-        </>
+        </div >
+        
     );
 }
 

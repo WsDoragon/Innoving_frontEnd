@@ -9,19 +9,12 @@ export const EvidenciasIndicador = (props:{type:string}) => {
   return (
     <BoxEvidencias type={props.type}>
             <EtiquetasIndicadores >M25</EtiquetasIndicadores>
-      <EtiquetasIndicadores >M47</EtiquetasIndicadores>
-      <EtiquetasIndicadores >M104</EtiquetasIndicadores>
-            <TextoTituloNegrita>Nombre evidencia</TextoTituloNegrita>
+            <EtiquetasIndicadores >M47</EtiquetasIndicadores>
+            <EtiquetasIndicadores >M104</EtiquetasIndicadores>
+            <TextoTituloNegrita>Nombre publicación</TextoTituloNegrita>
             <TextoBlockTable>
-              <Texto>Variable 1: </Texto>
-              <Texto>Variable 2: </Texto>
               <Stack>
-              <Visualizador buttonName="Editar">
-                <TextoNegrita> Verificar valores </TextoNegrita>
-                <InputPublicación placeholder='Eje'/>
-                <BotonExtendido> Confirmar </BotonExtendido>
-              </Visualizador>
-              <BotonExtendido >Confirmar</BotonExtendido>
+                <BotonExtendido> Objetar </BotonExtendido>
               </Stack>
             </TextoBlockTable>
           </BoxEvidencias>

@@ -1,9 +1,11 @@
 import React from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
+import { Modal, useModal, FormElement, Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
 import axios from "axios";
 import Header from "./Header";
+import {toast, ToastContainer} from "react-toastify"
+import internal from "stream";
 
 
 type UserType = {
@@ -27,10 +29,9 @@ function Formulario() {
     
     const volver = useNavigate();
     const { setVisible, bindings } = useModal();
-    const rol_tags = ["gerente", "administrador", "analista"];
     const [selected, setSelected] = useState<string[]>([]);
 
-    const [selecte, setSelecte] = React.useState<any>(new Set("Mes"));
+    const [selecte, setSelecte] = React.useState<any>(new Set("Mes "));
 
     const [state, setState] = useState<UserType>({
         nombre: "",
@@ -44,13 +45,14 @@ function Formulario() {
         roles: [4]
       });
       
-      const selectedValue = React.useMemo(
-        () => {
-          selecte.forEach((value: any) => state.mes = value);
-          return selecte;
-        },
-        [selecte]
-      );
+
+    const selectedValue = React.useMemo(
+      () => {
+        selecte.forEach((value:any) => state.mes = value);
+        return selecte;
+      },
+      [selecte]
+    );
 
 
 
@@ -62,56 +64,59 @@ function Formulario() {
         });
       }
 
-      const handleCheckbox = (e: string[]) => {
-        console.log(e);
-        let newRolTags : number[] = [];
-        for (let i of e){
-          newRolTags.push(1+rol_tags.indexOf(i));
-        }
-        setState((state) => {
-          return({
-            ...state,
-            roles: newRolTags
-          });
-        });
-        setSelected(e);
-      }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
         console.log(state)
         if(state.dia.length == 1){
             state.dia = "0" + state.dia
         }
-        state.contraseña = state.dia + state.mes + state.anio
+                
+        if(state.mes == " "){
+          state.mes = ""
+        }
+        state.contraseña = state.dia + "$" + state.mes + "$" + state.anio
 
-        
+        console.log(state.contraseña)
         axios.post('http://localhost:3001/users/create', state).then(
-        response => {
-          console.log("Usuario creado "+ response.data);
-          
-          if(response.status === 400){
-            console.log("ya existe")
-          }
-
-          axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
-            res => {
-              console.log("Roles asignados "+res.data)
-          });
-      }).catch(function(error){
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-      }});
-      console.log('handleClick 👉️', state);
-      delay(3000)
-      volver(-1)
-      
-    }; 
+          response => {
+            console.log("Usuario creado " + response.data);
+            
+            if(response.status === 409){
+              console.log("ya existe")
+            }
+            else{
+              axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
+                res => {
+                  console.log("Roles asignados "+ res.data)
+                  console.log('handleClick 👉️', state);
+                  delay(3000)
+                  volver(-1)
+              });
+            }
+        }).catch(function(error){
+          if (error.response) {
+            
+              console.log(error.response)
+              toast.error(error.response.data.error, {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+            
+  
+        }});
+        setVisible(false)
+      }; 
      
     return (
       <div>
       <Header/>
+      <ToastContainer/>
       <Spacer y={1} />
         <Grid.Container justify="center">
             <Input width="50%" placeholder="Nombre(s)" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
@@ -125,6 +130,15 @@ function Formulario() {
 
             <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
             <Spacer y={3} />
+            
+            <Row justify="center">
+            <Text>
+              Fecha de Nacimiento:
+            </Text>
+            </Row>
+
+
+
 
             <Row justify="center">
 
@@ -135,6 +149,8 @@ function Formulario() {
               width="60px"
               placeholder="Día"             
               name="dia"
+              minLength={2}
+              maxLength={2}
               onChange={handleChange} 
               value={state.dia}
               />
@@ -180,6 +196,9 @@ function Formulario() {
                     width="65px"
                     placeholder="Año"
                     name="anio"
+                    maxLength={4}
+                    minLength={4}
+                    pattern = "(19|20)[0-9]{2}"
                     onChange={handleChange} 
                     value={state.anio}
                     />

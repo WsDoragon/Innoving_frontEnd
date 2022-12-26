@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 export const Box = styled.div`
-    background-color: #f433c0;
+    background-color: #f1f1f1;
     color:black;
     height: auto;
     margin-top: 10px;
@@ -35,10 +35,10 @@ export const Stack = styled.div`
 
 export const Topbar = styled.div`
     display: flex;
-    flex-direction: wrap;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: ${props => props.theme.colorInnoving.negro};
+    background-color: ${props => props.theme.colorInnoving.white};
     padding: 10px;
     margin-bottom: 10px;
     @media (max-width: 750px) {
@@ -67,11 +67,12 @@ export const ContenedorGrid = styled.div`
 
 export const ContenedorBody = styled.div`
     margin: 10px;
+    
 `
 
 
 export const ContenedorNavbar = styled.nav`
-    background-color: ${props => props.theme.colorInnoving.moradoClaro};
+    //background-color: ${props => props.theme.colorInnoving.moradoClaro};
     grid-area: "navbar";
     min-height: 100%;
     display: flex;
@@ -92,9 +93,23 @@ export const ContenedorMiniItems = styled.div`
 `
 
 export const ContenedorItemsAcordeon = styled.div<{margin?: string}>`
-    color: ${props => props.theme.colorInnoving.blanco};
+    color: ${props => props.theme.colorInnoving.moradoClaro};
     background-color: ${props => props.color?  props.color: "none"};
     cursor: pointer;
     padding: 10px;
     margin: ${props => props.margin? props.margin: "0px"};
+`
+
+export const ContenedorIndicadores = styled.div`
+    background-color: ${props => props.theme.colorInnoving.moradoClaro};
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+`
+
+export const SubIndicadores = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
 `

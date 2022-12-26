@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Button, Link, Spacer} from "@nextui-org/react";
+import { Grid, Button, Link, Spacer, Row} from "@nextui-org/react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../../components/Gestion_usuario/Header";
 import TestTabla from "../../components/Gestion_usuario/testTabla";
@@ -32,22 +32,19 @@ function Administrador(){
       
     }, []);
 
+    const style = {marginLeft: 20}
+
     return(
-        <>
-        
-        <Grid.Container  gap={2} justify="center">
-            <Grid xs={12}>
+        <div style={style}>
+        <Spacer y = {0.5} />
+        <Row>
                 <Button onPress={() => navigate("./usuarios_innoving")} auto flat as={Link} href="#"> Usuarios Innoving </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./usuarios_proveedores")} auto flat as={Link} href="#"> Usuarios Académicos/VIDCA </Button>
-                <Spacer y={0.5} />
-                <Button onPress={() => navigate("./usuarios_inn_des")} auto flat as={Link} href="#"> Usuarios desactivados Innoving </Button>
-                <Spacer y={0.5} />
-                <Button onPress={() => navigate("./usuarios_prov_des")} auto flat as={Link} href="#"> Usuarios desactivados Académicos/VIDCA </Button>
-            </Grid>
-        </Grid.Container>
+        </Row>
+        <Spacer x = {0.5} />
         <Outlet />
-        </>
+        </div >
     );
 }
 

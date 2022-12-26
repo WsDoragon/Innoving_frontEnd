@@ -13,11 +13,11 @@ import { json, useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import ModalDisable from './modalDisable';
 import ModalAbstracto, { PropsMe } from './modal/modalAbstracto';
-import RadioGroup from '@nextui-org/react/types/radio/radio-group';
 
 type UserType = {
     rut: string
     nombre: string
+    apellido: string
     correo:string
     pass: string
     roles: any
@@ -29,7 +29,7 @@ type GetUsersResponse = {
   };
 
 
-export default function TestTabla() {
+export default function TestTablaProv() {
   const [, updateState] = React.useState<any>();
   const forceUpdate = React.useCallback(() => updateState({}), []);
 ///////////////////////////
@@ -37,23 +37,18 @@ export default function TestTabla() {
     window.location.reload();
   }
   //PROBANDO
-  const { setVisible, bindings } = useModal();
 
   const [datos, setDatos] = useState<PropsMe>();
 
-  const [disableUser, setDisableUser] = useState<string>();
   /////////////////////////////////
-  const [showResults1, setShowResults] = React.useState(false)
-  const [showResults2, setShowResults2] = React.useState(false)
+
   const [showResults3, setShowResults3] = React.useState(false)
-  //////////////////////////////// Almacen de usuarios
+  ////////////////////////////////
   const [users23, setUsers23] = useState<UserType[]>([]); //Actualizan tabla
   const [users24, setUsers24] = useState<UserType[]>([]); //Almacena los usuarios
-
   
-
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allInnov").then((res) => {
+    const todo = await axios.get("http://localhost:3001/users/allProv").then((res) => {
       console.log("hola: ", res.data.data);
       setUsers24(res.data.data);
       console.log("24", users24)
@@ -64,18 +59,7 @@ export default function TestTabla() {
     
   }
 
-  const handler = (item: string) => {
-    setVisible(true)
-    setShowResults(true)
-    setDisableUser(item)
-  }
 
-  const handler2 = (item: string) => {
-    setVisible(true)
-    setShowResults2(true)
-    setDisableUser(item)
-  }
-  
   // Desactivar o activar usuario, procesado en otro componente
   const handler3 = (dataMensaje:any, dataConsulta: any, dataState?: any) => {
     setDatos({mensaje: dataMensaje, active:true, consulta:dataConsulta, state: dataState, callback: (data: any) => {
@@ -87,11 +71,11 @@ export default function TestTabla() {
         if (index != undefined) {
           users[index].status = data.enabled ? 1 : 0;
       }
-      setUsers23(users);
-      setUsers24(users)}
+      setUsers23(users);}
     }})
     setShowResults3(true)
   }
+  //////////
 
   //Barra busqueda
 
@@ -112,57 +96,50 @@ export default function TestTabla() {
   // Seleccionar usuarios (Todos - Inactivos - Activos)
 
     //Radios control
-  const [checked, setChecked] = React.useState('Todos');
+    const [checked, setChecked] = React.useState('Todos');
   
-  useEffect(() => {
-    switch(checked) {
-
-      case "Inactivos":
-        Inactivos()
-        return
-
-      case "Activos":
-        activos()
-        return
-
-      default:
-        setUsers23(users24)
-        return console.log("default")
-    }
-
-  },[checked])
+    useEffect(() => {
+      switch(checked) {
   
+        case "Inactivos":
+          Inactivos()
+          return
+  
+        case "Activos":
+          activos()
+          return
+  
+        default:
+          setUsers23(users24)
+          return console.log("default")
+      }
+  
+    },[checked])
 
+  // on load page
   useEffect(() => {
     getUsers();
-    
   }, []);
 
   useEffect(() => {
     console.log("============== component updated ================")
     console.log(users23);
   }, [users23]);
+  /////
 
+  /* Se queda quieto esto, quizas y solo quizas pongo los roles
+  en lo que es esta tabla (por estetica mas que nada) */
+/*
   const rolesdeusuario = (roles:any) =>{
     let a = JSON.stringify(roles).replaceAll('"','').replaceAll('[', '').replaceAll(']','').replaceAll(',',' - ')
-    return (a) 
+    return (a)
+
+    
   }
+*/
 
   //ver status con el filter para filtrar las cosas, no es necesario llamadas nuevas
   const activos = async () =>{
-    //const todoActivo = await axios.get("http://localhost:3001/users/allEnabled");
-    /*const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
-      let users: UserType[] = []
-      for (let i of result.data.data){
-        //console.log(i)
-        if (i.status != 0){
-          users.push(i);
-        }
-      }
-      console.log(users)
-      setUsers23(users);
-  });
-  */
   let users: UserType[] = []
   for (let i of users24){
     if (i.status != 0){
@@ -172,33 +149,19 @@ export default function TestTabla() {
   setUsers23(users)
 
   console.log("activos: ", users23);
-
-    //setUsers23(todoActivo.data.data);
   }
 
   const Inactivos = async () =>{
-  /*  const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
-      let users: UserType[] = []
-      for (let i of result.data.data){
-        //console.log(i)
-        if (i.status != 1){
-          users.push(i);
-        }
+    let users: UserType[] = []
+    for (let i of users24){
+      if (i.status != 1){
+        users.push(i)
       }
-      console.log(users)
-      setUsers23(users);
-  });
-  */
-  let users: UserType[] = []
-  for (let i of users24){
-    if (i.status != 1){
-      users.push(i)
     }
-  }
-  setUsers23(users)
-
-  console.log("activos: ", users23);
-  }
+    setUsers23(users)
+  
+    console.log("activos: ", users23);
+    }
 
   const navigate = useNavigate();
   const columns = [
@@ -215,10 +178,6 @@ export default function TestTabla() {
           label: "Correo",
         },
         {
-          key:"roles",
-          label: "Roles"
-        },
-        {
           key:"status",
           label: "Estado"
         },
@@ -227,23 +186,16 @@ export default function TestTabla() {
             label: "Actions"
         } 
     ];
-    const columns2 = [
-        { name: "NAME", uid: "nombre" },
-        { name: "ROLE", uid: "correo" },
-        { name: "STATUS", uid: "pass" },
-        { name: "ACTIONS", uid: "rut" },
-    ]
-    
 
     return(
       <div style={{marginRight:40, marginLeft:20}}>
-        
           <Button 
-          onClick={() => {navigate("/formulario")}} as={Link} href="#" 
+          onClick={() => {navigate("/formularioProv")}} as={Link} href="#" 
           //css={{right:"20px"}}
           >Crear nuevo usuario</Button>
-        
-        <Spacer y={0.5}/>
+          
+          
+          <Spacer y={0.5} ></Spacer>
         {/*ponerlos todos a la derecha estos*/}
         <input
             type="search"
@@ -278,14 +230,12 @@ export default function TestTabla() {
           bordered
           shadow={true}
           selectionMode="single"
-
           aria-label="Example table with dynamic content"
           css={{
             height: "auto",
             minWidth: "100%"
             
           }}
-          
       >
           <Table.Header columns={columns}>
           {(column) => (
@@ -301,16 +251,14 @@ export default function TestTabla() {
           {(item) => (
             <Table.Row key={item.rut}>
               <Table.Cell><Text b size={14}>{item[`rut`]} </Text></Table.Cell>
-              <Table.Cell><Text b size={14}> {item[`nombre`]} </Text></Table.Cell>
+              <Table.Cell><Text b size={14}>{item[`nombre`]} {item[`apellido`]}</Text></Table.Cell>
               <Table.Cell><Text b size={14}>{item[`correo`]}</Text></Table.Cell>
-              <Table.Cell><Text b size={14}>{rolesdeusuario(item[`roles`])}</Text></Table.Cell>
               <Table.Cell>{item[`status`] ? <Badge color="success" variant="flat">Activo</Badge> : <Badge color="error" variant="flat">Inactivo</Badge>}</Table.Cell>
               <Table.Cell> 
                   <Row justify="center" align="center">
                   
-                  
                   <Tooltip content="Editar Usuario">
-                      <Button onClick={() => {navigate(`/editarUser/${item.rut}`,{state:{rut:item.rut}})}} href="#">
+                      <Button onClick={() => {navigate(`/editarProv/${item.rut}`,{state:{rut:item.rut}})}} as={Link} href="#">
                         Editar
                       {/*<EditIcon size={20} fill="#979797" />*/}
                       </Button>
@@ -318,7 +266,7 @@ export default function TestTabla() {
                   
                   <Spacer x={0.5}/>
                   
-                  {item.status ?
+                  {item.status == 1 &&
                     <Tooltip
                       content="Desactivar usuario"
                       
@@ -330,10 +278,9 @@ export default function TestTabla() {
                           Desactivar
                       </Button>
 
-                    </Tooltip>
+                    </Tooltip>}
 
-                    :
-                    
+                    {item.status == 0 &&
                     <Tooltip
                       content="Activar usuario"
                       
@@ -353,11 +300,7 @@ export default function TestTabla() {
             </Table.Row>
           )}
         </Table.Body>
-
-
           </Table>
-
-          {/*<ModalDisable toDisable = {disableUser}/>*/}
 
           {showResults3 && <ModalAbstracto configmodal = {datos}/>}
           

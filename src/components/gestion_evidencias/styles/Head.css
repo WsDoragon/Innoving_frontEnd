@@ -1,0 +1,45 @@
+.Head{
+    width: 100%;
+    background-color: rgb(25, 24, 26);
+    padding: 1em;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Logo-Innoving{
+    width: 100px;
+    height: 100px;
+}
+
+.Innoving2030-h1{
+    color: chocolate;
+}
+
+.Innoving2030-a{
+    color: chocolate;
+    text-decoration: none;
+}
+
+.Head-ul{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Head-li{
+    margin: 0.5em;
+    color: azure;
+}
+
+.head-a{
+    color: aliceblue;
+    text-decoration: none;
+}
+
+
+
+
