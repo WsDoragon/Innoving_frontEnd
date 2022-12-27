@@ -48,15 +48,15 @@ export default function EditPubModal({
     let variables = [2]
     const {id, disciplina, autoresExtranjeros, validado } = getValues();
     // post indicadores...
-    if (disciplina !== "" ){
+    if (disciplina === "ingenieria" ){
       variables.push(3)
     }
-    if (autoresExtranjeros !== ""){
+    if (autoresExtranjeros){
       variables.push(1)
     }
-    axios.post(`localhost:3001/api/ai/publicaciones/${id}/asignar-variables`, {
-      variables: variables
-     } ).then((res) => (console.log("Indicadores Insertados")))
+    console.log("variables autores: ",autoresExtranjeros, " variables discplina: ", disciplina)
+    axios.post(`http://localhost:3001/api/ai/publicaciones/${id}/asignar-variables`, {variables:  variables})
+      .then((res) => {console.log("insert")})
     
     axios.post(url, getValues()).then(() => closeModal());
   };
