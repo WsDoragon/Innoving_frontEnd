@@ -7,7 +7,7 @@ function Analista() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // navigate("./indicadores");
+     navigate("./indicadores");
   }, []);
   const style = { marginLeft: 20 };
   return (

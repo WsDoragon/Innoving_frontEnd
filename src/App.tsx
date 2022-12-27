@@ -65,6 +65,7 @@ function App() {
           <Route path="gerente" element={<Gerente />}>
             <Route path="indicadores" element={<Componente />} />
             <Route path="solicitudes_indicadores" element={<Peticiones />} />
+            <Route path="visualizacion" element={<Visual />} />
             <Route
               path="historial_peticiones"
               element={<HistorialPeticiones />}

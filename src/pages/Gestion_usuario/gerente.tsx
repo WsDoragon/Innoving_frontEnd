@@ -8,7 +8,7 @@ function Gerente(){
     const navigate = useNavigate();
     
     useEffect(() => {
-        navigate("./indicadores");
+        navigate("./visualizacion");
       }, []);
 
     const style = {marginLeft: 20}
@@ -17,7 +17,7 @@ function Gerente(){
         <div style={style}>
         <Spacer y = {0.5} />
         <Row>
-                <Button onPress={() => navigate("./indicadores")} auto flat as={Link} href="#"> Indicadores </Button>
+                <Button onPress={() => navigate("./visualizacion")} auto flat as={Link} href="#"> Visualizacion de resultados </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./solicitudes_indicadores")} auto flat as={Link} href="#"> Solicitud de indicadores </Button>
                 <Spacer y={0.5} />
