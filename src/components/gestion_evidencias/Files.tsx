@@ -10,10 +10,14 @@ import {
   FormGroup,
   Label,
   Input,
+  Nav,
+  NavItem,
+  NavLink,
 } from "reactstrap";
 import axios from "axios";
 import FileDownload from "js-file-download";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 interface File {
   id: number;
@@ -71,8 +75,17 @@ export default function Publicaciones() {
     });
   };
 
+  const navigate = useNavigate();
+
   return (
     <Container>
+      <Nav fill pills>
+        <NavItem>
+          <NavLink id="a" onClick={() => navigate("../evidencias")}>
+            Publicaciones
+          </NavLink>
+        </NavItem>
+      </Nav>
       <Table className="text-center">
         <thead>
           <tr>
