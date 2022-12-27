@@ -69,6 +69,10 @@ function Visual(this: any) {
   const [show, setShow] = useState(true);
   const [code,setCode] = useState("");
 
+  const [state, setState] = useState({
+    anio: "2022",
+  });
+
 
 
   function parser(data:any,periodo:any,indicador:any){
@@ -104,9 +108,9 @@ function Visual(this: any) {
 
   }
 
-  function llamado(f1:any,codigo:string){
-    const info = axios.get('http://localhost:3001/variables/M25');
-    console.log(info);
+  async function llamado(f1:any,codigo:string){
+    const info = await axios.post('http://localhost:3001/variables/M25',state);
+    console.log(info.data.data);
   }
 
   function multT(tipo: any,periodo: any,indicador: any,fecha:any){
