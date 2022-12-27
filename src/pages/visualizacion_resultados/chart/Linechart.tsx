@@ -74,13 +74,13 @@ export default function Linechart(informacion:any){
       data: info,
       label: indicador,
       fill: false,
-      borderColor: 'rgb(75, 192, 192)',
+      borderColor: 'rgb(65,105,99 )',
       tension: 0.1
     },
     {
       data: infoMeta,
       label: 'Meta',
-      borderColor: 'rgb(255, 100, 100)',
+      borderColor: 'rgb(137,176,167)',
       fill: false,
     }
   ],
@@ -94,6 +94,7 @@ export default function Linechart(informacion:any){
         position: 'top' as const,
       },
       title: {
+        
         display: true,
         text: 'Grafico de Lineas Semestre',
       },
@@ -114,6 +115,6 @@ export default function Linechart(informacion:any){
   return(
   <div>
     <Line options={options} data={data} ref={barRef}/>
-    <button type="button" onClick={downloadPNG}> Exportar </button>
+    <div className="exportacion"><button type="submit" onClick={downloadPNG}> Exportar </button></div>
   </div>);
 };
