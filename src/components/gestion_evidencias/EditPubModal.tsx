@@ -54,7 +54,7 @@ export default function EditPubModal({
     if (autoresExtranjeros){
       variables.push(1)
     }
-    console.log("variables autores: ",autoresExtranjeros, " variables discplina: ", disciplina)
+    //console.log("variables autores: ",autoresExtranjeros, " variables discplina: ", disciplina)
     axios.post(`http://localhost:3001/api/ai/publicaciones/${id}/asignar-variables`, {variables:  variables})
       .then((res) => {console.log("insert")})
     
@@ -201,7 +201,7 @@ export default function EditPubModal({
           className="w-30"
           onClick={setVariables}
         >
-          Confirmar Evidencia
+          Guardar y validar
         </Button>
         <Button color="danger" onClick={closeModal}>
           Cerrar
