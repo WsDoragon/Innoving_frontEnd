@@ -25,7 +25,7 @@ export default function TablaMeta(props : any ) {
       setIndicadores(res.data.data);
     };
     fetchPosts();
-  }, []);
+  }, [true]);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -71,9 +71,11 @@ export default function TablaMeta(props : any ) {
                 :
                 <>
                 <td>
-                  <button className="button muted-button delete" onClick={() =>
-                    axios.put(`http://localhost:3001/metas/setpeticion/${meta.idindicador}-${meta.fecha}`,
-                      window.location.reload())
+                  <button className="button muted-button delete" onClick={() =>{
+                    axios.put(`http://localhost:3001/metas/setpeticion/${meta.idindicador}-${meta.fecha}`)
+                    //window.location.reload()
+                  }
+
                   }>Eliminar</button>
                 </td>
                 <td>
