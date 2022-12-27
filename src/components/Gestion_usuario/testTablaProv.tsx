@@ -224,7 +224,7 @@ export default function TestTablaProv() {
             </Radio.Group>
           </div>
           
-          {<Spacer y={0.5}/> }
+          {<Spacer y={1.5}/> }
         
           <Table
           bordered
