@@ -1,11 +1,11 @@
-import "./Head.css";
-// import logo from "../../assets/images.png";
+import "./styles/Head.css";
+// import logo from "../assets/images.png";
 
 const Head = () => {
   return (
     <header className="Head">
       <div className="Head-logo">
-        <img className="Logo-Innoving" src={"/uach.png"} alt="" />
+        {/* <img className="Logo-Innoving" src={} alt="" /> */}
       </div>
 
       <h1 className="Innoving2030-h1">
@@ -36,13 +36,6 @@ const Head = () => {
               Registrar Publicacion
             </a>
           </li>
-
-          {/* <li className="Head-li">
-            <a href="rutaRegProyect" className="head-a">
-              {" "}
-              Registrar Proyecto
-            </a>
-          </li> */}
         </ul>
       </nav>
     </header>

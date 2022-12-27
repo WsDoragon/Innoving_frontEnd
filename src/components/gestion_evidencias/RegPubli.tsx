@@ -1,187 +1,159 @@
-import React, { useState } from "react";
-import { UseForm } from "./UseForm";
-import { Button, Form, FormGroup, Label, Input, Col, Alert } from "reactstrap";
+import { Button, Form, FormGroup, Label, Col, Container } from "reactstrap";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-function RegPubli() {
-  const initialState = {
-    titulo: "",
-    autores: "",
-    revista: "",
-    indexacion: "",
-    identificador: 0,
-    año: "",
-    disciplina: "",
-    clasificacion: "",
-    autoresEx: "off",
+export default function RegisterPublication() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    axios.post("http://localhost:3001/api/pubs", data).then(() => {
+      Swal.fire({
+        title: "Publicación Registrada",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => reset());
+    });
   };
 
-  function formularioCallback() {
-    alert("subido correctamente");
-    console.log(values);
-
-    fetch("http://localhost:5000/api/form", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        autores: values.autores,
-        titulo: values.titulo,
-        revista: values.revista,
-        indexacion: values.indexacion,
-        autoresExtranjeros: values.autoresEx,
-        issnDoi: values.identificador,
-        anio: values.año,
-        clasificacion: values.clasificacion,
-        disciplina: values.disciplina,
-      }),
-    })
-      .then((res) => res.json)
-      .then((res) => console.log(res));
-
-    //if de no refrescar si esta mal todo xd
-    // aqui va lo del mandar a backend y revisar que todo este bien??
-  }
-
-  const {
-    onChange,
-    onSubmit,
-    values,
-  }: { values: any; onChange: any; onSubmit: any } = UseForm(
-    formularioCallback,
-    initialState
-  );
-
+  console.log(errors);
   return (
-    <Form onSubmit={onSubmit}>
-      <FormGroup>
-        <Label htmlFor="head-form"></Label>
-        Registrar Publicación
-      </FormGroup>
+    <Container className="mt-4">
+      <h3 className="my-4">Registrar Publicación</h3>
+      <Form
+        style={{
+          maxWidth: "600px",
+          textAlign: "left",
+          margin: "0 auto",
+          marginTop: "10px",
+        }}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <FormGroup row>
+          <Label sm={3}>Autores</Label>
+          <Col sm={8}>
+            <input
+              className="form-control"
+              id="autores"
+              placeholder="Ingresar Autores"
+              {...register("autores", { required: true })}
+            />
+          </Col>
+        </FormGroup>
 
-      <FormGroup>
-        <Label sm={2}>Titulo</Label>
-        <Col sm={9}>
-          <Input
-            id="titulo"
-            name="titulo"
-            placeholder="Ingresar titulo de la publicación"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
+        <FormGroup row>
+          <Label sm={3}>Titulo</Label>
+          <Col sm={8}>
+            <input
+              className="form-control"
+              placeholder="Ingresar titulo"
+              {...register("titulo", { required: true })}
+            />
+          </Col>
+        </FormGroup>
 
-      <FormGroup>
-        <Label sm={2}>Autores</Label>
-        <Col sm={9}>
-          <Input
-            id="autores"
-            name="autores"
-            placeholder="Ingresar autores"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
+        <FormGroup row>
+          <Label sm={3}>Revista</Label>
+          <Col sm={8}>
+            <input
+              className="form-control"
+              placeholder="Ingresar revista"
+              {...register("revista", { required: true })}
+            />
+          </Col>
+        </FormGroup>
 
-      <FormGroup check inline>
-        <Col sm={9}>
-          <Input
-            type="checkbox"
-            id="autoresEx"
-            name="autoresEx"
-            onChange={onChange}
-            value={values.autoresEx}
-          />
-        </Col>
-        <Label check>¿Hay autores extranjeros?</Label>
-      </FormGroup>
+        <FormGroup row>
+          <Label sm={3}>Indexación</Label>
+          <Col sm={8}>
+            <input
+              className="form-control"
+              id="index"
+              placeholder="Ingresar indexación"
+              {...register("indexacion", { required: true })}
+            />
+          </Col>
+        </FormGroup>
 
-      <FormGroup>
-        <Label sm={2}>Revista</Label>
-        <Col sm={9}>
-          <Input
-            id="revista"
-            name="revista"
-            placeholder="Ingresar revista"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
+        <FormGroup row>
+          <Label sm={3}>Fecha de publicacion</Label>
+          <Col sm={8}>
+            <input
+              className="form-control"
+              id="año"
+              type="date"
+              placeholder="Ingresar año"
+              {...register("anio", { required: true })}
+            />
+          </Col>
+        </FormGroup>
 
-      <FormGroup>
-        <Label sm={2}>Indexación</Label>
-        <Col sm={9}>
-          <Input
-            id="indexacion"
-            name="indexacion"
-            placeholder="Ingresar indexación"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
+        <FormGroup check className="my-2">
+          <Col sm={2}>
+            <input
+              style={{ marginLeft: "70px", marginRight: "10px" }}
+              className="form-check-input"
+              type="checkbox"
+              id="autoresExtranjeros"
+              {...register("autoresExtranjeros")}
+            />
+          </Col>
+          <Label check>¿Hay autores extranjeros?</Label>
+        </FormGroup>
 
-      <FormGroup>
-        <Label sm={2}>IssnDoi</Label>
-        <Col sm={9}>
-          <Input
-            id="identificador"
-            name="identificador"
-            placeholder="Ingresar issn/Doi"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
+        <FormGroup row className="mt-2">
+          <Label sm={3}>Clasificación</Label>
+          <Col sm={8}>
+            <input
+              className="form-control"
+              id="clasificacion"
+              placeholder="Ingresar clasificacion"
+              {...register("clasificacion", { required: true })}
+            />
+          </Col>
+        </FormGroup>
 
-      <FormGroup>
-        <Label sm={2}>Año</Label>
-        <Col sm={9}>
-          <Input
-            id="año"
-            name="año"
-            placeholder="Ingresar año"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
+        <FormGroup row>
+          <Label sm={3}>Disciplina</Label>
+          <Col sm={8}>
+            <select
+              className="form-select"
+              id="disciplina"
+              placeholder="ingresar"
+              {...register("disciplina", { required: false })}
+            >
+              <option value="ingenieria">Ingeniería</option>
+              <option value="otro">otras...</option>
+            </select>
+          </Col>
+        </FormGroup>
 
-      <FormGroup>
-        <Label sm={2}>Disciplina</Label>
-        <Col sm={9}>
-          <Input
-            id="disciplina"
-            name="disciplina"
-            placeholder="Ingresar disciplina"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
-
-      <FormGroup>
-        <Label sm={2}>Clasificacion</Label>
-        <Col sm={9}>
-          <Input
-            id="clasificacion"
-            name="clasificacion"
-            placeholder="Ingresar clasificacion"
-            onChange={onChange}
-            required
-          />
-        </Col>
-      </FormGroup>
-
-      <Button type="submit" color="primary">
-        Registrar
-      </Button>
-    </Form>
+        <FormGroup row>
+          <Label sm={3}>ISSN/DOI</Label>
+          <Col sm={8}>
+            <input
+              className="form-control"
+              id="issn_doi"
+              placeholder="Ingresar ISSN/DOI"
+              {...register("issnDoi", { required: true })}
+            />
+          </Col>
+        </FormGroup>
+        {Object.keys(errors).length !== 0 && (
+          <div className="alert alert-danger" role="alert">
+            Faltan campos que rellenar
+          </div>
+        )}
+        <Button type="submit" color="primary" className="w-25 mt-2">
+          Registrar
+        </Button>
+      </Form>
+    </Container>
   );
 }
-
-export default RegPubli;

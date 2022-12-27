@@ -20,6 +20,10 @@ function Gerente(){
                 <Button onPress={() => navigate("./indicadores")} auto flat as={Link} href="#"> Indicadores </Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./solicitudes_indicadores")} auto flat as={Link} href="#"> Solicitud de indicadores </Button>
+                <Spacer y={0.5} />
+                <Button onPress={() => navigate("./historial_peticiones")} auto flat as={Link} href="#"> Historial peticiones </Button>
+
+            
         </Row>
         <Spacer x = {0.5} />
         <Outlet />

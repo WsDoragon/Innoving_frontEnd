@@ -18,65 +18,73 @@ import TablaDesactivadosInnoving from "./components/Gestion_usuario/tablaDesacti
 import TablaDesactivados from "./components/Gestion_usuario/tablaDesactivados2";
 
 //import FormularioProv from './components/Gestion_usuario/formuCreateProveedor';
+
+
+
+
+
+
+
 import FormularioEdit from "./components/Gestion_usuario/formuEditInnoving";
 import FormularioProvEdit from "./components/Gestion_usuario/fromuEditProveedor";
 import TestTabla from "./components/Gestion_usuario/testTabla";
 import HeaderDin from "./components/Gestion_usuario/HeaderDin";
 import { Home } from "./pages/Analisis_indicadores/components/pages/Home";
-import {
-  ejes,
-  indicadoresResumidos,
-} from "./pages/Analisis_indicadores/components/apifake";
+import { ejes, indicadoresResumidos } from './pages/Analisis_indicadores/components/apifake';
 import { AppRouter } from "./pages/Analisis_indicadores/router/AppRouter";
 import { Indicadores } from "./pages/Analisis_indicadores/components/pages/Indicadores";
 
 // gestion evidencias
 import Files from "./components/gestion_evidencias/Files";
-import Head from "./components/gestion_evidencias/Head";
-import ListEvi from "./components/gestion_evidencias/ListEvi";
-import Proyectos from "./components/gestion_evidencias/Proyectos";
 import Publicaciones from "./components/gestion_evidencias/Publicaciones";
-import RegProyect from "./components/gestion_evidencias/RegProyect";
 import RegPubli from "./components/gestion_evidencias/RegPubli";
 import UploadForm from "./components/gestion_evidencias/UploadForm";
 import TestTablaProv from "./components/Gestion_usuario/testTablaProv";
 import ForgotPassword from "./pages/Gestion_usuario/forgotPass";
 import ResetPassword from "./pages/Gestion_usuario/resetPassword";
 
-
 // visualizacion de resultados
 import Visual from "./pages/visualizacion_resultados/Visual";
 
+import Indicadores2 from './pages/Configuración_Proyecto/Indicadores';
+import Metas from './pages/Configuración_Proyecto/metas';
+import Peticiones from './pages/Configuración_Proyecto/Peticiones';
+import Datos from './pages/Configuración_Proyecto/Datos';
+import HistorialIndicadores from './components/Configuración_proyecto/historialPeticion/HistorialIndicadores';
+import HistorialPeticiones from './pages/Configuración_Proyecto/HistorialPeticiones';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/admin" element={<LoginFunc />} />
-        <Route path="/forgotPass" element={<ForgotPassword/>} />
-        <Route path="/resetpass/:id/:tokenresetpassword" element={ <ResetPassword /> } />
+        <Route path="/forgotPass" element={<ForgotPassword />} />
+        <Route
+          path="/resetpass/:id/:tokenresetpassword"
+          element={<ResetPassword />}
+        />
 
-
-        <Route path="/home" element={<Header />}>
-          <Route path="gerente" element={<Gerente />}>
-            <Route path="indicadores" element={<Componente />} />
-            <Route path="solicitudes_indicadores" element={<Componente />} />
+        <Route path="/home" element={<Header/>}>
+          <Route path="gerente" element={<Gerente/>}>
+            <Route path='indicadores' element={<Componente />} />
+            <Route path='solicitudes_indicadores' element={<Peticiones />} />
+            <Route path='historial_peticiones' element={<HistorialPeticiones />} />
           </Route>
+        
+          <Route path="analista" element={<Analista/>}>
+            <Route path='indicadores' element={<Indicadores2 />} />
+            <Route path='metas' element={<Metas />} />
+            <Route path='metricas' element={<Componente />} />
+            <Route path='evidencias' element={<Componente />} />
+            <Route path='proveedores' element={<Componente />} />
 
-          <Route path="analista" element={<Analista />}>
-            <Route path="indicadores" element={<Componente />} />
-            <Route path="metas" element={<Componente />} />
-            <Route path="metricas" element={<Componente />} />
-            <Route path='evidencias' element={<Componente/>}/>
-            
             <Route path="visualizacion" element={<Visual />} />
-
-            <Route path="evidencias2" element={<Files />} />
+            <Route path="archivos" element={<Files />} />
             <Route path="publicaciones" element={<Publicaciones />} />
-            
-            <Route path="prueba/indicador/:idIndicador" element={<Indicadores />} >
 
-          </Route>
+
+            <Route path='prueba' element={<Home ejes={ejes} indicadoresResumidos={indicadoresResumidos}/>}/>
+            <Route path="prueba/indicador/:idIndicador" element={<Indicadores/>}></Route>
           </Route>
 
           <Route path="administrador" element={<Administrador />}>
@@ -96,11 +104,9 @@ function App() {
         <Route path="/formularioEdit" element={<FormularioEdit />} />
         <Route path="/editarUser/:id" element={<FormularioEdit />} />
         <Route path="/editarProv/:id" element={<FormularioProvEdit />} />
-
       </Routes>
     </Router>
   );
 }
 
 export default App;
-

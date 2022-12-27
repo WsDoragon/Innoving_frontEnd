@@ -65,9 +65,10 @@ function Invi () {
         setVisible(true)  
       }
       else{
-        navigate("/home")
+        
         sessionStorage.setItem("rol", JSON.stringify(data.data.roles))
         console.log(sessionStorage.rol)
+        navigate("/home")
       }
     })
 
@@ -97,9 +98,11 @@ function Invi () {
         <Spacer y={2} />
 
         <Input
+          className="logininvBut"
+        
           size="xl"
           width="200px"
-          css={{$$inputPlaceholderColor:"#747574"}}
+          css={{$$inputPlaceholderColor:"#747574", margin:"$0"}}
           labelPlaceholder="RUT"
           name="username"
           onChange={handleChange} 
