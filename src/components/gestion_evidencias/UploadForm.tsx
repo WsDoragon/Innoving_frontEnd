@@ -24,7 +24,7 @@ const UploadForm = () => {
       formData.append("file", inputFiles);
 
       axios
-        .post("http://localhost:3001/api/files", formData, {
+        .post("http://170.187.160.109:3001/api/files", formData, {
           headers: { "Content-type": "multipart/form-data" },
         })
         .then(({ data }) => {

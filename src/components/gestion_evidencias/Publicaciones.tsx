@@ -28,7 +28,7 @@ export default function Publicaciones() {
   >({});
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/pubs").then(({ data }) => {
+    axios.get("http://170.187.160.109:3001/api/pubs").then(({ data }) => {
       console.log(data.data);
       setPublications(data.data);
     });

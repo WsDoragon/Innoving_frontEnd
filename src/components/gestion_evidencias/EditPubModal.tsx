@@ -31,7 +31,7 @@ export default function EditPubModal({
   } = useForm({ values: defaultValues });
   console.log(errors);
 
-  const url = "http://localhost:3001/api/pubs/update";
+  const url = "http://170.187.160.109/:3001/api/pubs/update";
   const onSubmit = (data: any) => {
     axios.post(url, data).then((data) => {
       Swal.fire({
@@ -55,7 +55,7 @@ export default function EditPubModal({
       variables.push(1)
     }
     //console.log("variables autores: ",autoresExtranjeros, " variables discplina: ", disciplina)
-    axios.post(`http://localhost:3001/api/ai/publicaciones/${id}/asignar-variables`, {variables:  variables})
+    axios.post(`http://170.187.160.109:3001/api/ai/publicaciones/${id}/asignar-variables`, {variables:  variables})
       .then((res) => {console.log("insert")})
     
     axios.post(url, getValues()).then(() => closeModal());

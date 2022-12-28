@@ -12,7 +12,7 @@ export default function RegisterPublication() {
   } = useForm();
 
   const onSubmit = (data: any) => {
-    axios.post("http://localhost:3001/api/pubs", data).then(() => {
+    axios.post("http://170.187.160.109:3001/api/pubs", data).then(() => {
       Swal.fire({
         title: "Publicación Registrada",
         icon: "success",

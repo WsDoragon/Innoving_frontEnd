@@ -38,7 +38,7 @@ export default function Publicaciones() {
   const [pubId, setPubId] = useState<number>(-1);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/files").then(({ data }) => {
+    axios.get("http://170.187.160.109:3001/api/files").then(({ data }) => {
       console.log(data.data);
       setFiles(data.data);
     });
@@ -53,7 +53,7 @@ export default function Publicaciones() {
     if (flag) {
       if (pubId > 0) {
         axios
-          .post("http://localhost:3001/api/files/" + currentFile.id, {
+          .post("http://170.187.160.109:3001/api/files/" + currentFile.id, {
             pubId,
           })
           .then(() => {
@@ -109,7 +109,7 @@ export default function Publicaciones() {
                   color="primary"
                   onClick={() => {
                     axios({
-                      url: `http://localhost:3001/api/files/download/${archivo.id}`,
+                      url: `http://170.187.160.109:3001/api/files/download/${archivo.id}`,
                       method: "GET",
                       responseType: "blob",
                     }).then((response) => {

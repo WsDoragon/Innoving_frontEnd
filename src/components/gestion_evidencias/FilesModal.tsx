@@ -24,7 +24,7 @@ export default function FilesModal({
     const { id } = publication;
 
     if (id) {
-      axios.get(`http://localhost:3001/api/pubs/${id}`).then(({ data }) => {
+      axios.get(`http://170.187.160.109:3001/api/pubs/${id}`).then(({ data }) => {
         if (data) {
           setFiles(data.data.files);
         }
@@ -63,7 +63,7 @@ export default function FilesModal({
                     color="primary"
                     onClick={() => {
                       axios({
-                        url: `http://localhost:3001/api/files/download/${archivo.id}`,
+                        url: `http://170.187.160.109:3001/api/files/download/${archivo.id}`,
                         method: "GET",
                         responseType: "blob",
                       }).then((response) => {
