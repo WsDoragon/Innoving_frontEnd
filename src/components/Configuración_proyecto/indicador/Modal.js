@@ -15,7 +15,7 @@ mostrarOverlay, posicionModal, indicador}) => {
 
   function Guardar(e){
     e.preventDefault();
-    axios.put('http://localhost:3001/indicadores/editarindicador',{
+    axios.put('http://170.187.160.109:3001/indicadores/editarindicador',{
       id : indicadorAux.id,
       CalificacionCORFO : indicadorAux.CalificacionCORFO,
       NumeroIndicador : indicadorAux.NumeroIndicador,

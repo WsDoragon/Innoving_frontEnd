@@ -18,7 +18,7 @@ export default function Metas() {
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await axios.get('http://localhost:3001/indicadores/lista');
+        const res = await axios.get('http://170.187.160.109:3001/indicadores/lista');
         setIndicadores(res.data.data);
       };
       fetchPosts();
@@ -26,7 +26,7 @@ export default function Metas() {
 
     useEffect(() => {
       const fetchPosts = async () => {
-        const res = await axios.get('http://localhost:3001/metas/lista');
+        const res = await axios.get('http://170.187.160.109:3001/metas/lista');
         setMetas(res.data.data);
       };
       fetchPosts();

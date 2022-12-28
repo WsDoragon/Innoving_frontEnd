@@ -32,7 +32,7 @@ export default function ModalAbstracto(configmodal:any) {
     }, []);
 
     const create = () => {
-        axios.post('http://localhost:3001/users/create', configmodal.configmodal.state).then(
+        axios.post('http://170.187.160.109:3001/users/create', configmodal.configmodal.state).then(
           response => {
             console.log("Usuario creado "+ response.data);
             
@@ -40,7 +40,7 @@ export default function ModalAbstracto(configmodal:any) {
               console.log("ya existe")
             }
   
-            axios.post(`http://localhost:3001/r_u/add`, {id: configmodal.configmodal.state.rut, roles: configmodal.configmodal.state.roles}).then(
+            axios.post(`http://170.187.160.109:3001/r_u/add`, {id: configmodal.configmodal.state.rut, roles: configmodal.configmodal.state.roles}).then(
               res => {
                 console.log("Roles asignados "+res.data)
             });
@@ -60,7 +60,7 @@ export default function ModalAbstracto(configmodal:any) {
         
         //setVisible(false)
         
-        axios.put(`http://localhost:3001/users/disable`, {rut:configmodal.configmodal.state}).then(
+        axios.put(`http://170.187.160.109:3001/users/disable`, {rut:configmodal.configmodal.state}).then(
           res => {
             configmodal.configmodal.callback({rut:configmodal.configmodal.state, enabled: false, continua: true});
           })
@@ -71,7 +71,7 @@ export default function ModalAbstracto(configmodal:any) {
         //configmodal.configmodal.callback();
         //setVisible(false)
         
-        axios.put(`http://localhost:3001/users/enable`, {rut:configmodal.configmodal.state}).then(
+        axios.put(`http://170.187.160.109:3001/users/enable`, {rut:configmodal.configmodal.state}).then(
           res => {
             configmodal.configmodal.callback({rut: configmodal.configmodal.state, enabled: true, continua:true});
           })

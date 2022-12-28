@@ -150,8 +150,8 @@ export default function TestTabla() {
 
   //ver status con el filter para filtrar las cosas, no es necesario llamadas nuevas
   const activos = async () =>{
-    //const todoActivo = await axios.get("http://localhost:3001/users/allEnabled");
-    /*const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
+    //const todoActivo = await axios.get("http://170.187.160.109:3001/users/allEnabled");
+    /*const todoActivo = await axios.get("http://170.187.160.109:3001/users/allInnov").then((result) =>{
       let users: UserType[] = []
       for (let i of result.data.data){
         //console.log(i)
@@ -177,7 +177,7 @@ export default function TestTabla() {
   }
 
   const Inactivos = async () =>{
-  /*  const todoActivo = await axios.get("http://localhost:3001/users/allInnov").then((result) =>{
+  /*  const todoActivo = await axios.get("http://170.187.160.109:3001/users/allInnov").then((result) =>{
       let users: UserType[] = []
       for (let i of result.data.data){
         //console.log(i)

@@ -120,7 +120,7 @@ function Visual(this: any) {
 
   async function llamado(cod:any){
 
-    const info = await axios.post('http://localhost:3001/variables/'+cod,state).then(res=>{
+    const info = await axios.post('http://170.187.160.109:3001/variables/'+cod,state).then(res=>{
       const data = res.data.data;
       var meta = data[0][0];
       meta = meta.cantidad;
@@ -138,7 +138,7 @@ function Visual(this: any) {
     }
 
   async function llamado25(){
-    const info = await axios.post('http://localhost:3001/variables/M25',state).then(res=>{
+    const info = await axios.post('http://170.187.160.109:3001/variables/M25',state).then(res=>{
       const data = res.data.data;
       const meta = data[0][0].cantidad;
       const mesa = data[1];
@@ -162,7 +162,7 @@ function Visual(this: any) {
     }
 
     async function llamado26(){
-      const info = await axios.post('http://localhost:3001/variables/M26',state).then(res=>{
+      const info = await axios.post('http://170.187.160.109:3001/variables/M26',state).then(res=>{
         const data = res.data.data;
         const meta = data[0][0].cantidad;
         const mesa = data[1];
@@ -186,7 +186,7 @@ function Visual(this: any) {
       }
 
       async function llamado49(){
-        const info = await axios.post('http://localhost:3001/variables/M49',state).then(res=>{
+        const info = await axios.post('http://170.187.160.109:3001/variables/M49',state).then(res=>{
           const data = res.data.data;
           const meta = data[0][0].cantidad;
           const mesa = data[1];

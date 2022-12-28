@@ -97,7 +97,7 @@ class AddIndicador extends React.Component<any, any> {
 
     }else{
 
-      axios.post('http://localhost:3001/indicadores/addindicadores',{
+      axios.post('http://170.187.160.109:3001/indicadores/addindicadores',{
         id: (this.state.CalificacionCORFO.charAt(0) + this.state.NumeroIndicador),
         CalificacionCORFO : this.state.CalificacionCORFO,
         NumeroIndicador : this.state.NumeroIndicador,

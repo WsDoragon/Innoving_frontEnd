@@ -24,7 +24,7 @@ export default function  TablaIndicadores() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:3001/indicadores/lista');
+      const res = await axios.get('http://170.187.160.109:3001/indicadores/lista');
       setIndicadores(res.data.data);
     };
     fetchPosts();
@@ -32,7 +32,7 @@ export default function  TablaIndicadores() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:3001/ejes/lista');
+      const res = await axios.get('http://170.187.160.109:3001/ejes/lista');
       setEjes(res.data.data);
     };
     fetchPosts();
@@ -92,7 +92,7 @@ export default function  TablaIndicadores() {
                 <>
                   <td>
                     <button className="button muted-button delete" onClick={  () => 
-                      axios.put(`http://localhost:3001/indicadores/setpeticion/${indicador.id}`,
+                      axios.put(`http://170.187.160.109:3001/indicadores/setpeticion/${indicador.id}`,
                       //window.location.reload()
                       )
                       }>Eliminar</button>

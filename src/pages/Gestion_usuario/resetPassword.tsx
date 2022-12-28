@@ -35,7 +35,7 @@ export default function ResetPassword(){
             return
         }
 
-        await axios.put("http://localhost:3001/users/resetPassword/" + id + "/" + tokenresetpassword, userPassword)
+        await axios.put("http://170.187.160.109:3001/users/resetPassword/" + id + "/" + tokenresetpassword, userPassword)
             .then((res) => {
                 swal.fire({
                     showConfirmButton:true,

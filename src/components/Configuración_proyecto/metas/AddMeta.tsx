@@ -67,7 +67,7 @@ class AddMeta extends React.Component<any , any> {
           timer: 2000
         })
       }else{
-        axios.post('http://localhost:3001/metas/addmetas',{
+        axios.post('http://170.187.160.109:3001/metas/addmetas',{
           idindicador : this.state.idindicador,
           fecha : this.state.fecha,
           cantidad : parseInt(this.state.cantidad)

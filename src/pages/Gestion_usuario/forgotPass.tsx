@@ -18,7 +18,7 @@ function ForgotPassword(){
             email: e.target.email.value
         }
 
-        await axios.post("http://localhost:3001/users/forgotPassword", userEmail)
+        await axios.post("http://170.187.160.109:3001/users/forgotPassword", userEmail)
             .then((res) => {
                 swal.fire({
                     showConfirmButton: true,

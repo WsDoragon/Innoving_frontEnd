@@ -21,10 +21,10 @@ class ListaMetas extends React.Component<any,any> {
         if (respuesta){
             let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss').toString();
             for(let i=0; i < this.state.idMetasA.length ; i++){ 
-                axios.put(`http://localhost:3001/metas/setaprobado/${this.state.idMetasA[i]}_Añadir_${today}`)
+                axios.put(`http://170.187.160.109:3001/metas/setaprobado/${this.state.idMetasA[i]}_Añadir_${today}`)
             }
             for(let i=0; i < this.state.idMetasD.length ; i++){ 
-                axios.put(`http://localhost:3001/metas/deletemetas/${this.state.idMetasD[i]}_Eliminar_${today}`)
+                axios.put(`http://170.187.160.109:3001/metas/deletemetas/${this.state.idMetasD[i]}_Eliminar_${today}`)
             }
             for(let i=0; i < this.state.idMetasE.length ; i++){ 
                 let e : any = this.state.idMetasE[i];
@@ -33,8 +33,8 @@ class ListaMetas extends React.Component<any,any> {
                 let id_eliminar = ids_aux[1];
                 let id_reemplazar = ids_aux[0];
                 
-                axios.delete(`http://localhost:3001/metas/eliminarmeta/${id_eliminar}_${id_reemplazar}`)
-                axios.put(`http://localhost:3001/metas/setaprobado/${id_reemplazar}_Editar_${today}`)
+                axios.delete(`http://170.187.160.109:3001/metas/eliminarmeta/${id_eliminar}_${id_reemplazar}`)
+                axios.put(`http://170.187.160.109:3001/metas/setaprobado/${id_reemplazar}_Editar_${today}`)
             }
             this.setState( {
                 idMetasA: [],
@@ -64,17 +64,17 @@ class ListaMetas extends React.Component<any,any> {
         if (respuesta){
             let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
             for(let i=0; i < this.state.idMetasA.length ; i++){ 
-                axios.put(`http://localhost:3001/metas/deletemetas/${this.state.idMetasA[i]}_Añadir_${today}`)
+                axios.put(`http://170.187.160.109:3001/metas/deletemetas/${this.state.idMetasA[i]}_Añadir_${today}`)
             }
             for(let i=0; i < this.state.idMetasD.length ; i++){ 
-                axios.put(`http://localhost:3001/metas/setaprobado/${this.state.idMetasD[i]}_Eliminar_${today}`)
+                axios.put(`http://170.187.160.109:3001/metas/setaprobado/${this.state.idMetasD[i]}_Eliminar_${today}`)
             }
             for(let i=0; i < this.state.idMetasE.length ; i++){ 
                 let e  : any = this.state.idMetasE[i];
                 let ids_aux = e.split(",");
                 let id_reemplazar = ids_aux[0];
                 let id = ids_aux[1];
-                axios.delete(`http://localhost:3001/metas/eliminarmetaeditado/${id_reemplazar}_${id}_${today}`)
+                axios.delete(`http://170.187.160.109:3001/metas/eliminarmetaeditado/${id_reemplazar}_${id}_${today}`)
             }
             this.setState( {
                 idMetasA: [],

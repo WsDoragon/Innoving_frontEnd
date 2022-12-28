@@ -21,7 +21,7 @@ function Administrador(){
     const navigate = useNavigate();
 
     const getUsers = async () => {
-      const todo = await axios.get("http://localhost:3001/users/allEnabled");
+      const todo = await axios.get("http://170.187.160.109:3001/users/allEnabled");
       console.log("hola: ",todo.data.data);
       setUsers23(todo.data.data);
     }

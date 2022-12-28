@@ -23,10 +23,10 @@ class ListaIndicadores extends React.Component<any,any> {
           if (respuesta){
               let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss').toString();
               for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
-                  axios.put(`http://localhost:3001/indicadores/setaprobado/${this.state.idIndicadoresA[i]}_Añadir_${today}`)
+                  axios.put(`http://170.187.160.109:3001/indicadores/setaprobado/${this.state.idIndicadoresA[i]}_Añadir_${today}`)
               }
               for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
-                  axios.put(`http://localhost:3001/indicadores/deleteindicadores/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
+                  axios.put(`http://170.187.160.109:3001/indicadores/deleteindicadores/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
               }
               for(let i=0; i < this.state.idIndicadoresE.length ; i++){ 
                   let e : any= this.state.idIndicadoresE[i];
@@ -38,7 +38,7 @@ class ListaIndicadores extends React.Component<any,any> {
                   let id_eliminar = ids_aux[1];
                   let id_reemplazar = ids_aux[0];
                   
-                  axios.delete(`http://localhost:3001/indicadores/eliminarindicador/${id_eliminar}_${id_reemplazar}_${today}`)
+                  axios.delete(`http://170.187.160.109:3001/indicadores/eliminarindicador/${id_eliminar}_${id_reemplazar}_${today}`)
               }
               this.setState( {
                   idIndicadoresA: [],
@@ -67,17 +67,17 @@ class ListaIndicadores extends React.Component<any,any> {
           if (respuesta){
               let today = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss').toString();
               for(let i=0; i < this.state.idIndicadoresA.length ; i++){ 
-                  axios.put(`http://localhost:3001/indicadores/deleteindicadores/${this.state.idIndicadoresA[i]}_Añadir_${today}`)
+                  axios.put(`http://170.187.160.109:3001/indicadores/deleteindicadores/${this.state.idIndicadoresA[i]}_Añadir_${today}`)
               }
               for(let i=0; i < this.state.idIndicadoresD.length ; i++){ 
-                  axios.put(`http://localhost:3001/indicadores/setaprobado/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
+                  axios.put(`http://170.187.160.109:3001/indicadores/setaprobado/${this.state.idIndicadoresD[i]}_Eliminar_${today}`)
               }
               for(let i=0; i < this.state.idIndicadoresE.length ; i++){ 
                   let e : any  = this.state.idIndicadoresE[i];
                   let ids_aux = e.split(",") ;
                   let id_reemplazar = ids_aux[0];
                   let id = ids_aux[1];
-                  axios.delete(`http://localhost:3001/indicadores/eliminarindicadoreditado/${id_reemplazar}_${id}_${today}`)
+                  axios.delete(`http://170.187.160.109:3001/indicadores/eliminarindicadoreditado/${id_reemplazar}_${id}_${today}`)
               }
               this.setState( {
                   idIndicadoresA: [],

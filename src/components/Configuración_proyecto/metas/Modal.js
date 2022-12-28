@@ -14,7 +14,7 @@ mostrarOverlay, posicionModal, meta}) => {
 
   function Guardar(e){
     e.preventDefault();
-    axios.put('http://localhost:3001/metas/editarmeta',{
+    axios.put('http://170.187.160.109:3001/metas/editarmeta',{
       id : metaAux.id,
       fecha : metaAux.fecha,
       cantidad : metaAux.cantidad,

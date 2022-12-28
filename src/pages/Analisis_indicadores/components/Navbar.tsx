@@ -15,7 +15,7 @@ export const Navbar = () => {
   const [indicadores, setIndicadores] = useState(indicadoresResumidos)
 
   useEffect( () => {
-    axios.get("http://localhost:3001/api/ai/ejes").then((response) => {
+    axios.get("http://170.187.160.109:3001/api/ai/ejes").then((response) => {
       setEj(response.data)
       setEjesIn(response.data.data);
     }).then(  (e) =>  console.log(ej))
