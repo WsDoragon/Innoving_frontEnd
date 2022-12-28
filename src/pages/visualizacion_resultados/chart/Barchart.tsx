@@ -30,18 +30,20 @@ function infor(listaNums:any){          //otorga las barras
   const lista: number[] = [];
   const largo = listaNums.length;
   for (let x = 0; x < largo; x++)
-    lista.push(listaNums[x].valor);
+    lista.push(listaNums[x].Valor);
+
   return lista
 }
 
 
 function parser(data:any){
+
   const meta = data[1];
   const meses = data[2];
   return [meta,meses]
 }
 
-function messs(listaMeses:any){     //creacion de tabla de despliege de barras
+function messs(listaMeses:any){     //creacion de tabla de despliege de barras{}
   const lista: string[] = [];
   const largo = listaMeses.length;
   for (let x = 0; x < largo; x++)
@@ -54,16 +56,17 @@ function metaInf(met:any,inf:any){
   const largo = inf.length;
   for (let x = 0; x < largo; x++)
     lista.push(met);
+  
   return lista
 }
 
 
 
 export default function Barchart(informacion:any){
-  
+
   const cos = parser(informacion.labels);
   const indicador = informacion.labels[0].value;
-  const meta = informacion.labels[1].cantidad;
+  const meta = cos[0];
   const meses = messs(cos[1])
   const info = infor(cos[1])
   const infoMeta = metaInf(meta,info)

@@ -1,11 +1,11 @@
 import React from "react";
 import GaugeChart from "react-gauge-chart";
 
-const Gauge = () => (
+export default function Gauge(por:any){
   <GaugeChart
     id="gauge-chart1"
     nrOfLevels={3}
-    percent={Math.random()}
+    percent={por}
     hideText={false}
     textColor="black"
     needleBaseColor="black"
@@ -16,6 +16,4 @@ const Gauge = () => (
     colors={["red", "yellow", "green"]}
     arcsLength={[0.075, 0.075, 0.025]}
   />
-);
-
-export default Gauge;
+};

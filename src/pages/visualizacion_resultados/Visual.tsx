@@ -6,6 +6,7 @@ import Barchart from './chart/Barchart';
 import Gauge from './chart/Gaugechart';
 import Linechart from './chart/Linechart';
 import Select from "react-select";
+import GaugeChart from "react-gauge-chart";
 
 const semestre = ['Enero', 'Febrero', 'Marzo','Abril', 'Mayo', 'Junio'];
 
@@ -47,8 +48,6 @@ const otpI = [
   {value: "indicador3",label: "Indicador3"}
 ];
 
-
-
 const otpA = [
   {value: "2015",label: "2015"},
   {value: "2016",label: "2016"},
@@ -67,8 +66,17 @@ function Visual(this: any) {
   const [semestre1,setSemestre1] = useState(semestre);
   const [val3, setValue3]= useState(otpA[0])
   const [show, setShow] = useState(true);
-  const [code,setCode] = useState("");
+  const [meta1,setMeta1] = useState(0);
+  const [meta2,setMeta2] = useState(0);
+  const [meta3,setMeta3] = useState(0);
+  const [mes1,setMes1] = useState(0);
+  const [mes2,setMes2] = useState(0);
+  const [mes3,setMes3] = useState(0);
+  
 
+  const [met,setMet] = useState();
+  const [mes,setMes] = useState();
+  const [porcentaje,setPorcentaje] = useState(0);
   const [state, setState] = useState({
     anio: "2022",
   });
@@ -76,15 +84,17 @@ function Visual(this: any) {
 
 
   function parser(data:any,periodo:any,indicador:any){
-    const meta = data[0][0];
-    const mes = data[1];
+    console.log("owo")
+    console.log(data)
+    const metaa = data[0];
+    const mesa = data[1];
+
     const per = periodo.value.split(",");
     let part2: number;
     const part1: number = per[0];
     part2 = +per[1];
-    console.log(part1,part2,mes.slice(part1,part2+1));
-    const mes1 = mes.slice(part1,part2+1);
-    return [indicador,meta,mes1]
+    const messs = mesa.slice(part1,part2+1);
+    return [indicador,metaa,messs]
   }
 
   const handleSelectChange = (value: any) =>{
@@ -108,9 +118,105 @@ function Visual(this: any) {
 
   }
 
-  async function llamado(f1:any,codigo:string){
-    const info = await axios.post('http://localhost:3001/variables/M25',state);
-    console.log(info.data.data);
+  async function llamado(cod:any){
+
+    const info = await axios.post('http://localhost:3001/variables/'+cod,state).then(res=>{
+      const data = res.data.data;
+      var meta = data[0][0];
+      meta = meta.cantidad;
+      setMet(meta);
+      const mes = data[1];
+      setMes(mes);
+
+    } ,error=>{
+      console.log(error)
+    });
+    //console.log("holawa");
+    //console.log(info.data.data)
+
+
+    }
+
+  async function llamado25(){
+    const info = await axios.post('http://localhost:3001/variables/M25',state).then(res=>{
+      const data = res.data.data;
+      const meta = data[0][0].cantidad;
+      const mesa = data[1];
+      var suma = 0;
+      
+      for (const k in mesa) {
+        var numS = mesa[k].Valor;
+        var numN = +numS;
+        suma = suma + numN
+      }
+
+      setMeta1(meta)
+      setMes1(suma)
+      //console.log(num)
+      //setMes1(num)
+    } ,error=>{
+      console.log(error)
+    });
+    //console.log("holawa");
+    //console.log(info.data.data)
+    }
+
+    async function llamado26(){
+      const info = await axios.post('http://localhost:3001/variables/M26',state).then(res=>{
+        const data = res.data.data;
+        const meta = data[0][0].cantidad;
+        const mesa = data[1];
+        var suma = 0;
+        
+        for (const k in mesa) {
+          var numS = mesa[k].Valor;
+          var numN = +numS;
+          suma = suma + numN
+        }
+
+        setMeta2(meta)
+        setMes2(suma)
+        //console.log(num)
+        //setMes1(num)
+      } ,error=>{
+        console.log(error)
+      });
+      //console.log("holawa");
+      //console.log(info.data.data)
+      }
+
+      async function llamado49(){
+        const info = await axios.post('http://localhost:3001/variables/M49',state).then(res=>{
+          const data = res.data.data;
+          const meta = data[0][0].cantidad;
+          const mesa = data[1];
+          var suma = 0;
+          
+          for (const k in mesa) {
+            var numS = mesa[k].Valor;
+            var numN = +numS;
+            suma = suma + numN
+          }
+
+          setMeta3(meta)
+          setMes3(suma)
+          //console.log(num)
+          //setMes1(num)
+        } ,error=>{
+          console.log(error)
+        });
+        //console.log("holawa");
+        //console.log(info.data.data)
+        }
+  
+  function gaugePorcentage(){
+    llamado25();
+    llamado26();
+    llamado49();
+    console.log("metas")
+    var porcent = ((mes1/meta1)+(mes2/meta2)+((mes3/meta3)))/100
+    console.log(porcent)
+    setPorcentaje(porcent)
   }
 
   function multT(tipo: any,periodo: any,indicador: any,fecha:any){
@@ -131,13 +237,14 @@ function Visual(this: any) {
       c = "M27"
 
     }
-
-    var data = llamado(val3,c);
-    //const coj = parser(dataExp);
-    const coj = parser(dataExp,periodo,indicador);
+    //gaugePorcentage();
+    setState({anio: val3.value});
+    llamado(c);
+    const cosa = [met,mes]
+    var coj = parser(cosa,periodo,indicador);
+    
     setSemestre1(coj);
     
-    console.log(typeof(semestre));
     return coj
   }
 
@@ -175,7 +282,20 @@ function Visual(this: any) {
       <div className='container2'>
           <div> 
             <h4 className='graphTytle'>Grafico Velocimetro de alcance de metas</h4>
-            <Gauge/>
+            <GaugeChart
+              id="gauge-chart1"
+              nrOfLevels={3}
+              percent={0.4}
+              hideText={false}
+              textColor="black"
+              needleBaseColor="black"
+              arcPadding={0.015}
+              cornerRadius={0}
+              arcWidth={0.19}
+              needleColor="black"
+              colors={["red", "yellow", "green"]}
+              arcsLength={[0.075, 0.075, 0.025]}
+            />
           </div>
         </div>
     </Col>
