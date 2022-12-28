@@ -45,16 +45,19 @@ export default function EditPubModal({
 
   const setVariables = () => {
     setValue("validado", 1);
-    // const { disciplina, autoresExtranjeros, validado } = getValues();
+    let variables = [2]
+    const {id, disciplina, autoresExtranjeros, validado } = getValues();
     // post indicadores...
-    /*
-     axios.post(url, {
-      disciplina,
-      autoresExtranjeros,
-      validado,
-     }.then((res) => (console.log("Indicadores Insertados"))) )
-    */
-    // Validar publicación
+    if (disciplina === "ingenieria" ){
+      variables.push(3)
+    }
+    if (autoresExtranjeros){
+      variables.push(1)
+    }
+    //console.log("variables autores: ",autoresExtranjeros, " variables discplina: ", disciplina)
+    axios.post(`http://localhost:3001/api/ai/publicaciones/${id}/asignar-variables`, {variables:  variables})
+      .then((res) => {console.log("insert")})
+    
     axios.post(url, getValues()).then(() => closeModal());
   };
 
@@ -198,7 +201,7 @@ export default function EditPubModal({
           className="w-30"
           onClick={setVariables}
         >
-          Confirmar Evidencia
+          Guardar y validar
         </Button>
         <Button color="danger" onClick={closeModal}>
           Cerrar

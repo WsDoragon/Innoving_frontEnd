@@ -1,16 +1,25 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ejes, indicadoresResumidos } from '../components/apifake'
 import { Buscador, ContenedorBuscador, ContenedorIconBuscador } from './styledUnique/Input/Buscadores';
 import { ContenedorItemsAcordeon, ContenedorMiniItems, ContenedorNavbar } from './styledUnique/Contenedores';
 import "./navbar.css"
+import axios from 'axios';
 
 
 export const Navbar = () => {
 
+  const [ej, setEj] = useState([])
   const navigate = useNavigate();
   const [ejesIn, setEjesIn] = useState(ejes);
   const [indicadores, setIndicadores] = useState(indicadoresResumidos)
+
+  useEffect( () => {
+    axios.get("http://localhost:3001/api/ai/ejes").then((response) => {
+      setEj(response.data)
+      setEjesIn(response.data.data);
+    }).then(  (e) =>  console.log(ej))
+  },[])
 
   return (
     <ContenedorNavbar >

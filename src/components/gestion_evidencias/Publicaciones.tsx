@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Container } from "reactstrap";
+import { Table, Button, Container, Nav, NavItem, NavLink } from "reactstrap";
 import axios from "axios";
 import EditPubModal from "./EditPubModal";
 import FilesModal from "./FilesModal";
+import { useNavigate } from "react-router-dom";
 
 interface Publication {
   id: number;
@@ -58,8 +59,17 @@ export default function Publicaciones() {
     return `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
   };
 
+  const navigate = useNavigate();
+
   return (
     <Container>
+      <Nav fill pills>
+        <NavItem>
+          <NavLink id="a" onClick={() => navigate("../archivos")}>
+            Archivos
+          </NavLink>
+        </NavItem>
+      </Nav>
       <Table responsive>
         <thead>
           <tr>
@@ -68,7 +78,7 @@ export default function Publicaciones() {
             <th>Titulo</th>
             <th>Revisa</th>
             <th>Indexación</th>
-            <th>Fecha publicacion</th>
+            <th>Fecha Publicación</th>
             <th>Autores Extranjeros</th>
             <th>Clasificación</th>
             <th>Disciplina</th>

@@ -23,7 +23,7 @@ class HistorialIndicadores extends React.Component<any,any> {
             <th>Misión Universitaria</th>
             <th>Nombre</th>
             <th>Tipo de indicador</th>
-            <th>Eje</th>
+            {/* <th>Eje</th> */}
             <th>Unidad de medida</th>
             <th>Fuente de información</th>
             <th>Responsable</th>
@@ -46,12 +46,12 @@ class HistorialIndicadores extends React.Component<any,any> {
                     <td>{indicador.nombre}</td>
                     <td>{indicador.TipoIndicador}</td>
 
-                    {this.props.ejes.map((eje : any) => (
+                    {/* {this.props.ejes.map((eje : any) => (
                         indicador.eje === eje.id?
                         <td>{eje.nombre}</td>
                         :
                         <></>
-                    ))}
+                    ))} */}
 
                     <td>{indicador.Unidad}</td>
                     <td>{indicador.FuenteInformacion}</td>

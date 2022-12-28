@@ -7,7 +7,7 @@ function Analista() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // navigate("./indicadores");
+     navigate("./indicadores");
   }, []);
   const style = { marginLeft: 20 };
   return (
@@ -22,13 +22,11 @@ function Analista() {
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./evidencias")} auto flat as={Link} href="#"> Evidencias </Button>
                 <Spacer y={0.5} />
-                <Button onPress={() => navigate("./prueba/indicador/M25")} auto flat as={Link} href="#" > {" "}Analisis Indicadores{" "}</Button>
-                <Spacer y={0.5} />
+                {/*<Button onPress={() => navigate("./prueba/indicador/M25")} auto flat as={Link} href="#" > {" "}Analisis Indicadores{" "}</Button>
+                <Spacer y={0.5} />*/}
                 <Button onPress={() => navigate("./visualizacion")} auto flat as={Link} href="#" > {" "}Visualizacion de resultados{" "}</Button>
                 <Spacer y={0.5} />
                 <Button onPress={() => navigate("./proveedores")} auto flat as={Link} href="#"> Provedores </Button>
-                <Spacer y={0.5} />
-                <Button onPress={() => navigate("./prueba")} auto flat as={Link} href="#"> Analisis Indicadores </Button>
                 <Spacer y={0.5} />
         </Row>
       <Spacer x={0.5} />
