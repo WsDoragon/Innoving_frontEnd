@@ -52,7 +52,7 @@ function InputText() {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
       //e.preventDefault();
-      axios.post('http://localhost:3001/users/create', state);
+      axios.post('http://170.187.160.109:3001/users/create', state);
       console.log('handleClick 👉️', state);
       volver(-1)
     }; 

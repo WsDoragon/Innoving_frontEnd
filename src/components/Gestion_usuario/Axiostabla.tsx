@@ -16,7 +16,7 @@ async function getUsers() {
   try {
     // 👇️ const data: GetUsersResponse
     const { data, status } = await axios.get<GetUsersResponse>(
-      'http://localhost:3001/users/all',
+      'http://170.187.160.109:3001/users/all',
       {
         headers: {
           Accept: 'application/json',

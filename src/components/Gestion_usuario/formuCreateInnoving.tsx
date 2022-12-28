@@ -59,7 +59,7 @@ function Formulario() {
       }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
-      axios.post('http://localhost:3001/users/create', state).then(
+      axios.post('http://170.187.160.109:3001/users/create', state).then(
         response => {
           console.log("Usuario creado "+ response.data);
           
@@ -67,7 +67,7 @@ function Formulario() {
             console.log("ya existe")
           }
           else{
-            axios.post(`http://localhost:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
+            axios.post(`http://170.187.160.109:3001/r_u/add`, {id: state.rut, roles: state.roles}).then(
               res => {
                 console.log("Roles asignados "+ res.data)
                 console.log('handleClick 👉️', state);

@@ -57,7 +57,7 @@ export default function TablaProv() {
   const [users23, setUsers23] = useState<UserType[]>([]);
 
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allProv");
+    const todo = await axios.get("http://170.187.160.109:3001/users/allProv");
     console.log("hola: ", todo.data.data);
     setUsers23(todo.data.data);
   }
@@ -92,14 +92,14 @@ export default function TablaProv() {
   const desactivar = () => {
     setVisible(false)
     
-    axios.put(`http://localhost:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+    axios.put(`http://170.187.160.109:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
     refreshPage()
   }
 
   const activar = () => {
     setVisible(false)
     
-    axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => {console.log("usuario desactivado "+res.data)})
+    axios.put(`http://170.187.160.109:3001/users/enable`, {rut:disableUser}).then(res => {console.log("usuario desactivado "+res.data)})
     refreshPage()
   } 
 

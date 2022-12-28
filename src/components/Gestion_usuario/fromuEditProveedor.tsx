@@ -41,7 +41,7 @@ export default function FormularioEdit() {
 
 
     const passDataToEdit = ()=>{
-      axios.get(`http://localhost:3001/r_u/`,{params: {rut: getRut.state.rut}})
+      axios.get(`http://170.187.160.109:3001/r_u/`,{params: {rut: getRut.state.rut}})
       .then(response => {
          const roles_u = response.data.data;
          let rolTagsOnDisplay : string[] = [];
@@ -58,7 +58,7 @@ export default function FormularioEdit() {
           });
         });
       })
-      axios.get(`http://localhost:3001/users/`,{params: {rut: getRut.state.rut}})
+      axios.get(`http://170.187.160.109:3001/users/`,{params: {rut: getRut.state.rut}})
      .then(response => {
        const apiData = response.data.data;
        const d: string = apiData.contraseña
@@ -126,7 +126,7 @@ export default function FormularioEdit() {
     state.contraseña = state.dia + state.mes + state.anio
    
 
-    axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
+    axios.put(`http://170.187.160.109:3001/users/edit`, {id:oldID, newInfo:state})
     .then(response => {
       console.log("Usuario editado "+response.data)
     });

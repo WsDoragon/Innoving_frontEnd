@@ -48,7 +48,7 @@ export default function TestTablaProv() {
   const [users24, setUsers24] = useState<UserType[]>([]); //Almacena los usuarios
   
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allProv").then((res) => {
+    const todo = await axios.get("http://170.187.160.109:3001/users/allProv").then((res) => {
       console.log("hola: ", res.data.data);
       setUsers24(res.data.data);
       console.log("24", users24)

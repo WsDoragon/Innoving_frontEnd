@@ -109,9 +109,9 @@ export default function FormularioEdit() {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement,  MouseEvent>) => {
     //e.preventDefault();
 
-    axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
+    axios.put(`http://170.187.160.109:3001/users/edit`, {id:oldID, newInfo:state})
     .then(response => {
-      axios.post(`http://localhost:3001/r_u/change`, {id:oldID, newRoles:state.roles}).then(res => console.log("Roles cambiados. "+res.data));
+      axios.post(`http://170.187.160.109:3001/r_u/change`, {id:oldID, newRoles:state.roles}).then(res => console.log("Roles cambiados. "+res.data));
       console.log("Usuario editado "+response.data)
     });
     console.log('handleClick 👉️', state);

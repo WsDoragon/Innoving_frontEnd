@@ -53,7 +53,7 @@ export default function TestTabla() {
   
 
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allInnov").then((res) => {
+    const todo = await axios.get("http://170.187.160.109:3001/users/allInnov").then((res) => {
       console.log("hola: ", res.data.data);
       setUsers24(res.data.data);
       console.log("24", users24)

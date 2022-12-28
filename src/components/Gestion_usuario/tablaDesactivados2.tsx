@@ -41,7 +41,7 @@ export default function TablaDesactivados() {
 
   console.log("entro por aqui. 1")
   const getUsers = async () => {
-    const todo = await axios.get("http://localhost:3001/users/allDisabled",{params: {soloInnoving: "no"}});
+    const todo = await axios.get("http://170.187.160.109:3001/users/allDisabled",{params: {soloInnoving: "no"}});
     console.log("hola: ", todo.data.data);
     setUsers23(todo.data.data);
   }
@@ -73,14 +73,14 @@ export default function TablaDesactivados() {
   const desactivar = () => {
     setVisible(false)
     
-    axios.put(`http://localhost:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
+    axios.put(`http://170.187.160.109:3001/users/disable`, {rut:disableUser}).then(res => console.log("usuario desactivado "+res.data))
     refreshPage()
   }
 
   const activar = () => {
     setVisible(false)
     
-    axios.put(`http://localhost:3001/users/enable`, {rut:disableUser}).then(res => {console.log("usuario desactivado "+res.data)})
+    axios.put(`http://170.187.160.109:3001/users/enable`, {rut:disableUser}).then(res => {console.log("usuario desactivado "+res.data)})
     refreshPage()
   } 
 
