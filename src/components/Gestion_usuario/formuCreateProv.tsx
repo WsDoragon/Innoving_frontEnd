@@ -18,6 +18,7 @@ type UserType = {
   mes: string
   anio: string
   roles: number[]
+  emailStatus: boolean
 };
 
 async function delay(ms: number) {
@@ -42,7 +43,8 @@ function Formulario() {
         dia: "",
         mes: "",
         anio: "",
-        roles: [4]
+        roles: [4],
+        emailStatus: false
       });
       
 
