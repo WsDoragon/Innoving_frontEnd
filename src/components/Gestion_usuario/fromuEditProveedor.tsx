@@ -1,9 +1,10 @@
 import React, { useEffect } from "react"
 import { useState } from "react"
 import { useNavigate,useLocation } from "react-router-dom";
-import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text } from "@nextui-org/react";
+import { Modal, useModal, FormElement ,Button, Spacer, Input, Row, Dropdown, Grid, Text, Checkbox , Tooltip } from "@nextui-org/react";
 import Header from "./Header";
 import axios from "axios";
+
 
 type UserType = {
   rut: string
@@ -15,6 +16,7 @@ type UserType = {
   mes: string
   anio: string
   roles: number[]
+  dateStatus: boolean
 };
 
 
@@ -23,6 +25,9 @@ export default function FormularioEdit() {
   const volver = useNavigate();
   const getRut = useLocation();
   const rol_tags = ["gerente", "administrador", "analista"];
+
+  const [showDropdown, setShowDropdown] = React.useState(false);
+
   const [selected, setSelected] = useState<string[]>([]);
   const [selecte, setSelecte] = React.useState<any>(new Set("Mes"));
   const [state, setState] = useState<UserType>({
@@ -34,7 +39,8 @@ export default function FormularioEdit() {
       dia: "",
       mes: "",
       anio: "",
-      roles: [4]
+      roles: [4],
+      dateStatus:false
     });
 
     
@@ -62,7 +68,7 @@ export default function FormularioEdit() {
      .then(response => {
        const apiData = response.data.data;
        const d: string = apiData.contraseña
-      setSelecte(new Set([d.slice(2,d.length-4)]))//aqui cambia todo creo, intenta hacer array
+      //setSelecte(new Set([d.slice(2,d.length-4)]))//aqui cambia todo creo, intenta hacer array
 
        const molde : UserType = { rut : apiData.rut,
             correo : apiData.correo,
@@ -72,7 +78,8 @@ export default function FormularioEdit() {
             dia: apiData.dia,
             mes: apiData.mes,
             anio: apiData.anio,
-            roles : [] 
+            roles : [],
+            dateStatus:false
        }
 
        //setState(molde);
@@ -84,9 +91,9 @@ export default function FormularioEdit() {
           contraseña : apiData.contraseña,
           nombre : apiData.nombre,
           apellido : apiData.apellido,
-          dia: d.slice(0,2),
-          mes: apiData.mes,
-          anio: d.slice(d.length-4,d.length),
+          //dia: d.slice(0,2),
+          //mes: apiData.mes,
+          //anio: d.slice(d.length-4,d.length),
         });
       });
      })
@@ -123,7 +130,9 @@ export default function FormularioEdit() {
     if(state.dia.length == 1){
       state.dia = "0" + state.dia
     }
-    state.contraseña = state.dia + state.mes + state.anio
+    if(showDropdown === true){
+      state.contraseña = state.dia + "$" + state.mes + "$" + state.anio
+      state.dateStatus = true}
    
 
     axios.put(`http://localhost:3001/users/edit`, {id:oldID, newInfo:state})
@@ -143,26 +152,31 @@ export default function FormularioEdit() {
     <div>
       <Header></Header>
       <Spacer y={1} />
-      <Grid.Container justify="center">
+      <div style={{display:"flex", alignItems:"center", flexDirection:"column"}}>
           <Input width="50%" type="text" name="nombre" onChange={handleChange} value={state.nombre}/>
-          <Spacer y={3} />
+          <Spacer y={1} />
           <Input width="50%" placeholder="Apellido(s)" type="text" name="apellido" onChange={handleChange} value={state.apellido}/>
-          <Spacer y={3} />
+          <Spacer y={1} />
 
           <Input width="50%" placeholder="Correo" type="text" name="correo" onChange={handleChange} value={state.correo}/>
-          <Spacer y={3} />
+          <Spacer y={1} />
 
           <Input width="50%" placeholder="RUT" type="text" name="rut" onChange={handleChange} value={state.rut}/>
-          
-          <Spacer y={3} />
-          <Row justify="center">
+          <Spacer y={1.5} />
+          <Tooltip content="Al enviar la solicitud con este elemento marcado se cambiara la fecha de cumpleaños en sistema... Manejar con cuidado" color="secondary">
+            <Checkbox isSelected={showDropdown} color="success" onChange={setShowDropdown}>
+              Editar Fecha
+            </Checkbox>
+          </Tooltip>
+          <Spacer y={1} />
+        
+          {showDropdown ? 
             <Text>
               Fecha de Nacimiento:
             </Text>
-          </Row>
-    
+          : null}
+        {showDropdown ?
           <Row justify="center">
-
 
           <Input
             size="xl"
@@ -174,7 +188,6 @@ export default function FormularioEdit() {
             />
 
             <Spacer x={1}/>
-
             <Dropdown>
 
               <Dropdown.Button
@@ -209,6 +222,7 @@ export default function FormularioEdit() {
              </Dropdown>
 
           <Spacer x={1} />
+          
           <Input
               size="xl"
               width="65px"
@@ -217,46 +231,44 @@ export default function FormularioEdit() {
               onChange={handleChange} 
               value={state.anio}
               />
+          
           </Row>
-
+            : null}
           <Spacer x={1} />
   
-          <Grid.Container justify="center">
-
-              <Spacer y={1}/>
-              </Grid.Container>
-              <Button onClick={() => setVisible(true)} >Guardar</Button>
-              <Modal
-                scroll
-                width="600px"
-                aria-labelledby="modal-title"
-                aria-describedby="modal-description"
-                {...bindings}
-              >
-                <Modal.Header>
-                  <Text id="modal-title" size={18}>
-                    Aviso
-                  </Text>
-                </Modal.Header>
-                <Modal.Body>
-                  <Text id="modal-description">
-                    ¿Seguro que quiere guardar los cambios de este usuario?
+            <Row justify="center" align="center">
+                <Button onClick={() => setVisible(true)} >Guardar</Button>
+                <Modal
+                  scroll
+                  width="600px"
+                  aria-labelledby="modal-title"
+                  aria-describedby="modal-description"
+                  {...bindings}
+                >
+                  <Modal.Header>
+                    <Text id="modal-title" size={18}>
+                      Aviso
                     </Text>
-                </Modal.Body>
-                <Modal.Footer>
-                <Button auto onClick={handleClick}>
-                    Si
-                  </Button>
-                  <Button auto flat color="error" onClick={() => setVisible(false)}>
-                    No
-                  </Button>
-                </Modal.Footer>
-              </Modal>
-              <Spacer x={0.5} />
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Text id="modal-description">
+                      ¿Seguro que quiere guardar los cambios de este usuario?
+                      </Text>
+                  </Modal.Body>
+                  <Modal.Footer>
+                  <Button auto onClick={handleClick}>
+                      Si
+                    </Button>
+                    <Button auto flat color="error" onClick={() => setVisible(false)}>
+                      No
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+                <Spacer x={0.5} />
 
-              <Button onClick={() => {volver(-1)}} color="error" >Salir</Button> 
-
-      </Grid.Container>
+                <Button onClick={() => {volver(-1)}} color="error" >Salir</Button> 
+            </Row>
       </div>
+    </div>
     );
   }
