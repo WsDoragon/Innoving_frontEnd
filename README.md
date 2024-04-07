@@ -1,46 +1,39 @@
-# Getting Started with Create React App
+# Innoving 2030 - Gestion Usuarios
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripcion
+* Servicio para Login de Funcionarios y Academicos.
+* Creacion y edicion de usuarios.
+* Deshabilitar usuarios.
+* Gestion de permisos.
 
-## Available Scripts
+## Instalacion
+* En la terminal dentro de la carpeta raiz introducir ```npm install``` para instalar las dependencias necesarias para utilizar el proyecto.
 
-In the project directory, you can run:
+## Scripts Disponibles
+
+Los siguientes comandos estan disponibles para ejecutar el proyecto.
 
 ### `npm start`
+- Iniciar proyecto en modo desarrollo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `npm build`
+- Crea la build utilizable para su despliegue
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Pruebas automatizadas
+* Especial para realizar pruebas de requisitos funcionales y no funcionales
+### Requisitos:
+- Python 3.9 >=
+- Modulo `selenium` (`pip install selenium`)
+- chromedriver (stable) [https://googlechromelabs.github.io/chrome-for-testing/]
 
-### `npm test`
+### Ejecucion
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Dentro de la carpeta "INFO290_Testing" ejecutar uno de los siguientes comandos segun necesidad:
 
-### `npm run build`
+#### `python RNF_rendimiento [N° iteraciones]`
+- Se ejecutara una prueba de rendimiento con 3 usuarios, contenidos en dataTest.json, en forma paralela
+- Esta prueba puede ejecutar la cantidad de iteraciones entregadas de forma simultanea, entregando un tiempo de ejecucion total y un tiempo promedio por cada inicio de sesion que se realiza.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### `python RF_Login`
+- Se ejecutara un login automatizado a la aplicacion para comprobar su funcionalidad con el usuario entregado en dataTest.json
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
