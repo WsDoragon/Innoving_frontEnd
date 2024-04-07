@@ -96,6 +96,7 @@ export default function Func (){
         <Button
           auto
           size="lg"
+          name="btnLogin"
           css={{color:"#ffffff", fontWeight:"bold", background:"#ff5101", fontSize:"$lg"}}
           onClick={handleClick}
           >Iniciar Sesión
