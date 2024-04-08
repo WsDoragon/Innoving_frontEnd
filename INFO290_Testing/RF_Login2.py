@@ -60,7 +60,7 @@ def main():
     users = read_json('dataTestRF.json')["users"]
     test_results = open_window(url, users)
     
-    print("\n\nRESULTADOS DE LOS TESTS\n")
+    print("\n\n--- GUARDANDO RESULTADOS DE LOS TESTS ---\n")
     current_datetime = datetime.datetime.now()
     filename = f"test_results_{current_datetime.strftime('%Y-%m-%d_%H-%M-%S')}.txt"
 
@@ -68,6 +68,8 @@ def main():
         for rut, result, expected, actual in test_results:
             print(f"[{result}] Usuario: {rut} | Resultado esperado: {expected} & Resultado obtenido: {actual}")
             file.write(f"[{result}] Usuario: {rut} | Resultado esperado: {expected} & Resultado obtenido: {actual}\n")
+
+    print(f"\n\n--- RESULTADOS GUARDADOS EN .resultados_RF/{filename} ---\n")
 
 if __name__ == "__main__":
     main()

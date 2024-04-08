@@ -104,7 +104,7 @@ def main():
         file.write(f"Tiempo de Ejecucion: {execution_time} segundos\n")
         file.write(f"Promedio de intento: {promedio} segundos\n")
 
-    print(f"Results saved to {filename}")
+    print(f"Resultados guardados en: ./resultados_RNF/{filename} y ./resultados_RNF/{filename_Times}")
 
 if __name__ == "__main__":
     main()
