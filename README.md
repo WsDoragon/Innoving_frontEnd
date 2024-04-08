@@ -22,7 +22,7 @@ Los siguientes comandos estan disponibles para ejecutar el proyecto.
 ## Pruebas automatizadas
 * Especial para realizar pruebas de requisitos funcionales y no funcionales
 ### Requisitos:
-- Python 3.9 >=
+- Python 3.8+
 - Modulo `selenium` (`pip install selenium`)
 - chromedriver (stable) [https://googlechromelabs.github.io/chrome-for-testing/]
 - Agregar datos de prueba a la base de datos, en mariaDB importar con `SOURCE Ruta/Hasta/Archivo/INFO290_Testing/testUpdate.sql`
@@ -36,5 +36,15 @@ Los siguientes comandos estan disponibles para ejecutar el proyecto.
 - Esta prueba puede ejecutar la cantidad de iteraciones entregadas de forma simultanea, entregando un tiempo de ejecucion total y un tiempo promedio por cada inicio de sesion que se realiza.
 
 #### `python RF_Login`
-- Se ejecutara un login automatizado a la aplicacion para comprobar su funcionalidad con el usuario entregado en dataTest.json
+- Comprobacion visual.
+- Se ejecutara un login automatizado a la aplicacion para comprobar su funcionalidad con un usuario aleatorio de los entregados en dataTest.json
+
+#### `python RF_Login2`
+- Ejecucion de modo dataDriven.
+- Se ejecutara un login automatizado a la aplicacion para comprobar su funcionalidad con los usuarios entregados en dataTestRF.json junto al resultado esperado de los roles que poseen.
+
+```cmd
+Ejemplo de resultado en consola: 
+[PASS] Usuario: 20318537-5 | Resultado esperado: True & Resultado obtenido: True
+```
 
