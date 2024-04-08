@@ -25,6 +25,7 @@ Los siguientes comandos estan disponibles para ejecutar el proyecto.
 - Python 3.9 >=
 - Modulo `selenium` (`pip install selenium`)
 - chromedriver (stable) [https://googlechromelabs.github.io/chrome-for-testing/]
+- Agregar datos de prueba a la base de datos, en mariaDB importar con `SOURCE Ruta/Hasta/Archivo/INFO290_Testing/testUpdate.sql`
 
 ### Ejecucion
 
