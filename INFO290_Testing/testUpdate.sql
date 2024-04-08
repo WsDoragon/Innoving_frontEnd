@@ -10,7 +10,7 @@
 USE innoving;
 
 INSERT INTO `rol_usuario` (`id_rut`, `id_rol`) VALUES
-('212345678-9', 1),
+('12345678-9', 1),
 ('12345678-9', 3),
 ('111222333-4', 3);
   
