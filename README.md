@@ -23,6 +23,7 @@ Los siguientes comandos estan disponibles para ejecutar el proyecto.
 * Especial para realizar pruebas de requisitos funcionales y no funcionales
 ### Requisitos:
 - Python 3.8+
+- Google Chrome
 - Modulo `selenium` (`pip install selenium`)
 - chromedriver (stable) [https://googlechromelabs.github.io/chrome-for-testing/]
 - Agregar datos de prueba a la base de datos, en mariaDB importar con `SOURCE Ruta/Hasta/Archivo/INFO290_Testing/testUpdate.sql`
