@@ -1,0 +1,67 @@
+{
+    "users": [
+         {   "id": 1,
+            "rut": "20318537-5",
+            "password": "a", 
+            "roles": ["Gerente", "Administrador", "Analista"],
+            "expected_result": true
+        },
+        {   "id": 1,
+            "rut": "20318537-5",
+            "password": "a", 
+            "roles": ["Administrador", "Analista"],
+            "expected_result": false
+        },
+        {   "id": 1,
+            "rut": "20318537-5",
+            "password": "a", 
+            "roles": ["Gerente"],
+            "expected_result": false
+        },
+
+        {
+            "id": 2,
+            "rut": "12345678-9",
+            "password": "a",
+            "roles": ["Analista"],
+            "expected_result": true
+        },
+        {
+            "id": 2,
+            "rut": "12345678-9",
+            "password": "a",
+            "roles": ["Gerente", "Analista"],
+            "expected_result": false
+        },
+        {
+            "id": 2,
+            "rut": "12345678-9",
+            "password": "a",
+            "roles": ["Gerente", "Administrador", "Analista"],
+            "expected_result": false
+        },
+
+
+        {
+            "id": 3,
+            "rut": "111222333-4",
+            "password": "a",
+            "roles": ["Analista"],
+            "expected_result": true
+        },
+        {
+            "id": 3,
+            "rut": "111222333-4",
+            "password": "a",
+            "roles": ["Gerente", "Administrador"],
+            "expected_result": false
+        },
+        {
+            "id": 3,
+            "rut": "111222333-4",
+            "password": "a",
+            "roles": ["Gerente", "Administrador", "Analista"],
+            "expected_result": false
+        }
+    ]
+}
