@@ -48,7 +48,7 @@ def open_window(url, user):
     WebDriverWait(driver, 10).until(EC.url_changes(url))
 
     txt_on_page = driver.find_element(By.TAG_NAME, "body").text
-    roles_on_site = [role for role in ["Gerente", "Administrador", "Analista"] if role.lower() in txt_on_page.lower()]
+    roles_on_site = [role for role in ["Gerente", "Administrador", "Analista"] if role in txt_on_page]
 
     driver.quit()
 
@@ -56,7 +56,7 @@ def open_window(url, user):
 
 def main():
     url = "http://localhost:3000/admin"
-    users = read_json('dataTest2.json')["users"]
+    users = read_json('dataTestRF.json')["users"]
     test_results = open_window(url, users)
     
     #for rut, result, expected, actual in test_results:

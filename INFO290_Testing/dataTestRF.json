@@ -24,14 +24,14 @@
             "rut": "12345678-9",
             "password": "a",
             "roles": ["Analista"],
-            "expected_result": true
+            "expected_result": false
         },
         {
             "id": 2,
             "rut": "12345678-9",
             "password": "a",
             "roles": ["Gerente", "Analista"],
-            "expected_result": false
+            "expected_result": true
         },
         {
             "id": 2,
