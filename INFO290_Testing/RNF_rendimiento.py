@@ -9,8 +9,9 @@ import time
 import threading
 import json
 import sys
+import datetime
 
-def open_window(url, user, password):
+def open_window(url, user, password, rutaTiempo):
 
     service = Service(executable_path="chromedriver.exe")
     #driver = webdriver.Chrome(service=service)
@@ -46,7 +47,7 @@ def open_window(url, user, password):
     end_time = time.time()
     execution_time = end_time - start_time
 
-    with open('times.txt', 'a') as file:
+    with open(rutaTiempo, 'a') as file:
         file.write(f"{execution_time} \n")
 
     driver.quit()
@@ -66,14 +67,20 @@ def main():
             
     threads = []
     # Create a text file
-    with open('times.txt', 'w') as file:
+
+    current_datetime = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename_Times = f"times_{current_datetime}.txt"
+    rutaTiempo = f"./resultados_RNF/{filename_Times}"
+
+    with open(f"./resultados_RNF/{filename_Times}", 'w') as file:
         file.write('')
+
     start_time = time.time()
     json_data = read_json('dataTest.json')
     for i in range(0, repeticiones):
         for item in json_data["users"]:
             url = "http://localhost:3000/admin"
-            thread = threading.Thread(target=open_window, args=(url, item["rut"], item["password"]))
+            thread = threading.Thread(target=open_window, args=(url, item["rut"], item["password"], rutaTiempo))
             thread.start()
             threads.append(thread)
 
@@ -84,11 +91,20 @@ def main():
     execution_time = end_time - start_time
     print(f"Execution time: {execution_time} seconds")
 
-    with open('times.txt', 'r') as file:
+    with open(rutaTiempo, 'r') as file:
         tiempos = [float(line) for line in file]
 
     promedio = sum(tiempos) / len(tiempos)
     print(f"Promedio de intento: {promedio} segundos")
+
+    
+    filename = f"results_{current_datetime}.txt"
+    with open(f"./resultados_RNF/{filename}", 'w') as file:
+        file.write(f"Numero de ejecuciones: {len(tiempos)}\n")
+        file.write(f"Tiempo de Ejecucion: {execution_time} segundos\n")
+        file.write(f"Promedio de intento: {promedio} segundos\n")
+
+    print(f"Results saved to {filename}")
 
 if __name__ == "__main__":
     main()

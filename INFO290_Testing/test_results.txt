@@ -1,0 +1,9 @@
+[PASS] Usuario: 20318537-5 | Resultado esperado: True & Resultado obtenido: True
+[PASS] Usuario: 20318537-5 | Resultado esperado: False & Resultado obtenido: False
+[PASS] Usuario: 20318537-5 | Resultado esperado: False & Resultado obtenido: False
+[PASS] Usuario: 12345678-9 | Resultado esperado: False & Resultado obtenido: False
+[PASS] Usuario: 12345678-9 | Resultado esperado: True & Resultado obtenido: True
+[PASS] Usuario: 12345678-9 | Resultado esperado: False & Resultado obtenido: False
+[PASS] Usuario: 111222333-4 | Resultado esperado: True & Resultado obtenido: True
+[PASS] Usuario: 111222333-4 | Resultado esperado: False & Resultado obtenido: False
+[PASS] Usuario: 111222333-4 | Resultado esperado: False & Resultado obtenido: False

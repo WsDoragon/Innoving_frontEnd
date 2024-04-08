@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
+import datetime
 
 def read_json(file_path):
     with open(file_path, 'r') as file:
@@ -59,8 +60,14 @@ def main():
     users = read_json('dataTestRF.json')["users"]
     test_results = open_window(url, users)
     
-    #for rut, result, expected, actual in test_results:
-    #    print(f"[{result}] Usuario: {rut} | Resultado esperado: {expected} & Resultado obtenido: {actual}")
+    print("\n\nRESULTADOS DE LOS TESTS\n")
+    current_datetime = datetime.datetime.now()
+    filename = f"test_results_{current_datetime.strftime('%Y-%m-%d_%H-%M-%S')}.txt"
+
+    with open(f"./resultados_RF/{filename}", 'w') as file:
+        for rut, result, expected, actual in test_results:
+            print(f"[{result}] Usuario: {rut} | Resultado esperado: {expected} & Resultado obtenido: {actual}")
+            file.write(f"[{result}] Usuario: {rut} | Resultado esperado: {expected} & Resultado obtenido: {actual}\n")
 
 if __name__ == "__main__":
     main()
