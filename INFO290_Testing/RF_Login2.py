@@ -25,7 +25,7 @@ def user_test_decorator(func):
 
 @user_test_decorator
 def open_window(url, user):
-    service = Service(executable_path="chromedriver.exe")
+    service = Service(executable_path="./chromedriver.exe")
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
     chrome_options.add_argument("--incognito")

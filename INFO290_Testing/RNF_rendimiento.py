@@ -13,7 +13,7 @@ import datetime
 
 def open_window(url, user, password, rutaTiempo):
 
-    service = Service(executable_path="chromedriver.exe")
+    service = Service(executable_path="./chromedriver.exe")
     #driver = webdriver.Chrome(service=service)
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--incognito")
